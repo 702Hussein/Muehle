@@ -25,11 +25,13 @@
         android:layout_marginTop="230dp"
         android:layout_marginEnd="40dp"
         android:layout_marginBottom="291dp"
+        android:backgroundTint="@android:color/white"
         android:ems="10"
         android:fontFamily="sans-serif"
         android:hint="Name"
         android:inputType="textPersonName"
-        android:textColor="@android:color/background_light"
+        android:textAllCaps="false"
+        android:textColorHint="@android:color/background_light"
         android:textSize="20sp"
         android:textStyle="bold" />
 
@@ -43,9 +45,11 @@
         android:layout_marginStart="103dp"
         android:layout_marginEnd="41dp"
         android:layout_marginBottom="221dp"
+        android:backgroundTint="@android:color/white"
         android:ems="10"
         android:hint="Password"
         android:inputType="textPassword"
+        android:textColorHint="@android:color/background_light"
         android:textSize="20sp"
         android:textStyle="bold" />
 
@@ -57,13 +61,13 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="165dp"
+        android:layout_marginStart="160dp"
         android:layout_marginTop="376dp"
-        android:layout_marginEnd="131dp"
+        android:layout_marginEnd="136dp"
         android:layout_marginBottom="143dp"
-        android:background="@android:color/background_light"
+        android:background="@color/colorPrimaryDark"
         android:text="Login"
-        android:textColor="@color/colorPrimaryDark" />
+        android:textColor="@android:color/background_light" />
 
 
 </RelativeLayout>

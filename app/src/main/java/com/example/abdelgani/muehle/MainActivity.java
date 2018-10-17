@@ -8,23 +8,55 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity
+{
 
-    private EditText Name;
-    private EditText password;
+    public EditText Name;
+    public EditText Password;
     public Button Login;
+    public String name;
+    public String password;
+    Database MyDatabase;
+
     //Button mButton = (Button) findViewById(R.id.btnLoginID);
 
     public void OpenNewActivityByButtonClick()
     {
         Login = (Button)findViewById( R.id.btnLoginID);
-        Login.setOnClickListener( new View.OnClickListener() {
+        Login.setOnClickListener( new View.OnClickListener()
+        {
             @Override
-            public void onClick(View view) {
+            public void onClick(View view)
+            {
 
                 Intent OpenSecondActivity = new Intent( MainActivity.this, SecondActivity.class);
-                Toast.makeText( getApplicationContext(), "Login Successfuly", Toast.LENGTH_SHORT ).show();
-                startActivity( OpenSecondActivity );
+
+
+                name = Name.getText().toString();
+                password = Password.getText().toString();
+
+                if(name.equals( "" )|| password.equals( "" ))
+                {
+                    Toast.makeText( getApplicationContext(), "Fields are empty", Toast.LENGTH_SHORT ).show();
+                }
+                else
+                {
+                    boolean checkMail = MyDatabase.checkEmail( name );
+                    if(checkMail == true)
+                    {
+                        boolean insert = MyDatabase.insert( name, password );
+                        if(insert == true)
+                        {
+                            Toast.makeText( getApplicationContext(), "Login Successfuly", Toast.LENGTH_SHORT ).show();
+                            startActivity( OpenSecondActivity );
+                        }
+                    }
+                    else
+                    {
+                        Toast.makeText( getApplicationContext(), "E-Mail already exists", Toast.LENGTH_SHORT ).show();
+                        startActivity( OpenSecondActivity );
+                    }
+                }
             }
         } );
     }
@@ -36,16 +68,19 @@ public class MainActivity extends AppCompatActivity {
         setContentView( R.layout.activity_main );
 
         Name = (EditText)findViewById( R.id.btnNameID );
-        password = (EditText)findViewById( R.id.btnPasswordID );
+        Password = (EditText)findViewById( R.id.btnPasswordID );
         Login = (Button)findViewById( R.id.btnLoginID );
+
+        MyDatabase = new Database( this );
+
         OpenNewActivityByButtonClick();
 
     }
-//https://www.youtube.com/watch?v=lF5m4o_CuNg
+        //https://www.youtube.com/watch?v=lF5m4o_CuNg
 
-    //private void validate (String userName, String userPassword)
-    //{
-    //}
+            //private void validate (String userName, String userPassword)
+            //{
+            //}
 
     
 

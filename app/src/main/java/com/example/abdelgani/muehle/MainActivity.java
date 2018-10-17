@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -22,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
 
                 Intent OpenSecondActivity = new Intent( MainActivity.this, SecondActivity.class);
+                Toast.makeText( getApplicationContext(), "Login Successfuly", Toast.LENGTH_SHORT ).show();
                 startActivity( OpenSecondActivity );
             }
         } );

@@ -1,6 +1,7 @@
 package com.example.abdelgani.muehle;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -18,10 +19,14 @@ public class MainActivity extends AppCompatActivity
     public String password;
     Database MyDatabase;
 
+    Toast ToastMessage = new Toast( MainActivity.this );
+    View toastView = ToastMessage.getView();
     //Button mButton = (Button) findViewById(R.id.btnLoginID);
 
     public void OpenNewActivityByButtonClick()
     {
+
+
         Login = (Button)findViewById( R.id.btnLoginID);
         Login.setOnClickListener( new View.OnClickListener()
         {
@@ -37,7 +42,10 @@ public class MainActivity extends AppCompatActivity
 
                 if(name.equals( "" )|| password.equals( "" ))
                 {
-                    Toast.makeText( getApplicationContext(), "Fields are empty", Toast.LENGTH_SHORT ).show();
+                    //Toast.makeText( getApplicationContext(), "Fields are empty", Toast.LENGTH_SHORT ).show();
+                    ToastMessage.makeText(getApplicationContext(),"Fields are empty",Toast.LENGTH_SHORT);
+                    toastView.setBackgroundColor( Color.RED );
+                    ToastMessage.show();
                 }
                 else
                 {
@@ -47,13 +55,20 @@ public class MainActivity extends AppCompatActivity
                         boolean insert = MyDatabase.insert( name, password );
                         if(insert == true)
                         {
-                            Toast.makeText( getApplicationContext(), "Login Successfuly", Toast.LENGTH_SHORT ).show();
+                            //Toast.makeText( getApplicationContext(), "Login Successfuly", Toast.LENGTH_SHORT ).show();
+                            ToastMessage.makeText(getApplicationContext(), "Login Successfuly", Toast.LENGTH_SHORT ).show();
+                            toastView.setBackgroundColor( Color.GREEN );
+                            ToastMessage.show();
+
                             startActivity( OpenSecondActivity );
                         }
                     }
                     else
                     {
-                        Toast.makeText( getApplicationContext(), "E-Mail already exists", Toast.LENGTH_SHORT ).show();
+                        //Toast.makeText( getApplicationContext(), "E-Mail already exists", Toast.LENGTH_SHORT ).show();
+                        ToastMessage.makeText(getApplicationContext(), "E-Mail already exists", Toast.LENGTH_SHORT ).show();
+                        toastView.setBackgroundColor( Color.GREEN );
+                        ToastMessage.show();
                         startActivity( OpenSecondActivity );
                     }
                 }
@@ -77,11 +92,7 @@ public class MainActivity extends AppCompatActivity
 
     }
         //https://www.youtube.com/watch?v=lF5m4o_CuNg
-
             //private void validate (String userName, String userPassword)
             //{
             //}
-
-    
-
 }

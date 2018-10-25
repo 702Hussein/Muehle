@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 
 public class SecondActivity extends AppCompatActivity {
 
@@ -29,6 +30,8 @@ public class SecondActivity extends AppCompatActivity {
     public void OpenSinglePlyerActivity()
     {
         SinglePlayer = (Button) findViewById( R.id.btnSinglePlayerID );
+
+
         SinglePlayer.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -12,20 +12,57 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity
 {
 
-    public EditText Name;
-    public EditText Password;
+    public EditText User_Name;
+    public EditText User_Password;
     public Button Login;
+    public Button Register;
     public String name;
     public String password;
     Database MyDatabase;
 
 
+    public  String UserName;
+
     //Button mButton = (Button) findViewById(R.id.btnLoginID);
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate( savedInstanceState );
+        setContentView( R.layout.activity_main );
+
+        User_Name = (EditText)findViewById( R.id.btnNameID );
+        User_Password = (EditText)findViewById( R.id.btnPasswordID );
+        Login = (Button)findViewById( R.id.btnLoginID );
+
+
+
+        MyDatabase = new Database( this );
+
+        OpenNewActivityByButtonClick();
+        OpenRegisterActivity();
+    }
+
+
+    public  void OpenRegisterActivity()
+    {
+        Register = (Button)findViewById( R.id.btnRegisterID );
+        Register.setOnClickListener( new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                Intent OpenRegisterActivity = new Intent( MainActivity.this, RegisterActivity.class);
+                startActivity( OpenRegisterActivity );
+
+            }
+
+
+        } );
+    }
+
 
     public void OpenNewActivityByButtonClick()
     {
-
-
         Login = (Button)findViewById( R.id.btnLoginID);
         Login.setOnClickListener( new View.OnClickListener()
         {
@@ -36,8 +73,10 @@ public class MainActivity extends AppCompatActivity
                 Intent OpenSecondActivity = new Intent( MainActivity.this, SecondActivity.class);
 
 
-                name = Name.getText().toString();
-                password = Password.getText().toString();
+                name = User_Name.getText().toString();
+                password = User_Password.getText().toString();
+
+
 
                 if(name.equals( "" )|| password.equals( "" ))
                 {
@@ -66,20 +105,7 @@ public class MainActivity extends AppCompatActivity
     }
 
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate( savedInstanceState );
-        setContentView( R.layout.activity_main );
 
-        Name = (EditText)findViewById( R.id.btnNameID );
-        Password = (EditText)findViewById( R.id.btnPasswordID );
-        Login = (Button)findViewById( R.id.btnLoginID );
-
-        MyDatabase = new Database( this );
-
-        OpenNewActivityByButtonClick();
-
-    }
         //https://www.youtube.com/watch?v=lF5m4o_CuNg
             //private void validate (String userName, String userPassword)
             //{

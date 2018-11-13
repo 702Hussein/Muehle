@@ -7,7 +7,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 
-public class SecondActivity extends AppCompatActivity {
+import java.util.jar.Attributes;
+
+public class SecondActivity extends AppCompatActivity
+{
 
 
     public Button back;
@@ -15,12 +18,27 @@ public class SecondActivity extends AppCompatActivity {
     public Button MultiPlyer;
 
 
+    @Override
+    protected void onCreate(Bundle savedInstanceState)
+    {
+        super.onCreate( savedInstanceState );
+        setContentView( R.layout.activity_second );
+
+        BackToMainActivity();
+        OpenSinglePlyerActivity();
+        OpenMultiPlyerActivity();
+
+    }
+
+
+
     public void BackToMainActivity()
     {
         back = (Button)findViewById( R.id.btnBackID);
         back.setOnClickListener( new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onClick(View view)
+            {
                 Intent BackToMainActivity = new Intent(SecondActivity.this, MainActivity.class);
                 startActivity( BackToMainActivity);
             }
@@ -30,12 +48,12 @@ public class SecondActivity extends AppCompatActivity {
     public void OpenSinglePlyerActivity()
     {
         SinglePlayer = (Button) findViewById( R.id.btnSinglePlayerID );
-
-
-        SinglePlayer.setOnClickListener( new View.OnClickListener() {
+        SinglePlayer.setOnClickListener( new View.OnClickListener()
+        {
             @Override
-            public void onClick(View view) {
-                Intent OpenSinglePlayerActivity = new Intent( SecondActivity.this, SinglePlayerActivity.class );
+            public void onClick(View view)
+            {
+                Intent OpenSinglePlayerActivity = new Intent(SecondActivity.this, SinglePlayerActivity.class );
                 startActivity( OpenSinglePlayerActivity);
             }
         } );
@@ -54,14 +72,5 @@ public class SecondActivity extends AppCompatActivity {
     }
 
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate( savedInstanceState );
-        setContentView( R.layout.activity_second );
 
-        BackToMainActivity();
-        OpenSinglePlyerActivity();
-        OpenMultiPlyerActivity();
-
-    }
 }

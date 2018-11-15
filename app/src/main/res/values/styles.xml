@@ -8,4 +8,9 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <dimen name="nodeSize">48dp</dimen>
+    <dimen name="nodeMargin">8dp</dimen>
+    <dimen name="tileSize">42dp</dimen>
+    <drawable name="startPlayer">@drawable/white_tile</drawable>
+    <drawable name="secondPlayer">@drawable/black_tile</drawable>
 </resources>

@@ -26,57 +26,47 @@ public class MainActivity extends AppCompatActivity
     //Button mButton = (Button) findViewById(R.id.btnLoginID);
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate( savedInstanceState );
         setContentView( R.layout.activity_main );
 
+        MyDatabase = new Database( this );
         User_Name = (EditText)findViewById( R.id.btnNameID );
         User_Password = (EditText)findViewById( R.id.btnPasswordID );
+
         Login = (Button)findViewById( R.id.btnLoginID );
+        Login.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                OpensecondActivity();
+            }
+        } );
 
 
-
-        MyDatabase = new Database( this );
-
-        OpenNewActivityByButtonClick();
-        OpenRegisterActivity();
+        Register =(Button) findViewById( R.id.btnRegisterID );
+        Register.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                OpenRegisterActivity();
+            }
+        } );
     }
 
 
     public  void OpenRegisterActivity()
     {
-        Register = (Button)findViewById( R.id.btnRegisterID );
-        Register.setOnClickListener( new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View view)
-            {
-                Intent OpenRegisterActivity = new Intent( MainActivity.this, RegisterActivity.class);
+        Intent OpenRegisterActivity = new Intent( MainActivity.this, RegisterActivity.class);
                 startActivity( OpenRegisterActivity );
-
-            }
-
-
-        } );
     }
 
 
-    public void OpenNewActivityByButtonClick()
+    public void OpensecondActivity()
     {
-        Login = (Button)findViewById( R.id.btnLoginID);
-        Login.setOnClickListener( new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View view)
-            {
-
-                Intent OpenSecondActivity = new Intent( MainActivity.this, SecondActivity.class);
-
+         Intent OpenSecondActivity = new Intent( MainActivity.this, SecondActivity.class);
 
                 name = User_Name.getText().toString();
                 password = User_Password.getText().toString();
-
-
 
                 if(name.equals( "" )|| password.equals( "" ))
                 {
@@ -84,24 +74,17 @@ public class MainActivity extends AppCompatActivity
                 }
                 else
                 {
-                    boolean checkMail = MyDatabase.checkEmail( name );
-                    if(checkMail == true)
+                    boolean check_Account = MyDatabase.checkAccount( name, password);
+                    if(check_Account == true)
                     {
-                        boolean insert = MyDatabase.insert( name, password );
-                        if(insert == true)
-                        {
-                            Toast.makeText( getApplicationContext(), "Login Successfuly", Toast.LENGTH_SHORT ).show();
-                            startActivity( OpenSecondActivity );
-                        }
+                            Toast.makeText( getApplicationContext(), "Please register first", Toast.LENGTH_SHORT ).show();
                     }
                     else
                     {
-                        Toast.makeText( getApplicationContext(), "E-Mail already exists", Toast.LENGTH_SHORT ).show();
+                        Toast.makeText( getApplicationContext(), "Account already exists", Toast.LENGTH_SHORT ).show();
                         startActivity( OpenSecondActivity );
                     }
                 }
-            }
-        } );
     }
 
 

@@ -51,13 +51,21 @@ public class Database extends SQLiteOpenHelper
 
     }
 
-    public boolean checkEmail(String email)
+    public boolean checkAccount(String email, String password)
     {
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.rawQuery( "Select * from " + TableName + " Where email =?", new String[]{email} );
-        if(cursor.getCount()>0)
+        Cursor cursor1 = db.rawQuery( "Select * from " + TableName + " Where email =?" , new String[]{email} );
+        Cursor cursor2 = db.rawQuery( "Select * from " + TableName + " Where password =?" , new String[]{password} );
+        if(cursor1.getCount()>0)
         {
-            return false;
+            if (cursor2.getCount()>0)
+            {
+                return false;
+            }
+            else
+            {
+                return  true;
+            }
         }
         else
         {

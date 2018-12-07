@@ -170,18 +170,9 @@ Log.d(TAG,"Singleplayer startup");
 
 					case DragEvent.ACTION_DROP:                //drop item within the listening area bounds
 
-						event.getClipData();
-
-						//wichtig:
 						View tile = (View) event.getLocalState();
 						tile.animate().x(v.getX()).y(v.getY()).setDuration(500).start();
 
-						//v.setTag(false);
-
-						ClipData.Item item = event.getClipData().getItemAt(0);
-						if (v.getId() == R.id.node_outer_topLeft) {
-
-						}
 						break;
 
 					case DragEvent.ACTION_DRAG_ENDED:        //right after ACTION_DROP

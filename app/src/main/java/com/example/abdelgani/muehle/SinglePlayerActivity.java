@@ -2,42 +2,48 @@ package com.example.abdelgani.muehle;
 
 import android.content.ClipData;
 import android.content.ClipDescription;
-import android.content.res.Resources;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Color;
-import android.graphics.Point;
-import android.graphics.PorterDuff;
+import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
-import android.support.constraint.ConstraintLayout;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.DragEvent;
-import android.view.MotionEvent;
+import android.view.KeyEvent;
 import android.widget.Button;
 import android.view.View;
 import android.widget.Toast;
 import android.util.Log;
 
+import com.example.abdelgani.muehle.Classes.Nodes;
+import com.example.abdelgani.muehle.Classes.Tiles;
+
+import org.w3c.dom.Node;
+
 public class SinglePlayerActivity extends AppCompatActivity {
 
-	private static final String TAG = "*****"+SinglePlayerActivity.class.getSimpleName();
+	private static final String TAG = "__________";
 
-    View node_outer_topLeft, node_outer_topMid, node_outer_topRight, node_outer_midLeft, node_outer_midRight, node_outer_botLeft, node_outer_botMid, node_outer_botRight;
-    View node_middle_topLeft, node_middle_topMid, node_middle_topRight, node_middle_midLeft, node_middle_midRight, node_middle_botLeft, node_middle_botMid, node_middle_botRight;
-	View node_inner_topLeft, node_inner_topMid, node_inner_topRight, node_inner_midLeft, node_inner_midRight, node_inner_botLeft, node_inner_botMid, node_inner_botRight;
+	Nodes node_outer_topLeft, node_outer_topMid, node_outer_topRight, node_outer_midLeft, node_outer_midRight, node_outer_botLeft, node_outer_botMid, node_outer_botRight;
+	Nodes node_middle_topLeft, node_middle_topMid, node_middle_topRight, node_middle_midLeft, node_middle_midRight, node_middle_botLeft, node_middle_botMid, node_middle_botRight;
+	Nodes node_inner_topLeft, node_inner_topMid, node_inner_topRight, node_inner_midLeft, node_inner_midRight, node_inner_botLeft, node_inner_botMid, node_inner_botRight;
     View gameBoard;
-    Button tileP1_1, tileP1_2, tileP1_3, tileP1_4, tileP1_5, tileP1_6, tileP1_7, tileP1_8, tileP1_9;
-	Button tileP2_1, tileP2_2, tileP2_3, tileP2_4, tileP2_5, tileP2_6, tileP2_7, tileP2_8, tileP2_9;
+    Tiles tileP1_1, tileP1_2, tileP1_3, tileP1_4, tileP1_5, tileP1_6, tileP1_7, tileP1_8, tileP1_9;
+	Tiles tileP2_1, tileP2_2, tileP2_3, tileP2_4, tileP2_5, tileP2_6, tileP2_7, tileP2_8, tileP2_9;
+	Button[] player1Tiles, player2Tiles;
 	int offset;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate( savedInstanceState );
         setContentView( R.layout.activity_single_player );
-Log.d(TAG,"Singleplayer startup");
+		Log.d(TAG,"Singleplayer startup");
 
         try {
         	//region get Offset
-			offset = (int)(getResources().getDimension(R.dimen.nodeSize) - getResources().getDimension(R.dimen.tileSize) + 0.5);
+			offset = (int)((getResources().getDimension(R.dimen.nodeSize) - getResources().getDimension(R.dimen.tileSize) + 0.5)/2);
 			//endregion
 			//region assign nodes
 			node_outer_topLeft = findViewById(R.id.node_outer_topLeft);
@@ -132,6 +138,8 @@ Log.d(TAG,"Singleplayer startup");
 			tileP2_9.setOnLongClickListener(longClickListener);
 			//endregion
 
+			player1Tiles = new Button[]{tileP1_1, tileP1_2, tileP1_3, tileP1_4, tileP1_5, tileP1_6, tileP1_7, tileP1_8, tileP1_9};
+			player2Tiles = new Button[]{tileP2_1, tileP2_2, tileP2_3, tileP2_4, tileP2_5, tileP2_6, tileP2_7, tileP2_8, tileP2_9};
 
 		}catch (Exception exc){
         	exc.getMessage();
@@ -141,70 +149,95 @@ Log.d(TAG,"Singleplayer startup");
     View.OnLongClickListener longClickListener = new View.OnLongClickListener() {
 		@Override
 		public boolean onLongClick(View v) {
-
+			Log.d(TAG,"enter onLongClick" + v.getId());
+			v.invalidate();
 				ClipData.Item item = new ClipData.Item((CharSequence) v.getTag());
 				String[] mimeTypes = {ClipDescription.MIMETYPE_TEXT_PLAIN};
 				ClipData clipData = new ClipData((CharSequence) v.getTag(), mimeTypes, item);
 				View.DragShadowBuilder dragShadow = new View.DragShadowBuilder(v);
 				v.startDrag(clipData, dragShadow, v, 0);
-
-
 			return true;
 		}
 	};
 
-    View.OnDragListener dragListener = new View.OnDragListener() {
-		@Override
-		public boolean onDrag(View v, DragEvent event) {
-			try {
+    Nodes.OnDragListener dragListener = new Nodes.OnDragListener() {
+			@Override
+			public boolean onDrag(View v, DragEvent event) {
+				Log.d(TAG, "enter onDrag" + v.getId());
 				int action = event.getAction();
-				Log.d(TAG,"onDrag;	id: " + v.getId() + ";	action: " + action);
+				Tiles tile = (Tiles) event.getLocalState();
+				Nodes node = (Nodes) v;
+				Log.d(TAG, "onDrag;	id: " + v.getId() + ";	action: " + action);
 				switch (action) {
-
 					case DragEvent.ACTION_DRAG_STARTED:        //start to drag an item
-
-						//return (boolean)v.getTag();
-
+						return node.isFree();
 					case DragEvent.ACTION_DRAG_LOCATION:    //enter the listening area (with ACTION_DRAG_ENTERED
 						break;
-
 					case DragEvent.ACTION_DROP:                //drop item within the listening area bounds
-
-						View tile = (View) event.getLocalState();
-						tile.animate().x(v.getX()).y(v.getY()).setDuration(500).start();
-
+						tile.animate().x(v.getX() + offset).y(v.getY() + offset).setDuration(500).start();
+						node.setOccupied(true);
+						if ( tile.getCurrentNode() != null)
+							tile.getCurrentNode().setOccupied(false);
+						tile.setCurrentNode(node);
 						break;
-
 					case DragEvent.ACTION_DRAG_ENDED:        //right after ACTION_DROP
-							v.setBackground(null);
-						break;
-
+						v.setBackground(null);
+						return event.getResult();
 					case DragEvent.ACTION_DRAG_ENTERED:        //entered the listening area ( with ACTION_DRAG_ENTERED
-						try {
-							Toast toast = Toast.makeText(getApplicationContext(), (int)v.getId(),Toast.LENGTH_SHORT);
-							toast.show();
-							Drawable drawable = getResources().getDrawable(R.drawable.white_tile, null);
-							v.setBackground(drawable);
-						}catch (Exception e){
-							Log.d("",e.getMessage());
-						}
+						//Drawable background = getResources().getDrawable(R.drawable.white_tile, null);
+						Drawable background = tile.getBackground().getConstantState().newDrawable();
+							if (background != null)
+								v.setBackground(background);
 						break;
 					case DragEvent.ACTION_DRAG_EXITED:        //item left the listening area
-							v.setBackground(null);
+						v.setBackground(null);
 						break;
 					default:
+						//CodeSnippets für später:
+						tileP1_1.setEnabled(false);
 						break;
+					}
+				return true;
+			}
+		};
+
+
+	// Zurück zur SecondActivity fall die Rückwärts taste gedrückt wird.
+	public boolean onKeyDown(int keyCode, KeyEvent event)
+	{
+		if (keyCode == KeyEvent.KEYCODE_BACK)
+		{
+			AlertDialog.Builder dlgBuilder = new AlertDialog.Builder(SinglePlayerActivity.this);
+
+			dlgBuilder.setMessage("Sind sie sicher dass Sie das Spiel verlassen wollen?");
+
+			dlgBuilder.setCancelable(true);
+			dlgBuilder.setPositiveButton("Ja", new DialogInterface.OnClickListener()
+			{
+				@Override
+				public void onClick(DialogInterface dialog, int which)
+				{
+					Toast.makeText(SinglePlayerActivity.this, "Das Spiel wurde beendet", Toast.LENGTH_SHORT).show();
+					Intent secondAct = new Intent( SinglePlayerActivity.this, SecondActivity.class );
+					startActivity( secondAct );
+				}
+			});
+			dlgBuilder.setNegativeButton("Nein", new DialogInterface.OnClickListener() {
+				@Override
+				public void onClick(DialogInterface dialog, int which) {
 
 				}
-
-
-				return true;
-			} catch (Exception exc){
-				exc.getMessage();
-				throw exc;
-			}
+			});
+			AlertDialog alert = dlgBuilder.create();
+			alert.getWindow().setBackgroundDrawable(new ColorDrawable(Color.GREEN));
+			alert.show();
 		}
-	};
+		return true;
+	}
 
+	private void ShowToast(String text){
+		Toast toast = Toast.makeText(getApplicationContext(), text,Toast.LENGTH_SHORT);
+		toast.show();
+	}
 
 }

@@ -35,6 +35,8 @@ public class MainActivity extends AppCompatActivity
         User_Name = (EditText)findViewById( R.id.btnNameID );
         User_Password = (EditText)findViewById( R.id.btnPasswordID );
 
+
+
         Login = (Button)findViewById( R.id.btnLoginID );
         Login.setOnClickListener( new View.OnClickListener() {
             @Override
@@ -68,6 +70,8 @@ public class MainActivity extends AppCompatActivity
                 name = User_Name.getText().toString();
                 password = User_Password.getText().toString();
 
+
+
                 if(name.equals( "" )|| password.equals( "" ))
                 {
                     Toast.makeText( getApplicationContext(), "Fields are empty", Toast.LENGTH_SHORT ).show();
@@ -78,10 +82,14 @@ public class MainActivity extends AppCompatActivity
                     if(check_Account == true)
                     {
                             Toast.makeText( getApplicationContext(), "Please register first", Toast.LENGTH_SHORT ).show();
+                            User_Name.getText().clear();
+                            User_Password.getText().clear();
                     }
                     else
                     {
                         Toast.makeText( getApplicationContext(), "Account already exists", Toast.LENGTH_SHORT ).show();
+                        User_Name.getText().clear();
+                        User_Password.getText().clear();
                         startActivity( OpenSecondActivity );
                     }
                 }

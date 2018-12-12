@@ -9,14 +9,14 @@
 
     <Button
         android:id="@+id/btnSinglePlayerID"
-        android:layout_width="160dp"
+        android:layout_width="360dp"
         android:layout_height="50dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginStart="115dp"
-        android:layout_marginTop="93dp"
-        android:layout_marginEnd="109dp"
+        android:layout_marginStart="61dp"
+        android:layout_marginTop="137dp"
+        android:layout_marginEnd="77dp"
         android:background="@android:color/holo_green_light"
         android:elevation="0dp"
         android:text="Singleplayer"
@@ -34,13 +34,16 @@
         android:id="@+id/btnMultiPlayerActivity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/btnSinglePlayerID"
+        android:layout_alignTop="@+id/btnMultiPlayerActivity"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginStart="118dp"
-        android:layout_marginTop="43dp"
-        android:layout_marginEnd="106dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="63dp"
+        android:layout_marginTop="0dp"
+        android:layout_marginEnd="81dp"
+        android:layout_marginBottom="286dp"
         android:background="@android:color/holo_green_light"
+        android:elevation="0dp"
         android:text="Multiplayer "
         android:textAllCaps="false"
         android:textSize="20sp"
@@ -51,28 +54,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnSinglePlayerID"
         app:layout_constraintVertical_bias="0.16" />
-
-    <Button
-        android:id="@+id/btnBackID"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="142dp"
-        android:layout_marginEnd="154dp"
-        android:layout_marginBottom="226dp"
-        android:background="@android:color/holo_blue_dark"
-        android:text="Back"
-        android:textAllCaps="false"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnMultiPlayerActivity"
-        app:layout_constraintVertical_bias="0.725" />
-
 
 
 </RelativeLayout>

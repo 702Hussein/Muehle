@@ -10,7 +10,7 @@ public class SecondActivity extends AppCompatActivity
 {
 
 
-    public Button back;
+
     public Button SinglePlayer;
     public Button MultiPlayer;
 
@@ -22,13 +22,6 @@ public class SecondActivity extends AppCompatActivity
         setContentView( R.layout.activity_second );
 
 
-        back = (Button)findViewById( R.id.btnBackID);
-        back.setOnClickListener( new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                BackToMainActivity();
-            }
-        } );
 
         SinglePlayer = (Button) findViewById( R.id.btnSinglePlayerID );
         SinglePlayer.setOnClickListener( new View.OnClickListener() {
@@ -50,12 +43,6 @@ public class SecondActivity extends AppCompatActivity
     }
 
 
-
-    public void BackToMainActivity()
-    {
-                Intent BackToMainActivity = new Intent(SecondActivity.this, MainActivity.class);
-                startActivity( BackToMainActivity);
-    }
 
     public void OpenSinglePlyerActivity()
     {

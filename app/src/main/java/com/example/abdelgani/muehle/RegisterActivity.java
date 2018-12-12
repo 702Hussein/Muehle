@@ -11,9 +11,9 @@ import android.widget.Toast;
 
 public class RegisterActivity extends AppCompatActivity
 {
-    public Button Back;
+
     public Button SignIn;
-    
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -22,13 +22,7 @@ public class RegisterActivity extends AppCompatActivity
         setContentView( R.layout.activity_register );
 
 
-        Back = (Button)findViewById( R.id.backbtn );
-        Back.setOnClickListener( new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                OpenmainActivity();
-            }
-        } );
+
         SignIn = (Button)findViewById( R.id.SignInID );
         SignIn.setOnClickListener( new View.OnClickListener() {
             @Override
@@ -39,11 +33,7 @@ public class RegisterActivity extends AppCompatActivity
 
     }
 
-    public void OpenmainActivity()
-    {
-        Intent BackToMain = new Intent(RegisterActivity.this, MainActivity.class);
-        startActivity( BackToMain );
-    }
+
 
     public void Signin()
     {

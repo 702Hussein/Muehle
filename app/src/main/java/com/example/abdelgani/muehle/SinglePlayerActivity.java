@@ -10,6 +10,7 @@ import android.graphics.drawable.Drawable;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Layout;
 import android.view.DragEvent;
 import android.view.KeyEvent;
 import android.widget.Button;
@@ -21,6 +22,8 @@ import com.example.abdelgani.muehle.Classes.Nodes;
 import com.example.abdelgani.muehle.Classes.Tiles;
 
 import org.w3c.dom.Node;
+
+import java.util.ArrayList;
 
 public class SinglePlayerActivity extends AppCompatActivity {
 
@@ -97,6 +100,58 @@ public class SinglePlayerActivity extends AppCompatActivity {
 			node_inner_botMid.setOnDragListener(dragListener);
 			node_inner_botRight.setOnDragListener(dragListener);
 			//endregiont
+			//region set Nodes neighbours
+			node_outer_topLeft.setNeighbourNodes(node_outer_topMid, node_outer_midLeft);
+			node_outer_topMid.setNeighbourNodes(node_outer_topLeft, node_outer_topRight, node_middle_topMid);
+			node_outer_topRight.setNeighbourNodes(node_outer_topMid, node_outer_midRight);
+			node_outer_midLeft.setNeighbourNodes(node_outer_topLeft, node_outer_botLeft, node_middle_midLeft);
+			node_outer_midRight.setNeighbourNodes(node_outer_topRight, node_outer_botRight, node_middle_midRight);
+			node_outer_botLeft.setNeighbourNodes(node_outer_midLeft, node_outer_botMid);
+			node_outer_botMid.setNeighbourNodes(node_outer_botLeft, node_outer_botRight, node_middle_botMid);
+			node_outer_botRight.setNeighbourNodes(node_outer_botMid, node_outer_midRight);
+			node_middle_topLeft.setNeighbourNodes(node_middle_topMid, node_middle_midLeft);
+			node_middle_topMid.setNeighbourNodes(node_outer_topMid, node_middle_topLeft, node_middle_topRight, node_inner_topMid);
+			node_middle_topRight.setNeighbourNodes(node_middle_topMid, node_middle_midRight);
+			node_middle_midLeft.setNeighbourNodes(node_outer_midLeft, node_middle_topLeft, node_middle_botLeft, node_inner_midLeft);
+			node_middle_midRight.setNeighbourNodes(node_outer_midRight, node_middle_topRight, node_middle_botRight, node_inner_midRight);
+			node_middle_botLeft.setNeighbourNodes(node_middle_midLeft, node_middle_botMid);
+			node_middle_botMid.setNeighbourNodes(node_outer_botMid, node_middle_botLeft, node_middle_botRight, node_inner_botMid);
+			node_middle_botRight.setNeighbourNodes(node_middle_midRight, node_middle_botMid);
+			node_inner_topLeft.setNeighbourNodes(node_inner_topMid, node_inner_midLeft);
+			node_inner_topMid.setNeighbourNodes(node_middle_topMid, node_inner_topLeft, node_inner_topRight);
+			node_inner_topRight.setNeighbourNodes(node_inner_topMid, node_inner_midRight);
+			node_inner_midLeft.setNeighbourNodes(node_middle_midLeft, node_inner_topLeft, node_inner_botLeft);
+			node_inner_midRight.setNeighbourNodes(node_middle_midRight, node_inner_topRight, node_inner_botRight);
+			node_inner_botLeft.setNeighbourNodes(node_inner_midLeft, node_inner_botMid);
+			node_inner_botMid.setNeighbourNodes(node_middle_botMid, node_inner_botLeft,node_inner_botRight);
+			node_inner_botRight.setNeighbourNodes(node_inner_midRight, node_inner_botMid);
+			//endregion
+			//region assign millHelpers
+			node_outer_topLeft.setMillHelper(111);
+			node_outer_topMid.setMillHelper(112);
+			node_outer_topRight.setMillHelper(113);
+			node_outer_midLeft.setMillHelper(121);
+			node_outer_midRight.setMillHelper(123);
+			node_outer_botLeft.setMillHelper(131);
+			node_outer_botMid.setMillHelper(132);
+			node_outer_botRight.setMillHelper(133);
+			node_middle_topLeft.setMillHelper(211);
+			node_middle_topMid.setMillHelper(212);
+			node_middle_topRight.setMillHelper(213);
+			node_middle_midLeft.setMillHelper(221);
+			node_middle_midRight.setMillHelper(223);
+			node_middle_botLeft.setMillHelper(231);
+			node_middle_botMid.setMillHelper(232);
+			node_middle_botRight.setMillHelper(233);
+			node_inner_topLeft.setMillHelper(311);
+			node_inner_topMid.setMillHelper(312);
+			node_inner_topRight.setMillHelper(313);
+			node_inner_midLeft.setMillHelper(321);
+			node_inner_midRight.setMillHelper(323);
+			node_inner_botLeft.setMillHelper(331);
+			node_inner_botMid.setMillHelper(332);
+			node_inner_botRight.setMillHelper(333);
+			//endregion
 			// region assign tiles
 			tileP1_1 = findViewById(R.id.tileP1_1);
 			tileP1_2 = findViewById(R.id.tileP1_2);
@@ -137,7 +192,6 @@ public class SinglePlayerActivity extends AppCompatActivity {
 			tileP2_8.setOnLongClickListener(longClickListener);
 			tileP2_9.setOnLongClickListener(longClickListener);
 			//endregion
-
 			player1Tiles = new Button[]{tileP1_1, tileP1_2, tileP1_3, tileP1_4, tileP1_5, tileP1_6, tileP1_7, tileP1_8, tileP1_9};
 			player2Tiles = new Button[]{tileP2_1, tileP2_2, tileP2_3, tileP2_4, tileP2_5, tileP2_6, tileP2_7, tileP2_8, tileP2_9};
 
@@ -150,12 +204,11 @@ public class SinglePlayerActivity extends AppCompatActivity {
 		@Override
 		public boolean onLongClick(View v) {
 			Log.d(TAG,"enter onLongClick" + v.getId());
-			v.invalidate();
-				ClipData.Item item = new ClipData.Item((CharSequence) v.getTag());
-				String[] mimeTypes = {ClipDescription.MIMETYPE_TEXT_PLAIN};
-				ClipData clipData = new ClipData((CharSequence) v.getTag(), mimeTypes, item);
-				View.DragShadowBuilder dragShadow = new View.DragShadowBuilder(v);
-				v.startDrag(clipData, dragShadow, v, 0);
+			ClipData.Item item = new ClipData.Item((CharSequence) v.getTag());
+			String[] mimeTypes = {ClipDescription.MIMETYPE_TEXT_PLAIN};
+			ClipData clipData = new ClipData((CharSequence) v.getTag(), mimeTypes, item);
+			View.DragShadowBuilder dragShadow = new View.DragShadowBuilder(v);
+			v.startDrag(clipData, dragShadow, v, 0);
 			return true;
 		}
 	};
@@ -170,21 +223,16 @@ public class SinglePlayerActivity extends AppCompatActivity {
 				Log.d(TAG, "onDrag;	id: " + v.getId() + ";	action: " + action);
 				switch (action) {
 					case DragEvent.ACTION_DRAG_STARTED:        //start to drag an item
-						return node.isFree();
+						return node.isFree() && tile.nodeIsNeighbour(node);
 					case DragEvent.ACTION_DRAG_LOCATION:    //enter the listening area (with ACTION_DRAG_ENTERED
 						break;
 					case DragEvent.ACTION_DROP:                //drop item within the listening area bounds
-						tile.animate().x(v.getX() + offset).y(v.getY() + offset).setDuration(500).start();
-						node.setOccupied(true);
-						if ( tile.getCurrentNode() != null)
-							tile.getCurrentNode().setOccupied(false);
-						tile.setCurrentNode(node);
+						onDropEvent(node, tile);
 						break;
 					case DragEvent.ACTION_DRAG_ENDED:        //right after ACTION_DROP
 						v.setBackground(null);
 						return event.getResult();
 					case DragEvent.ACTION_DRAG_ENTERED:        //entered the listening area ( with ACTION_DRAG_ENTERED
-						//Drawable background = getResources().getDrawable(R.drawable.white_tile, null);
 						Drawable background = tile.getBackground().getConstantState().newDrawable();
 							if (background != null)
 								v.setBackground(background);
@@ -202,6 +250,49 @@ public class SinglePlayerActivity extends AppCompatActivity {
 		};
 
 
+    private void onDropEvent(Nodes node, Tiles tile){
+		tile.animate().x(node.getX() + offset).y(node.getY() + offset).setDuration(500).start();
+		node.setOccupied(true);
+		if ( tile.getCurrentNode() != null)
+			tile.getCurrentNode().setOccupied(false);
+		tile.setCurrentNode(node);
+
+		int i = tile.getCurrentNode().getMillHelper();
+		ArrayList<Nodes> neighbours = tile.getCurrentNode().getNeighbourNodes();
+		for(Nodes neighbour : neighbours){
+			int j = neighbour.getMillHelper();
+			int direction = i - j;
+		}
+	}
+
+    public void onBackPressed(){
+		AlertDialog.Builder dlgBuilder = new AlertDialog.Builder(SinglePlayerActivity.this);
+
+		dlgBuilder.setMessage("Sind sie sicher dass Sie das Spiel verlassen wollen?");
+
+		dlgBuilder.setCancelable(true);
+		dlgBuilder.setPositiveButton("Ja", new DialogInterface.OnClickListener()
+		{
+			@Override
+			public void onClick(DialogInterface dialog, int which)
+			{
+				Toast.makeText(SinglePlayerActivity.this, "Das Spiel wurde beendet", Toast.LENGTH_SHORT).show();
+				finish();
+				//Intent secondAct = new Intent( SinglePlayerActivity.this, SecondActivity.class );
+				//startActivity( secondAct );
+			}
+		});
+		dlgBuilder.setNegativeButton("Nein", new DialogInterface.OnClickListener() {
+			@Override
+			public void onClick(DialogInterface dialog, int which) {
+
+			}
+		});
+		AlertDialog alert = dlgBuilder.create();
+		alert.getWindow().setBackgroundDrawable(new ColorDrawable(Color.GREEN));
+		alert.show();
+	}
+/*
 	// Zurück zur SecondActivity fall die Rückwärts taste gedrückt wird.
 	public boolean onKeyDown(int keyCode, KeyEvent event)
 	{
@@ -234,7 +325,7 @@ public class SinglePlayerActivity extends AppCompatActivity {
 		}
 		return true;
 	}
-
+*/
 	private void ShowToast(String text){
 		Toast toast = Toast.makeText(getApplicationContext(), text,Toast.LENGTH_SHORT);
 		toast.show();

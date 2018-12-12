@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="Nodes">
+        <attr name="millHelper" format="integer" />
+        <attr name="occupied" format="boolean" />
+    </declare-styleable>
+    <declare-styleable name="Tiles">
+        <attr name="inMill" format="boolean" />
+        <attr name="playerWhite" format="boolean" />
+    </declare-styleable>
+</resources>

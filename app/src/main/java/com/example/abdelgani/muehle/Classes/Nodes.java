@@ -41,7 +41,7 @@ public class Nodes extends View{
 	public void setNeighbourNodes(ArrayList<Nodes> neighbourNodes) {
 		this.neighbourNodes = neighbourNodes;
 	}
-	public void setNeighbourNodes(Nodes[] neighbours) {
+	public void setNeighbourNodes(Nodes... neighbours) {
 		this.neighbourNodes.addAll(Arrays.asList(neighbours));
 	}
 

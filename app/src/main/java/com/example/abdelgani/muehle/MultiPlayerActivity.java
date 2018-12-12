@@ -17,13 +17,13 @@ public class MultiPlayerActivity extends AppCompatActivity {
         String ich;
         TextView text;
 
-        text = (TextView)findViewById( R.id.PlayerName );
+        //text = (TextView)findViewById( R.id.PlayerName );
 
         //ich = getString(  );
 
         // ich = Name.getText().toString();
 
-        text.setText("name ist : ");
+        //text.setText("name ist : ");
 
     }
 }

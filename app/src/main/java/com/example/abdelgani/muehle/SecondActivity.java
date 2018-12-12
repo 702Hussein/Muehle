@@ -62,34 +62,11 @@ public class SecondActivity extends AppCompatActivity
                 startActivity( OpenMultiPlayerActivity );
     }
 
-    public void onBackPressed(){
-        AlertDialog.Builder dlgBuilder = new AlertDialog.Builder(SecondActivity.this);
-
-        dlgBuilder.setMessage("Sind sie sicher dass Sie das Spiel verlassen wollen?");
-
-        dlgBuilder.setCancelable(true);
-        dlgBuilder.setPositiveButton("Ja", new DialogInterface.OnClickListener()
-        {
-            @Override
-            public void onClick(DialogInterface dialog, int which)
-            {
-                Toast.makeText(SecondActivity.this, "Das Spiel wurde beendet", Toast.LENGTH_SHORT).show();
+    public void onBackPressed()
+    {
                 Intent Login = new Intent( SecondActivity.this, MainActivity.class );
                 startActivity( Login );
                 finish();
-                //Intent secondAct = new Intent( SinglePlayerActivity.this, SecondActivity.class );
-                //startActivity( secondAct );
-            }
-        });
-        dlgBuilder.setNegativeButton("Nein", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-
-            }
-        });
-        AlertDialog alert = dlgBuilder.create();
-        alert.getWindow().setBackgroundDrawable(new ColorDrawable(Color.GREEN));
-        alert.show();
     }
 
 

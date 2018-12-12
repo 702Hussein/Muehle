@@ -82,16 +82,15 @@ public class MainActivity extends AppCompatActivity
                     if(check_Account == true)
                     {
                             Toast.makeText( getApplicationContext(), "Please register first", Toast.LENGTH_SHORT ).show();
-                            User_Name.getText().clear();
-                            User_Password.getText().clear();
+
                     }
                     else
                     {
                         Toast.makeText( getApplicationContext(), "Account already exists", Toast.LENGTH_SHORT ).show();
-                        User_Name.getText().clear();
-                        User_Password.getText().clear();
                         startActivity( OpenSecondActivity );
                     }
+                    User_Name.getText().clear();
+                    User_Password.getText().clear();
                 }
     }
 

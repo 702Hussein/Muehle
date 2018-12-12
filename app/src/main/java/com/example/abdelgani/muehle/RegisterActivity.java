@@ -89,6 +89,10 @@ public class RegisterActivity extends AppCompatActivity
                 Toast.makeText( getApplicationContext(), "Account already exists, please use login menu", Toast.LENGTH_SHORT ).show();
                 startActivity( OpenmainActivity );
             }
+
+            UserName.getText().clear();
+            Password.getText().clear();
+            Password2.getText().clear();
         }
 
 

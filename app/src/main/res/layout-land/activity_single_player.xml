@@ -1,0 +1,528 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_gameboard_bg"
+    tools:context=".SinglePlayerActivity">
+
+    <ImageView
+        android:id="@+id/imgV_Gameboard"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:gravity="center"
+        app:layout_constraintBottom_toTopOf="@+id/dividerBottom"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dividerTop"
+        app:srcCompat="@drawable/nine_mens_morris_board_700px"
+        tools:ignore="ContentDescription"
+        tools:layout_height="384dp"
+        tools:layout_width="384dp" />
+
+    <com.example.abdelgani.muehle.Classes.Nodes
+        android:id="@+id/node_outer_topLeft"
+        android:layout_width="@dimen/nodeSize"
+        android:layout_height="@dimen/nodeSize"
+        app:layout_constraintBottom_toTopOf="@+id/node_outer_midLeft"
+        app:layout_constraintEnd_toStartOf="@+id/node_outer_topMid"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_chainStyle="spread_inside"
+        app:layout_constraintStart_toStartOf="@+id/imgV_Gameboard"
+        app:layout_constraintTop_toTopOf="@+id/imgV_Gameboard"
+        app:layout_constraintVertical_chainStyle="spread_inside" />
+
+    <com.example.abdelgani.muehle.Classes.Nodes
+        android:id="@+id/node_outer_topMid"
+        android:layout_width="@dimen/nodeSize"
+        android:layout_height="@dimen/nodeSize"
+        app:layout_constraintBottom_toTopOf="@+id/node_middle_topMid"
+        app:layout_constraintEnd_toStartOf="@+id/node_outer_topRight"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/node_outer_topLeft"
+        app:layout_constraintTop_toTopOf="@+id/imgV_Gameboard"
+        app:layout_constraintVertical_chainStyle="spread_inside" />
+
+    <com.example.abdelgani.muehle.Classes.Nodes
+        android:id="@+id/node_outer_topRight"
+        android:layout_width="@dimen/nodeSize"
+        android:layout_height="@dimen/nodeSize"
+        app:layout_constraintBottom_toTopOf="@+id/node_outer_midRight"
+        app:layout_constraintEnd_toEndOf="@+id/imgV_Gameboard"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/node_outer_topMid"
+        app:layout_constraintTop_toTopOf="@+id/imgV_Gameboard"
+        app:layout_constraintVertical_chainStyle="spread_inside" />
+
+    <com.example.abdelgani.muehle.Classes.Nodes
+        android:id="@+id/node_outer_midRight"
+        android:layout_width="@dimen/nodeSize"
+        android:layout_height="@dimen/nodeSize"
+        app:layout_constraintBottom_toTopOf="@+id/node_outer_botRight"
+        app:layout_constraintEnd_toEndOf="@+id/imgV_Gameboard"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/node_middle_midRight"
+        app:layout_constraintTop_toBottomOf="@+id/node_outer_topRight"
+        app:layout_constraintVertical_chainStyle="spread_inside"/>
+
+    <com.example.abdelgani.muehle.Classes.Nodes
+        android:id="@+id/node_outer_botRight"
+        android:layout_width="@dimen/nodeSize"
+        android:layout_height="@dimen/nodeSize"
+        app:layout_constraintBottom_toBottomOf="@+id/imgV_Gameboard"
+        app:layout_constraintEnd_toEndOf="@+id/imgV_Gameboard"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/node_outer_botMid"
+        app:layout_constraintTop_toBottomOf="@+id/node_outer_midRight"
+        app:layout_constraintVertical_chainStyle="spread_inside"/>
+
+    <com.example.abdelgani.muehle.Classes.Nodes
+        android:id="@+id/node_outer_botMid"
+        android:layout_width="@dimen/nodeSize"
+        android:layout_height="@dimen/nodeSize"
+        app:layout_constraintBottom_toBottomOf="@+id/imgV_Gameboard"
+        app:layout_constraintEnd_toStartOf="@+id/node_outer_botRight"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/node_outer_botLeft"
+        app:layout_constraintTop_toBottomOf="@+id/node_middle_botMid"
+        app:layout_constraintVertical_chainStyle="spread_inside"/>
+
+    <com.example.abdelgani.muehle.Classes.Nodes
+        android:id="@+id/node_outer_botLeft"
+        android:layout_width="@dimen/nodeSize"
+        android:layout_height="@dimen/nodeSize"
+        app:layout_constraintBottom_toBottomOf="@+id/imgV_Gameboard"
+        app:layout_constraintEnd_toStartOf="@+id/node_outer_botMid"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_chainStyle="spread_inside"
+        app:layout_constraintStart_toStartOf="@+id/imgV_Gameboard"
+        app:layout_constraintTop_toBottomOf="@+id/node_outer_midLeft" />
+
+    <com.example.abdelgani.muehle.Classes.Nodes
+        android:id="@+id/node_outer_midLeft"
+        android:layout_width="@dimen/nodeSize"
+        android:layout_height="@dimen/nodeSize"
+        app:layout_constraintBottom_toTopOf="@+id/node_outer_botLeft"
+        app:layout_constraintEnd_toStartOf="@+id/node_middle_midLeft"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_chainStyle="spread_inside"
+        app:layout_constraintStart_toStartOf="@+id/imgV_Gameboard"
+        app:layout_constraintTop_toBottomOf="@+id/node_outer_topLeft" />
+
+    <com.example.abdelgani.muehle.Classes.Nodes
+        android:id="@+id/node_middle_topLeft"
+        android:layout_width="@dimen/nodeSize"
+        android:layout_height="@dimen/nodeSize"
+        app:layout_constraintBottom_toBottomOf="@+id/node_middle_topMid"
+        app:layout_constraintEnd_toEndOf="@+id/node_middle_midLeft"
+        app:layout_constraintStart_toStartOf="@+id/node_middle_midLeft"
+        app:layout_constraintTop_toTopOf="@+id/node_middle_topMid" />
+
+    <com.example.abdelgani.muehle.Classes.Nodes
+        android:id="@+id/node_middle_topMid"
+        android:layout_width="@dimen/nodeSize"
+        android:layout_height="@dimen/nodeSize"
+        app:layout_constraintBottom_toTopOf="@+id/node_inner_topMid"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintLeft_toRightOf="@+id/node_inner_topLeft"
+        app:layout_constraintRight_toLeftOf="@+id/node_inner_topRight"
+        app:layout_constraintTop_toBottomOf="@+id/node_outer_topMid" />
+
+    <com.example.abdelgani.muehle.Classes.Nodes
+        android:id="@+id/node_middle_topRight"
+        android:layout_width="@dimen/nodeSize"
+        android:layout_height="@dimen/nodeSize"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/node_middle_topMid"
+        app:layout_constraintEnd_toEndOf="@+id/node_middle_midRight"
+        app:layout_constraintStart_toStartOf="@+id/node_middle_midRight"
+        app:layout_constraintTop_toTopOf="@+id/node_middle_topMid" />
+
+    <com.example.abdelgani.muehle.Classes.Nodes
+        android:id="@+id/node_middle_midLeft"
+        android:layout_width="@dimen/nodeSize"
+        android:layout_height="@dimen/nodeSize"
+        app:layout_constraintBottom_toTopOf="@+id/node_inner_botLeft"
+        app:layout_constraintEnd_toStartOf="@+id/node_inner_midLeft"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/node_outer_midLeft"
+        app:layout_constraintTop_toBottomOf="@+id/node_inner_topLeft" />
+
+    <com.example.abdelgani.muehle.Classes.Nodes
+        android:id="@+id/node_middle_midRight"
+        android:layout_width="@dimen/nodeSize"
+        android:layout_height="@dimen/nodeSize"
+        app:layout_constraintBottom_toTopOf="@+id/node_inner_botRight"
+        app:layout_constraintEnd_toStartOf="@+id/node_outer_midRight"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/node_inner_midRight"
+        app:layout_constraintTop_toBottomOf="@+id/node_inner_topRight" />
+
+    <com.example.abdelgani.muehle.Classes.Nodes
+        android:id="@+id/node_middle_botLeft"
+        android:layout_width="@dimen/nodeSize"
+        android:layout_height="@dimen/nodeSize"
+        app:layout_constraintBottom_toBottomOf="@+id/node_middle_botMid"
+        app:layout_constraintEnd_toEndOf="@+id/node_middle_midLeft"
+        app:layout_constraintStart_toStartOf="@+id/node_middle_midLeft"
+        app:layout_constraintTop_toTopOf="@+id/node_middle_botMid" />
+
+    <com.example.abdelgani.muehle.Classes.Nodes
+        android:id="@+id/node_middle_botMid"
+        android:layout_width="@dimen/nodeSize"
+        android:layout_height="@dimen/nodeSize"
+        app:layout_constraintBottom_toTopOf="@+id/node_outer_botMid"
+        app:layout_constraintEnd_toStartOf="@+id/node_inner_botRight"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/node_inner_botLeft"
+        app:layout_constraintTop_toBottomOf="@+id/node_inner_botMid" />
+
+    <com.example.abdelgani.muehle.Classes.Nodes
+        android:id="@+id/node_middle_botRight"
+        android:layout_width="@dimen/nodeSize"
+        android:layout_height="@dimen/nodeSize"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/node_middle_botMid"
+        app:layout_constraintEnd_toEndOf="@+id/node_middle_midRight"
+        app:layout_constraintStart_toStartOf="@+id/node_middle_midRight"
+        app:layout_constraintTop_toTopOf="@+id/node_middle_botMid" />
+
+    <com.example.abdelgani.muehle.Classes.Nodes
+        android:id="@+id/node_inner_topLeft"
+        android:layout_width="@dimen/nodeSize"
+        android:layout_height="@dimen/nodeSize"
+        app:layout_constraintBottom_toBottomOf="@+id/node_inner_topMid"
+        app:layout_constraintEnd_toEndOf="@+id/node_inner_midLeft"
+        app:layout_constraintStart_toStartOf="@+id/node_inner_midLeft"
+        app:layout_constraintTop_toTopOf="@+id/node_inner_topMid" />
+
+    <com.example.abdelgani.muehle.Classes.Nodes
+        android:id="@+id/node_inner_topMid"
+        android:layout_width="@dimen/nodeSize"
+        android:layout_height="@dimen/nodeSize"
+        app:layout_constraintBottom_toTopOf="@+id/node_center"
+        app:layout_constraintEnd_toStartOf="@+id/node_inner_topRight"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/node_inner_topLeft"
+        app:layout_constraintTop_toBottomOf="@+id/node_middle_topMid" />
+
+    <com.example.abdelgani.muehle.Classes.Nodes
+        android:id="@+id/node_inner_topRight"
+        android:layout_width="@dimen/nodeSize"
+        android:layout_height="@dimen/nodeSize"
+        app:layout_constraintBottom_toBottomOf="@+id/node_inner_topMid"
+        app:layout_constraintEnd_toEndOf="@+id/node_inner_midRight"
+        app:layout_constraintStart_toStartOf="@+id/node_inner_midRight"
+        app:layout_constraintTop_toTopOf="@+id/node_inner_topMid" />
+
+    <com.example.abdelgani.muehle.Classes.Nodes
+        android:id="@+id/node_inner_midLeft"
+        android:layout_width="@dimen/nodeSize"
+        android:layout_height="@dimen/nodeSize"
+        app:layout_constraintBottom_toTopOf="@+id/node_inner_botLeft"
+        app:layout_constraintEnd_toStartOf="@+id/node_center"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/node_middle_midLeft"
+        app:layout_constraintTop_toBottomOf="@+id/node_inner_topLeft" />
+
+    <com.example.abdelgani.muehle.Classes.Nodes
+        android:id="@+id/node_inner_midRight"
+        android:layout_width="@dimen/nodeSize"
+        android:layout_height="@dimen/nodeSize"
+        app:layout_constraintBottom_toTopOf="@+id/node_inner_botRight"
+        app:layout_constraintEnd_toStartOf="@+id/node_middle_midRight"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/node_center"
+        app:layout_constraintTop_toBottomOf="@+id/node_inner_topRight" />
+
+    <com.example.abdelgani.muehle.Classes.Nodes
+        android:id="@+id/node_inner_botLeft"
+        android:layout_width="@dimen/nodeSize"
+        android:layout_height="@dimen/nodeSize"
+        app:layout_constraintBottom_toBottomOf="@+id/node_inner_botMid"
+        app:layout_constraintEnd_toEndOf="@+id/node_inner_midLeft"
+        app:layout_constraintStart_toStartOf="@+id/node_inner_midLeft"
+        app:layout_constraintTop_toTopOf="@+id/node_inner_botMid" />
+
+    <com.example.abdelgani.muehle.Classes.Nodes
+        android:id="@+id/node_inner_botMid"
+        android:layout_width="@dimen/nodeSize"
+        android:layout_height="@dimen/nodeSize"
+        app:layout_constraintBottom_toTopOf="@+id/node_middle_botMid"
+        app:layout_constraintEnd_toStartOf="@+id/node_inner_botRight"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/node_inner_botLeft"
+        app:layout_constraintTop_toBottomOf="@+id/node_center" />
+
+    <com.example.abdelgani.muehle.Classes.Nodes
+        android:id="@+id/node_inner_botRight"
+        android:layout_width="@dimen/nodeSize"
+        android:layout_height="@dimen/nodeSize"
+        app:layout_constraintBottom_toBottomOf="@+id/node_inner_botMid"
+        app:layout_constraintEnd_toEndOf="@+id/node_inner_midRight"
+        app:layout_constraintStart_toStartOf="@+id/node_inner_midRight"
+        app:layout_constraintTop_toTopOf="@+id/node_inner_botMid" />
+
+    <com.example.abdelgani.muehle.Classes.Nodes
+        android:id="@+id/node_center"
+        android:layout_width="@dimen/nodeSize"
+        android:layout_height="@dimen/nodeSize"
+        android:gravity="center"
+        app:layout_constraintBottom_toTopOf="@+id/node_inner_botMid"
+        app:layout_constraintEnd_toStartOf="@+id/node_inner_midRight"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/node_inner_midLeft"
+        app:layout_constraintTop_toBottomOf="@+id/node_inner_topMid" />
+
+    <View
+        android:id="@+id/dividerTop"
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:layout_marginTop="@dimen/tileSize"
+        android:background="?android:attr/listDivider"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:background="#000000" />
+
+    <View
+        android:id="@+id/dividerBottom"
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:layout_marginBottom="@dimen/tileSize"
+        android:background="?android:attr/listDivider"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:background="#000000" />
+
+    <com.example.abdelgani.muehle.Classes.Tiles
+        android:id="@+id/tileP1_1"
+        android:layout_width="@dimen/tileSize"
+        android:layout_height="@dimen/tileSize"
+        android:background="@drawable/startPlayer"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/tileP1_2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dividerBottom"
+        tools:layout_height="@dimen/tileSize"
+        tools:layout_width="@dimen/tileSize"/>
+
+    <com.example.abdelgani.muehle.Classes.Tiles
+        android:id="@+id/tileP1_2"
+        android:layout_width="@dimen/tileSize"
+        android:layout_height="@dimen/tileSize"
+        android:background="@drawable/startPlayer"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/tileP1_3"
+        app:layout_constraintStart_toEndOf="@+id/tileP1_1"
+        app:layout_constraintTop_toBottomOf="@+id/dividerBottom"
+        tools:layout_height="@dimen/tileSize"
+        tools:layout_width="@dimen/tileSize" />
+
+    <com.example.abdelgani.muehle.Classes.Tiles
+        android:id="@+id/tileP1_3"
+        android:layout_width="@dimen/tileSize"
+        android:layout_height="@dimen/tileSize"
+        android:background="@drawable/startPlayer"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/tileP1_4"
+        app:layout_constraintStart_toEndOf="@+id/tileP1_2"
+        app:layout_constraintTop_toBottomOf="@+id/dividerBottom"
+        tools:layout_height="@dimen/tileSize"
+        tools:layout_width="@dimen/tileSize" />
+
+    <com.example.abdelgani.muehle.Classes.Tiles
+        android:id="@+id/tileP1_4"
+        android:layout_width="@dimen/tileSize"
+        android:layout_height="@dimen/tileSize"
+        android:background="@drawable/startPlayer"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/tileP1_5"
+        app:layout_constraintStart_toEndOf="@+id/tileP1_3"
+        app:layout_constraintTop_toBottomOf="@+id/dividerBottom"
+        tools:layout_height="@dimen/tileSize"
+        tools:layout_width="@dimen/tileSize" />
+
+    <com.example.abdelgani.muehle.Classes.Tiles
+        android:id="@+id/tileP1_5"
+        android:layout_width="@dimen/tileSize"
+        android:layout_height="@dimen/tileSize"
+        android:background="@drawable/startPlayer"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/tileP1_6"
+        app:layout_constraintStart_toEndOf="@+id/tileP1_4"
+        app:layout_constraintTop_toBottomOf="@+id/dividerBottom"
+        tools:layout_height="@dimen/tileSize"
+        tools:layout_width="@dimen/tileSize" />
+
+    <com.example.abdelgani.muehle.Classes.Tiles
+        android:id="@+id/tileP1_6"
+        android:layout_width="@dimen/tileSize"
+        android:layout_height="@dimen/tileSize"
+        android:background="@drawable/startPlayer"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/tileP1_7"
+        app:layout_constraintStart_toEndOf="@+id/tileP1_5"
+        app:layout_constraintTop_toBottomOf="@+id/dividerBottom"
+        tools:layout_height="@dimen/tileSize"
+        tools:layout_width="@dimen/tileSize" />
+
+    <com.example.abdelgani.muehle.Classes.Tiles
+        android:id="@+id/tileP1_7"
+        android:layout_width="@dimen/tileSize"
+        android:layout_height="@dimen/tileSize"
+        android:background="@drawable/startPlayer"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/tileP1_8"
+        app:layout_constraintStart_toEndOf="@+id/tileP1_6"
+        app:layout_constraintTop_toBottomOf="@+id/dividerBottom"
+        tools:layout_height="@dimen/tileSize"
+        tools:layout_width="@dimen/tileSize" />
+
+    <com.example.abdelgani.muehle.Classes.Tiles
+        android:id="@+id/tileP1_8"
+        android:layout_width="@dimen/tileSize"
+        android:layout_height="@dimen/tileSize"
+        android:background="@drawable/startPlayer"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/tileP1_9"
+        app:layout_constraintStart_toEndOf="@+id/tileP1_7"
+        app:layout_constraintTop_toBottomOf="@+id/dividerBottom"
+        tools:layout_height="@dimen/tileSize"
+        tools:layout_width="@dimen/tileSize" />
+
+    <com.example.abdelgani.muehle.Classes.Tiles
+        android:id="@+id/tileP1_9"
+        android:layout_width="@dimen/tileSize"
+        android:layout_height="@dimen/tileSize"
+        android:background="@drawable/startPlayer"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/tileP1_8"
+        app:layout_constraintTop_toBottomOf="@+id/dividerBottom"
+        tools:layout_height="@dimen/tileSize"
+        tools:layout_width="@dimen/tileSize" />
+
+    <com.example.abdelgani.muehle.Classes.Tiles
+        android:id="@+id/tileP2_1"
+        android:layout_width="@dimen/tileSize"
+        android:layout_height="@dimen/tileSize"
+        android:background="@drawable/secondPlayer"
+        app:layout_constraintBottom_toTopOf="@+id/dividerTop"
+        app:layout_constraintEnd_toStartOf="@+id/tileP2_2"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_height="@dimen/tileSize"
+        tools:layout_width="@dimen/tileSize" />
+
+    <com.example.abdelgani.muehle.Classes.Tiles
+        android:id="@+id/tileP2_2"
+        android:layout_width="@dimen/tileSize"
+        android:layout_height="@dimen/tileSize"
+        android:background="@drawable/secondPlayer"
+        app:layout_constraintBottom_toTopOf="@+id/dividerTop"
+        app:layout_constraintEnd_toStartOf="@+id/tileP2_3"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/tileP2_1"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_height="@dimen/tileSize"
+        tools:layout_width="@dimen/tileSize" />
+
+    <com.example.abdelgani.muehle.Classes.Tiles
+        android:id="@+id/tileP2_3"
+        android:layout_width="@dimen/tileSize"
+        android:layout_height="@dimen/tileSize"
+        android:background="@drawable/secondPlayer"
+        app:layout_constraintBottom_toTopOf="@+id/dividerTop"
+        app:layout_constraintEnd_toStartOf="@+id/tileP2_4"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/tileP2_2"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_height="@dimen/tileSize"
+        tools:layout_width="@dimen/tileSize" />
+
+    <com.example.abdelgani.muehle.Classes.Tiles
+        android:id="@+id/tileP2_4"
+        android:layout_width="@dimen/tileSize"
+        android:layout_height="@dimen/tileSize"
+        android:background="@drawable/secondPlayer"
+        app:layout_constraintBottom_toTopOf="@+id/dividerTop"
+        app:layout_constraintEnd_toStartOf="@+id/tileP2_5"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/tileP2_3"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_height="@dimen/tileSize"
+        tools:layout_width="@dimen/tileSize" />
+
+    <com.example.abdelgani.muehle.Classes.Tiles
+        android:id="@+id/tileP2_5"
+        android:layout_width="@dimen/tileSize"
+        android:layout_height="@dimen/tileSize"
+        android:background="@drawable/secondPlayer"
+        app:layout_constraintBottom_toTopOf="@+id/dividerTop"
+        app:layout_constraintEnd_toStartOf="@+id/tileP2_6"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/tileP2_4"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_height="@dimen/tileSize"
+        tools:layout_width="@dimen/tileSize" />
+
+    <com.example.abdelgani.muehle.Classes.Tiles
+        android:id="@+id/tileP2_6"
+        android:layout_width="@dimen/tileSize"
+        android:layout_height="@dimen/tileSize"
+        android:background="@drawable/secondPlayer"
+        app:layout_constraintBottom_toTopOf="@+id/dividerTop"
+        app:layout_constraintEnd_toStartOf="@+id/tileP2_7"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/tileP2_5"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_height="@dimen/tileSize"
+        tools:layout_width="@dimen/tileSize" />
+
+    <com.example.abdelgani.muehle.Classes.Tiles
+        android:id="@+id/tileP2_7"
+        android:layout_width="@dimen/tileSize"
+        android:layout_height="@dimen/tileSize"
+        android:background="@drawable/secondPlayer"
+        app:layout_constraintBottom_toTopOf="@+id/dividerTop"
+        app:layout_constraintEnd_toStartOf="@+id/tileP2_8"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/tileP2_6"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_height="@dimen/tileSize"
+        tools:layout_width="@dimen/tileSize" />
+
+    <com.example.abdelgani.muehle.Classes.Tiles
+        android:id="@+id/tileP2_8"
+        android:layout_width="@dimen/tileSize"
+        android:layout_height="@dimen/tileSize"
+        android:background="@drawable/secondPlayer"
+        app:layout_constraintBottom_toTopOf="@+id/dividerTop"
+        app:layout_constraintEnd_toStartOf="@+id/tileP2_9"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/tileP2_7"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_height="@dimen/tileSize"
+        tools:layout_width="@dimen/tileSize" />
+
+    <com.example.abdelgani.muehle.Classes.Tiles
+        android:id="@+id/tileP2_9"
+        android:layout_width="@dimen/tileSize"
+        android:layout_height="@dimen/tileSize"
+        android:background="@drawable/secondPlayer"
+        app:layout_constraintBottom_toTopOf="@+id/dividerTop"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/tileP2_8"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_height="@dimen/tileSize"
+        tools:layout_width="@dimen/tileSize" />
+
+</android.support.constraint.ConstraintLayout>

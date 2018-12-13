@@ -74,30 +74,30 @@ public class SinglePlayerActivity extends AppCompatActivity {
 			nodes[2][2][2] = findViewById(R.id.node_inner_botRight);
 			//endregion
 			//region set DragListeners to nodes
-			node_outer_topLeft.setOnDragListener(dragListener);
-			node_outer_topMid.setOnDragListener(dragListener);
-			node_outer_topRight.setOnDragListener(dragListener);
-			node_outer_midLeft.setOnDragListener(dragListener);
-			node_outer_midRight.setOnDragListener(dragListener);
-			node_outer_botLeft.setOnDragListener(dragListener);
-			node_outer_botMid.setOnDragListener(dragListener);
-			node_outer_botRight.setOnDragListener(dragListener);
-			node_middle_topLeft.setOnDragListener(dragListener);
-			node_middle_topMid.setOnDragListener(dragListener);
-			node_middle_topRight.setOnDragListener(dragListener);
-			node_middle_midLeft.setOnDragListener(dragListener);
-			node_middle_midRight.setOnDragListener(dragListener);
-			node_middle_botLeft.setOnDragListener(dragListener);
-			node_middle_botMid.setOnDragListener(dragListener);
-			node_middle_botRight.setOnDragListener(dragListener);
-			node_inner_topLeft.setOnDragListener(dragListener);
-			node_inner_topMid.setOnDragListener(dragListener);
-			node_inner_topRight.setOnDragListener(dragListener);
-			node_inner_midLeft.setOnDragListener(dragListener);
-			node_inner_midRight.setOnDragListener(dragListener);
-			node_inner_botLeft.setOnDragListener(dragListener);
-			node_inner_botMid.setOnDragListener(dragListener);
-			node_inner_botRight.setOnDragListener(dragListener);
+			nodes[0][0][0].setOnDragListener(dragListener);
+			nodes[0][0][1].setOnDragListener(dragListener);
+			nodes[0][0][2].setOnDragListener(dragListener);
+			nodes[0][1][0].setOnDragListener(dragListener);
+			nodes[0][1][2].setOnDragListener(dragListener);
+			nodes[0][2][0].setOnDragListener(dragListener);
+			nodes[0][2][1].setOnDragListener(dragListener);
+			nodes[0][2][2].setOnDragListener(dragListener);
+			nodes[1][0][0].setOnDragListener(dragListener);
+			nodes[1][0][1].setOnDragListener(dragListener);
+			nodes[1][0][2].setOnDragListener(dragListener);
+			nodes[1][1][0].setOnDragListener(dragListener);
+			nodes[1][1][2].setOnDragListener(dragListener);
+			nodes[1][2][0].setOnDragListener(dragListener);
+			nodes[1][2][1].setOnDragListener(dragListener);
+			nodes[1][2][2].setOnDragListener(dragListener);
+			nodes[2][0][0].setOnDragListener(dragListener);
+			nodes[2][0][1].setOnDragListener(dragListener);
+			nodes[2][0][2].setOnDragListener(dragListener);
+			nodes[2][1][0].setOnDragListener(dragListener);
+			nodes[2][1][2].setOnDragListener(dragListener);
+			nodes[2][2][0].setOnDragListener(dragListener);
+			nodes[2][2][1].setOnDragListener(dragListener);
+			nodes[2][2][2].setOnDragListener(dragListener);
 			//endregiont
 			//region set Node neighbours
 			node_outer_topLeft.setNeighbourNodes(node_outer_topMid, node_outer_midLeft);
@@ -387,7 +387,7 @@ public class SinglePlayerActivity extends AppCompatActivity {
 
 }
 /*
-node_outer_topLeft = findViewById(R.id.node_outer_topLeft);
+			node_outer_topLeft = findViewById(R.id.node_outer_topLeft);
 			node_outer_topMid = findViewById(R.id.node_outer_topMid);
 			node_outer_topRight = findViewById(R.id.node_outer_topRight);
 			node_outer_midLeft = findViewById(R.id.node_outer_midLeft);
@@ -411,4 +411,29 @@ node_outer_topLeft = findViewById(R.id.node_outer_topLeft);
 			node_inner_botLeft = findViewById(R.id.node_inner_botLeft);
 			node_inner_botMid = findViewById(R.id.node_inner_botMid);
 			node_inner_botRight = findViewById(R.id.node_inner_botRight);
+
+			node_outer_topLeft	.setOnDragListener(dragListener);
+			node_outer_topMid	.setOnDragListener(dragListener);
+			node_outer_topRight	.setOnDragListener(dragListener);
+			node_outer_midLeft	.setOnDragListener(dragListener);
+			node_outer_midRight	.setOnDragListener(dragListener);
+			node_outer_botLeft	.setOnDragListener(dragListener);
+			node_outer_botMid	.setOnDragListener(dragListener);
+			node_outer_botRight	.setOnDragListener(dragListener);
+			node_middle_topLeft	.setOnDragListener(dragListener);
+			node_middle_topMid	.setOnDragListener(dragListener);
+			node_middle_topRight.setOnDragListener(dragListener);
+			node_middle_midLeft	.setOnDragListener(dragListener);
+			node_middle_midRight.setOnDragListener(dragListener);
+			node_middle_botLeft	.setOnDragListener(dragListener);
+			node_middle_botMid	.setOnDragListener(dragListener);
+			node_middle_botRight.setOnDragListener(dragListener);
+			node_inner_topLeft	.setOnDragListener(dragListener);
+			node_inner_topMid	.setOnDragListener(dragListener);
+			node_inner_topRight	.setOnDragListener(dragListener);
+			node_inner_midLeft	.setOnDragListener(dragListener);
+			node_inner_midRight	.setOnDragListener(dragListener);
+			node_inner_botLeft	.setOnDragListener(dragListener);
+			node_inner_botMid	.setOnDragListener(dragListener);
+			node_inner_botRight	.setOnDragListener(dragListener);
 */

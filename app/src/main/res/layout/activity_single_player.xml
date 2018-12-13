@@ -22,7 +22,7 @@
         tools:layout_height="384dp"
         tools:layout_width="384dp" />
 
-    <com.example.abdelgani.muehle.Classes.Nodes
+    <com.example.abdelgani.muehle.Classes.Node
         android:id="@+id/node_outer_topLeft"
         android:layout_width="@dimen/nodeSize"
         android:layout_height="@dimen/nodeSize"
@@ -34,7 +34,7 @@
         app:layout_constraintTop_toTopOf="@+id/imgV_Gameboard"
         app:layout_constraintVertical_chainStyle="spread_inside" />
 
-    <com.example.abdelgani.muehle.Classes.Nodes
+    <com.example.abdelgani.muehle.Classes.Node
         android:id="@+id/node_outer_topMid"
         android:layout_width="@dimen/nodeSize"
         android:layout_height="@dimen/nodeSize"
@@ -45,7 +45,7 @@
         app:layout_constraintTop_toTopOf="@+id/imgV_Gameboard"
         app:layout_constraintVertical_chainStyle="spread_inside" />
 
-    <com.example.abdelgani.muehle.Classes.Nodes
+    <com.example.abdelgani.muehle.Classes.Node
         android:id="@+id/node_outer_topRight"
         android:layout_width="@dimen/nodeSize"
         android:layout_height="@dimen/nodeSize"
@@ -56,7 +56,7 @@
         app:layout_constraintTop_toTopOf="@+id/imgV_Gameboard"
         app:layout_constraintVertical_chainStyle="spread_inside" />
 
-    <com.example.abdelgani.muehle.Classes.Nodes
+    <com.example.abdelgani.muehle.Classes.Node
         android:id="@+id/node_outer_midRight"
         android:layout_width="@dimen/nodeSize"
         android:layout_height="@dimen/nodeSize"
@@ -67,7 +67,7 @@
         app:layout_constraintTop_toBottomOf="@+id/node_outer_topRight"
         app:layout_constraintVertical_chainStyle="spread_inside"/>
 
-    <com.example.abdelgani.muehle.Classes.Nodes
+    <com.example.abdelgani.muehle.Classes.Node
         android:id="@+id/node_outer_botRight"
         android:layout_width="@dimen/nodeSize"
         android:layout_height="@dimen/nodeSize"
@@ -78,7 +78,7 @@
         app:layout_constraintTop_toBottomOf="@+id/node_outer_midRight"
         app:layout_constraintVertical_chainStyle="spread_inside"/>
 
-    <com.example.abdelgani.muehle.Classes.Nodes
+    <com.example.abdelgani.muehle.Classes.Node
         android:id="@+id/node_outer_botMid"
         android:layout_width="@dimen/nodeSize"
         android:layout_height="@dimen/nodeSize"
@@ -89,7 +89,7 @@
         app:layout_constraintTop_toBottomOf="@+id/node_middle_botMid"
         app:layout_constraintVertical_chainStyle="spread_inside"/>
 
-    <com.example.abdelgani.muehle.Classes.Nodes
+    <com.example.abdelgani.muehle.Classes.Node
         android:id="@+id/node_outer_botLeft"
         android:layout_width="@dimen/nodeSize"
         android:layout_height="@dimen/nodeSize"
@@ -100,7 +100,7 @@
         app:layout_constraintStart_toStartOf="@+id/imgV_Gameboard"
         app:layout_constraintTop_toBottomOf="@+id/node_outer_midLeft" />
 
-    <com.example.abdelgani.muehle.Classes.Nodes
+    <com.example.abdelgani.muehle.Classes.Node
         android:id="@+id/node_outer_midLeft"
         android:layout_width="@dimen/nodeSize"
         android:layout_height="@dimen/nodeSize"
@@ -111,7 +111,7 @@
         app:layout_constraintStart_toStartOf="@+id/imgV_Gameboard"
         app:layout_constraintTop_toBottomOf="@+id/node_outer_topLeft" />
 
-    <com.example.abdelgani.muehle.Classes.Nodes
+    <com.example.abdelgani.muehle.Classes.Node
         android:id="@+id/node_middle_topLeft"
         android:layout_width="@dimen/nodeSize"
         android:layout_height="@dimen/nodeSize"
@@ -120,7 +120,7 @@
         app:layout_constraintStart_toStartOf="@+id/node_middle_midLeft"
         app:layout_constraintTop_toTopOf="@+id/node_middle_topMid" />
 
-    <com.example.abdelgani.muehle.Classes.Nodes
+    <com.example.abdelgani.muehle.Classes.Node
         android:id="@+id/node_middle_topMid"
         android:layout_width="@dimen/nodeSize"
         android:layout_height="@dimen/nodeSize"
@@ -130,7 +130,7 @@
         app:layout_constraintRight_toLeftOf="@+id/node_inner_topRight"
         app:layout_constraintTop_toBottomOf="@+id/node_outer_topMid" />
 
-    <com.example.abdelgani.muehle.Classes.Nodes
+    <com.example.abdelgani.muehle.Classes.Node
         android:id="@+id/node_middle_topRight"
         android:layout_width="@dimen/nodeSize"
         android:layout_height="@dimen/nodeSize"
@@ -141,7 +141,7 @@
         app:layout_constraintStart_toStartOf="@+id/node_middle_midRight"
         app:layout_constraintTop_toTopOf="@+id/node_middle_topMid" />
 
-    <com.example.abdelgani.muehle.Classes.Nodes
+    <com.example.abdelgani.muehle.Classes.Node
         android:id="@+id/node_middle_midLeft"
         android:layout_width="@dimen/nodeSize"
         android:layout_height="@dimen/nodeSize"
@@ -151,7 +151,7 @@
         app:layout_constraintStart_toEndOf="@+id/node_outer_midLeft"
         app:layout_constraintTop_toBottomOf="@+id/node_inner_topLeft" />
 
-    <com.example.abdelgani.muehle.Classes.Nodes
+    <com.example.abdelgani.muehle.Classes.Node
         android:id="@+id/node_middle_midRight"
         android:layout_width="@dimen/nodeSize"
         android:layout_height="@dimen/nodeSize"
@@ -161,7 +161,7 @@
         app:layout_constraintStart_toEndOf="@+id/node_inner_midRight"
         app:layout_constraintTop_toBottomOf="@+id/node_inner_topRight" />
 
-    <com.example.abdelgani.muehle.Classes.Nodes
+    <com.example.abdelgani.muehle.Classes.Node
         android:id="@+id/node_middle_botLeft"
         android:layout_width="@dimen/nodeSize"
         android:layout_height="@dimen/nodeSize"
@@ -170,7 +170,7 @@
         app:layout_constraintStart_toStartOf="@+id/node_middle_midLeft"
         app:layout_constraintTop_toTopOf="@+id/node_middle_botMid" />
 
-    <com.example.abdelgani.muehle.Classes.Nodes
+    <com.example.abdelgani.muehle.Classes.Node
         android:id="@+id/node_middle_botMid"
         android:layout_width="@dimen/nodeSize"
         android:layout_height="@dimen/nodeSize"
@@ -180,7 +180,7 @@
         app:layout_constraintStart_toEndOf="@+id/node_inner_botLeft"
         app:layout_constraintTop_toBottomOf="@+id/node_inner_botMid" />
 
-    <com.example.abdelgani.muehle.Classes.Nodes
+    <com.example.abdelgani.muehle.Classes.Node
         android:id="@+id/node_middle_botRight"
         android:layout_width="@dimen/nodeSize"
         android:layout_height="@dimen/nodeSize"
@@ -191,7 +191,7 @@
         app:layout_constraintStart_toStartOf="@+id/node_middle_midRight"
         app:layout_constraintTop_toTopOf="@+id/node_middle_botMid" />
 
-    <com.example.abdelgani.muehle.Classes.Nodes
+    <com.example.abdelgani.muehle.Classes.Node
         android:id="@+id/node_inner_topLeft"
         android:layout_width="@dimen/nodeSize"
         android:layout_height="@dimen/nodeSize"
@@ -200,7 +200,7 @@
         app:layout_constraintStart_toStartOf="@+id/node_inner_midLeft"
         app:layout_constraintTop_toTopOf="@+id/node_inner_topMid" />
 
-    <com.example.abdelgani.muehle.Classes.Nodes
+    <com.example.abdelgani.muehle.Classes.Node
         android:id="@+id/node_inner_topMid"
         android:layout_width="@dimen/nodeSize"
         android:layout_height="@dimen/nodeSize"
@@ -210,7 +210,7 @@
         app:layout_constraintStart_toEndOf="@+id/node_inner_topLeft"
         app:layout_constraintTop_toBottomOf="@+id/node_middle_topMid" />
 
-    <com.example.abdelgani.muehle.Classes.Nodes
+    <com.example.abdelgani.muehle.Classes.Node
         android:id="@+id/node_inner_topRight"
         android:layout_width="@dimen/nodeSize"
         android:layout_height="@dimen/nodeSize"
@@ -219,7 +219,7 @@
         app:layout_constraintStart_toStartOf="@+id/node_inner_midRight"
         app:layout_constraintTop_toTopOf="@+id/node_inner_topMid" />
 
-    <com.example.abdelgani.muehle.Classes.Nodes
+    <com.example.abdelgani.muehle.Classes.Node
         android:id="@+id/node_inner_midLeft"
         android:layout_width="@dimen/nodeSize"
         android:layout_height="@dimen/nodeSize"
@@ -229,7 +229,7 @@
         app:layout_constraintStart_toEndOf="@+id/node_middle_midLeft"
         app:layout_constraintTop_toBottomOf="@+id/node_inner_topLeft" />
 
-    <com.example.abdelgani.muehle.Classes.Nodes
+    <com.example.abdelgani.muehle.Classes.Node
         android:id="@+id/node_inner_midRight"
         android:layout_width="@dimen/nodeSize"
         android:layout_height="@dimen/nodeSize"
@@ -239,7 +239,7 @@
         app:layout_constraintStart_toEndOf="@+id/node_center"
         app:layout_constraintTop_toBottomOf="@+id/node_inner_topRight" />
 
-    <com.example.abdelgani.muehle.Classes.Nodes
+    <com.example.abdelgani.muehle.Classes.Node
         android:id="@+id/node_inner_botLeft"
         android:layout_width="@dimen/nodeSize"
         android:layout_height="@dimen/nodeSize"
@@ -248,7 +248,7 @@
         app:layout_constraintStart_toStartOf="@+id/node_inner_midLeft"
         app:layout_constraintTop_toTopOf="@+id/node_inner_botMid" />
 
-    <com.example.abdelgani.muehle.Classes.Nodes
+    <com.example.abdelgani.muehle.Classes.Node
         android:id="@+id/node_inner_botMid"
         android:layout_width="@dimen/nodeSize"
         android:layout_height="@dimen/nodeSize"
@@ -258,7 +258,7 @@
         app:layout_constraintStart_toEndOf="@+id/node_inner_botLeft"
         app:layout_constraintTop_toBottomOf="@+id/node_center" />
 
-    <com.example.abdelgani.muehle.Classes.Nodes
+    <com.example.abdelgani.muehle.Classes.Node
         android:id="@+id/node_inner_botRight"
         android:layout_width="@dimen/nodeSize"
         android:layout_height="@dimen/nodeSize"
@@ -267,7 +267,7 @@
         app:layout_constraintStart_toStartOf="@+id/node_inner_midRight"
         app:layout_constraintTop_toTopOf="@+id/node_inner_botMid" />
 
-    <com.example.abdelgani.muehle.Classes.Nodes
+    <com.example.abdelgani.muehle.Classes.Node
         android:id="@+id/node_center"
         android:layout_width="@dimen/nodeSize"
         android:layout_height="@dimen/nodeSize"
@@ -300,7 +300,7 @@
         app:layout_constraintStart_toStartOf="parent"
         tools:background="#000000" />
 
-    <com.example.abdelgani.muehle.Classes.Tiles
+    <com.example.abdelgani.muehle.Classes.Tile
         android:id="@+id/tileP1_1"
         android:layout_width="@dimen/tileSize"
         android:layout_height="@dimen/tileSize"
@@ -310,9 +310,10 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/dividerBottom"
         tools:layout_height="@dimen/tileSize"
-        tools:layout_width="@dimen/tileSize"/>
+        tools:layout_width="@dimen/tileSize"
+        playerWhite = "true" />
 
-    <com.example.abdelgani.muehle.Classes.Tiles
+    <com.example.abdelgani.muehle.Classes.Tile
         android:id="@+id/tileP1_2"
         android:layout_width="@dimen/tileSize"
         android:layout_height="@dimen/tileSize"
@@ -322,9 +323,10 @@
         app:layout_constraintStart_toEndOf="@+id/tileP1_1"
         app:layout_constraintTop_toBottomOf="@+id/dividerBottom"
         tools:layout_height="@dimen/tileSize"
-        tools:layout_width="@dimen/tileSize" />
+        tools:layout_width="@dimen/tileSize"
+        playerWhite = "true" />
 
-    <com.example.abdelgani.muehle.Classes.Tiles
+    <com.example.abdelgani.muehle.Classes.Tile
         android:id="@+id/tileP1_3"
         android:layout_width="@dimen/tileSize"
         android:layout_height="@dimen/tileSize"
@@ -334,9 +336,10 @@
         app:layout_constraintStart_toEndOf="@+id/tileP1_2"
         app:layout_constraintTop_toBottomOf="@+id/dividerBottom"
         tools:layout_height="@dimen/tileSize"
-        tools:layout_width="@dimen/tileSize" />
+        tools:layout_width="@dimen/tileSize"
+        playerWhite = "true" />
 
-    <com.example.abdelgani.muehle.Classes.Tiles
+    <com.example.abdelgani.muehle.Classes.Tile
         android:id="@+id/tileP1_4"
         android:layout_width="@dimen/tileSize"
         android:layout_height="@dimen/tileSize"
@@ -346,9 +349,10 @@
         app:layout_constraintStart_toEndOf="@+id/tileP1_3"
         app:layout_constraintTop_toBottomOf="@+id/dividerBottom"
         tools:layout_height="@dimen/tileSize"
-        tools:layout_width="@dimen/tileSize" />
+        tools:layout_width="@dimen/tileSize"
+        playerWhite = "true" />
 
-    <com.example.abdelgani.muehle.Classes.Tiles
+    <com.example.abdelgani.muehle.Classes.Tile
         android:id="@+id/tileP1_5"
         android:layout_width="@dimen/tileSize"
         android:layout_height="@dimen/tileSize"
@@ -358,9 +362,10 @@
         app:layout_constraintStart_toEndOf="@+id/tileP1_4"
         app:layout_constraintTop_toBottomOf="@+id/dividerBottom"
         tools:layout_height="@dimen/tileSize"
-        tools:layout_width="@dimen/tileSize" />
+        tools:layout_width="@dimen/tileSize"
+        playerWhite = "true"  />
 
-    <com.example.abdelgani.muehle.Classes.Tiles
+    <com.example.abdelgani.muehle.Classes.Tile
         android:id="@+id/tileP1_6"
         android:layout_width="@dimen/tileSize"
         android:layout_height="@dimen/tileSize"
@@ -370,9 +375,10 @@
         app:layout_constraintStart_toEndOf="@+id/tileP1_5"
         app:layout_constraintTop_toBottomOf="@+id/dividerBottom"
         tools:layout_height="@dimen/tileSize"
-        tools:layout_width="@dimen/tileSize" />
+        tools:layout_width="@dimen/tileSize"
+        playerWhite = "true"  />
 
-    <com.example.abdelgani.muehle.Classes.Tiles
+    <com.example.abdelgani.muehle.Classes.Tile
         android:id="@+id/tileP1_7"
         android:layout_width="@dimen/tileSize"
         android:layout_height="@dimen/tileSize"
@@ -382,9 +388,10 @@
         app:layout_constraintStart_toEndOf="@+id/tileP1_6"
         app:layout_constraintTop_toBottomOf="@+id/dividerBottom"
         tools:layout_height="@dimen/tileSize"
-        tools:layout_width="@dimen/tileSize" />
+        tools:layout_width="@dimen/tileSize"
+        playerWhite = "true"  />
 
-    <com.example.abdelgani.muehle.Classes.Tiles
+    <com.example.abdelgani.muehle.Classes.Tile
         android:id="@+id/tileP1_8"
         android:layout_width="@dimen/tileSize"
         android:layout_height="@dimen/tileSize"
@@ -394,9 +401,10 @@
         app:layout_constraintStart_toEndOf="@+id/tileP1_7"
         app:layout_constraintTop_toBottomOf="@+id/dividerBottom"
         tools:layout_height="@dimen/tileSize"
-        tools:layout_width="@dimen/tileSize" />
+        tools:layout_width="@dimen/tileSize"
+        playerWhite = "true"  />
 
-    <com.example.abdelgani.muehle.Classes.Tiles
+    <com.example.abdelgani.muehle.Classes.Tile
         android:id="@+id/tileP1_9"
         android:layout_width="@dimen/tileSize"
         android:layout_height="@dimen/tileSize"
@@ -406,9 +414,10 @@
         app:layout_constraintStart_toEndOf="@+id/tileP1_8"
         app:layout_constraintTop_toBottomOf="@+id/dividerBottom"
         tools:layout_height="@dimen/tileSize"
-        tools:layout_width="@dimen/tileSize" />
+        tools:layout_width="@dimen/tileSize"
+        playerWhite = "true"  />
 
-    <com.example.abdelgani.muehle.Classes.Tiles
+    <com.example.abdelgani.muehle.Classes.Tile
         android:id="@+id/tileP2_1"
         android:layout_width="@dimen/tileSize"
         android:layout_height="@dimen/tileSize"
@@ -419,9 +428,10 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:layout_height="@dimen/tileSize"
-        tools:layout_width="@dimen/tileSize" />
+        tools:layout_width="@dimen/tileSize"
+        playerWhite = "false"  />
 
-    <com.example.abdelgani.muehle.Classes.Tiles
+    <com.example.abdelgani.muehle.Classes.Tile
         android:id="@+id/tileP2_2"
         android:layout_width="@dimen/tileSize"
         android:layout_height="@dimen/tileSize"
@@ -432,9 +442,10 @@
         app:layout_constraintStart_toEndOf="@+id/tileP2_1"
         app:layout_constraintTop_toTopOf="parent"
         tools:layout_height="@dimen/tileSize"
-        tools:layout_width="@dimen/tileSize" />
+        tools:layout_width="@dimen/tileSize"
+        playerWhite = "false"  />
 
-    <com.example.abdelgani.muehle.Classes.Tiles
+    <com.example.abdelgani.muehle.Classes.Tile
         android:id="@+id/tileP2_3"
         android:layout_width="@dimen/tileSize"
         android:layout_height="@dimen/tileSize"
@@ -445,9 +456,10 @@
         app:layout_constraintStart_toEndOf="@+id/tileP2_2"
         app:layout_constraintTop_toTopOf="parent"
         tools:layout_height="@dimen/tileSize"
-        tools:layout_width="@dimen/tileSize" />
+        tools:layout_width="@dimen/tileSize"
+        playerWhite = "false"  />
 
-    <com.example.abdelgani.muehle.Classes.Tiles
+    <com.example.abdelgani.muehle.Classes.Tile
         android:id="@+id/tileP2_4"
         android:layout_width="@dimen/tileSize"
         android:layout_height="@dimen/tileSize"
@@ -458,9 +470,10 @@
         app:layout_constraintStart_toEndOf="@+id/tileP2_3"
         app:layout_constraintTop_toTopOf="parent"
         tools:layout_height="@dimen/tileSize"
-        tools:layout_width="@dimen/tileSize" />
+        tools:layout_width="@dimen/tileSize"
+        playerWhite = "false" />
 
-    <com.example.abdelgani.muehle.Classes.Tiles
+    <com.example.abdelgani.muehle.Classes.Tile
         android:id="@+id/tileP2_5"
         android:layout_width="@dimen/tileSize"
         android:layout_height="@dimen/tileSize"
@@ -471,9 +484,10 @@
         app:layout_constraintStart_toEndOf="@+id/tileP2_4"
         app:layout_constraintTop_toTopOf="parent"
         tools:layout_height="@dimen/tileSize"
-        tools:layout_width="@dimen/tileSize" />
+        tools:layout_width="@dimen/tileSize"
+        playerWhite = "false" />
 
-    <com.example.abdelgani.muehle.Classes.Tiles
+    <com.example.abdelgani.muehle.Classes.Tile
         android:id="@+id/tileP2_6"
         android:layout_width="@dimen/tileSize"
         android:layout_height="@dimen/tileSize"
@@ -484,9 +498,10 @@
         app:layout_constraintStart_toEndOf="@+id/tileP2_5"
         app:layout_constraintTop_toTopOf="parent"
         tools:layout_height="@dimen/tileSize"
-        tools:layout_width="@dimen/tileSize" />
+        tools:layout_width="@dimen/tileSize"
+        playerWhite = "false" />
 
-    <com.example.abdelgani.muehle.Classes.Tiles
+    <com.example.abdelgani.muehle.Classes.Tile
         android:id="@+id/tileP2_7"
         android:layout_width="@dimen/tileSize"
         android:layout_height="@dimen/tileSize"
@@ -497,9 +512,10 @@
         app:layout_constraintStart_toEndOf="@+id/tileP2_6"
         app:layout_constraintTop_toTopOf="parent"
         tools:layout_height="@dimen/tileSize"
-        tools:layout_width="@dimen/tileSize" />
+        tools:layout_width="@dimen/tileSize"
+        playerWhite = "false" />
 
-    <com.example.abdelgani.muehle.Classes.Tiles
+    <com.example.abdelgani.muehle.Classes.Tile
         android:id="@+id/tileP2_8"
         android:layout_width="@dimen/tileSize"
         android:layout_height="@dimen/tileSize"
@@ -510,9 +526,10 @@
         app:layout_constraintStart_toEndOf="@+id/tileP2_7"
         app:layout_constraintTop_toTopOf="parent"
         tools:layout_height="@dimen/tileSize"
-        tools:layout_width="@dimen/tileSize" />
+        tools:layout_width="@dimen/tileSize"
+        playerWhite = "false" />
 
-    <com.example.abdelgani.muehle.Classes.Tiles
+    <com.example.abdelgani.muehle.Classes.Tile
         android:id="@+id/tileP2_9"
         android:layout_width="@dimen/tileSize"
         android:layout_height="@dimen/tileSize"
@@ -523,6 +540,25 @@
         app:layout_constraintStart_toEndOf="@+id/tileP2_8"
         app:layout_constraintTop_toTopOf="parent"
         tools:layout_height="@dimen/tileSize"
-        tools:layout_width="@dimen/tileSize" />
+        tools:layout_width="@dimen/tileSize"
+        playerWhite = "false" />
+
+    <View
+        android:id="@+id/startAreaP2"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/tileSize"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/dividerTop"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <View
+        android:id="@+id/startAreaP1"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/tileSize"
+        app:layout_constraintTop_toTopOf="@+id/dividerBottom"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
 
 </android.support.constraint.ConstraintLayout>

@@ -9,21 +9,21 @@ import android.view.View;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class Nodes extends View{
+public class Node extends View{
 	private int millHelper = 222;
-	private ArrayList<Nodes> neighbourNodes = new ArrayList<Nodes>(4);
+	private ArrayList<Node> neighbourNodes = new ArrayList<Node>(4);
 	private boolean occupied = false;
 
-	public Nodes(Context context) {
+	public Node(Context context) {
 		super(context);
 	}
-	public Nodes(Context context, @Nullable AttributeSet attrs) {
+	public Node(Context context, @Nullable AttributeSet attrs) {
 		super(context, attrs);
 	}
-	public Nodes(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
+	public Node(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
 		super(context, attrs, defStyleAttr);
 	}
-	public Nodes(Context context, @Nullable AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+	public Node(Context context, @Nullable AttributeSet attrs, int defStyleAttr, int defStyleRes) {
 		super(context, attrs, defStyleAttr, defStyleRes);
 	}
 
@@ -35,13 +35,13 @@ public class Nodes extends View{
 		this.millHelper = millHelper;
 	}
 
-	public ArrayList<Nodes> getNeighbourNodes() {
+	public ArrayList<Node> getNeighbourNodes() {
 		return neighbourNodes;
 	}
-	public void setNeighbourNodes(ArrayList<Nodes> neighbourNodes) {
+	public void setNeighbourNodes(ArrayList<Node> neighbourNodes) {
 		this.neighbourNodes = neighbourNodes;
 	}
-	public void setNeighbourNodes(Nodes... neighbours) {
+	public void setNeighbourNodes(Node... neighbours) {
 		this.neighbourNodes.addAll(Arrays.asList(neighbours));
 	}
 
@@ -52,7 +52,7 @@ public class Nodes extends View{
 		return !occupied;
 	}
 	public void setOccupied(boolean occupied) {
-		Log.d("Nodes",this.toString());
+		Log.d("Node",this.toString());
 		this.occupied = occupied;
 	}
 

@@ -9,6 +9,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.abdelgani.muehle.Classes.Player;
+
 public class RegisterActivity extends AppCompatActivity
 {
 
@@ -76,6 +78,7 @@ public class RegisterActivity extends AppCompatActivity
                     if (insert == true)
                     {
                         Toast.makeText( getApplicationContext(), "Register Successfuly", Toast.LENGTH_SHORT ).show();
+                        Player player = new Player(name);
                         startActivity( OpenSecondActivity );
                     }
                     else

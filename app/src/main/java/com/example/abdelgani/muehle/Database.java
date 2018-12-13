@@ -9,8 +9,6 @@ import android.support.annotation.Nullable;
 
 public class Database extends SQLiteOpenHelper
 {
-
-
     public static String DatabaseName = "User.db";
     public static String TableName = "User_table";
 
@@ -31,7 +29,6 @@ public class Database extends SQLiteOpenHelper
         sqLiteDatabase.execSQL( "Drop table if exists " + TableName );
     }
 
-
     //Insert content into Database
     public boolean insert(String email, String password)
     {
@@ -48,7 +45,6 @@ public class Database extends SQLiteOpenHelper
         {
             return  true;
         }
-
     }
 
     public boolean checkAccount(String email, String password)

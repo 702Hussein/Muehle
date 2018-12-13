@@ -9,6 +9,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.abdelgani.muehle.Classes.Player;
+
 public class MainActivity extends AppCompatActivity
 {
 
@@ -19,6 +21,8 @@ public class MainActivity extends AppCompatActivity
     public String name;
     public String password;
     Database MyDatabase;
+
+
 
 
     public  String UserName;
@@ -72,6 +76,7 @@ public class MainActivity extends AppCompatActivity
 
 
 
+
                 if(name.equals( "" )|| password.equals( "" ))
                 {
                     Toast.makeText( getApplicationContext(), "Fields are empty", Toast.LENGTH_SHORT ).show();
@@ -87,6 +92,7 @@ public class MainActivity extends AppCompatActivity
                     else
                     {
                         Toast.makeText( getApplicationContext(), "Account already exists", Toast.LENGTH_SHORT ).show();
+                        Player player = new Player(name);
                         startActivity( OpenSecondActivity );
                     }
                     User_Name.getText().clear();

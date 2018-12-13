@@ -58,8 +58,10 @@ public class SecondActivity extends AppCompatActivity
 
     public void OpenMultiPlayerActivity()
     {
-                Intent OpenMultiPlayerActivity = new Intent( SecondActivity.this, MultiPlayerActivity.class );
-                startActivity( OpenMultiPlayerActivity );
+                //Intent OpenMultiPlayerActivity = new Intent( SecondActivity.this, MultiPlayerActivity.class );
+                //startActivity( OpenMultiPlayerActivity );
+        Intent openPopup = new Intent( SecondActivity.this, Popup.class );
+        startActivity( openPopup );
     }
 
     public void onBackPressed()

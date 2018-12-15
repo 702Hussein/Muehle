@@ -52,20 +52,13 @@ public class Database extends SQLiteOpenHelper
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor1 = db.rawQuery( "Select * from " + TableName + " Where email =?" , new String[]{email} );
         Cursor cursor2 = db.rawQuery( "Select * from " + TableName + " Where password =?" , new String[]{password} );
-        if(cursor1.getCount()>0)
+        if(cursor1.getCount() >0 && cursor2.getCount() >0)
         {
-            if (cursor2.getCount()>0)
-            {
-                return false;
-            }
-            else
-            {
-                return  true;
-            }
+            return true;
         }
         else
         {
-            return  true;
+            return  false;
         }
     }
 

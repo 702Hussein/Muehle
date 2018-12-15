@@ -84,10 +84,9 @@ public class MainActivity extends AppCompatActivity
                 else
                 {
                     boolean check_Account = MyDatabase.checkAccount( name, password);
-                    if(check_Account == true)
+                    if(check_Account == false)
                     {
                             Toast.makeText( getApplicationContext(), "Please register first", Toast.LENGTH_SHORT ).show();
-
                     }
                     else
                     {

@@ -12,6 +12,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.abdelgani.muehle.Classes.Player;
+
+import java.io.Console;
+
 public class SecondActivity extends AppCompatActivity
 {
 
@@ -19,6 +23,13 @@ public class SecondActivity extends AppCompatActivity
 
     public Button SinglePlayer;
     public Button MultiPlayer;
+    Button logIn;
+    Database myDatabase;
+    EditText User_Name;
+    EditText User_Password;
+    String namePlayer2;
+    String passwordPlayer2;
+
 
 
     @Override
@@ -27,6 +38,7 @@ public class SecondActivity extends AppCompatActivity
         super.onCreate( savedInstanceState );
         setContentView( R.layout.activity_second );
 
+        myDatabase = new Database( this );
 
 
         SinglePlayer = (Button) findViewById( R.id.btnSinglePlayerID );
@@ -59,34 +71,49 @@ public class SecondActivity extends AppCompatActivity
 
     public void OpenMultiPlayerActivity()
     {
-                //Intent OpenMultiPlayerActivity = new Intent( SecondActivity.this, MultiPlayerActivity.class );
+               final Intent OpenMultiPlayerActivity = new Intent( SecondActivity.this, MultiPlayerActivity.class );
                 //startActivity( OpenMultiPlayerActivity );
         //Intent openPopup = new Intent( SecondActivity.this, Popup.class );
         //startActivity( openPopup );
         android.app.AlertDialog.Builder mBuilder = new android.app.AlertDialog.Builder( SecondActivity.this );
-        View popUp_View = getLayoutInflater().inflate( R.layout.second_player_popup, null );
-        final EditText userName = (EditText) popUp_View.findViewById( R.id.userName );
-        final EditText password = (EditText) popUp_View.findViewById( R.id.password );
-        Button logIn = (Button) popUp_View.findViewById( R.id.Login_popup);
+        final View popUp_View = getLayoutInflater().inflate( R.layout.second_player_popup, null );
+
+        logIn = (Button) popUp_View.findViewById( R.id.Login_popup);
 
         logIn.setOnClickListener( new View.OnClickListener()
         {
             @Override
             public void onClick(View view)
             {
-                if(!userName.getText().toString().isEmpty() && !password.getText().toString().isEmpty())
+                User_Name = (EditText) popUp_View.findViewById( R.id.userNameID );
+                User_Password = (EditText) popUp_View.findViewById( R.id.userPasswordID );
+                namePlayer2 = User_Name.getText().toString();
+                passwordPlayer2 = User_Password.getText().toString();
+
+                if(User_Name.equals( "" )|| User_Password.equals( "" ))
                 {
-                    Toast.makeText( SecondActivity.this, "Login Succefully", Toast.LENGTH_SHORT ).show();
+                    Toast.makeText( getApplicationContext(), "Fields are empty", Toast.LENGTH_SHORT ).show();
                 }
                 else
                 {
-                    Toast.makeText( SecondActivity.this, "Files are empty", Toast.LENGTH_SHORT ).show();
+                        boolean check_Account = myDatabase.checkAccount( namePlayer2, passwordPlayer2 );
+                        if (check_Account == false)
+                        {
+                            Toast.makeText( getApplicationContext(), "Please register first", Toast.LENGTH_SHORT ).show();
+                        }
+                        else
+                            {
+                            Toast.makeText( getApplicationContext(), "Account already exists", Toast.LENGTH_SHORT ).show();
+                            Player player2 = new Player( namePlayer2 );
+                            startActivity( OpenMultiPlayerActivity );
+                        }
+                        User_Name.getText().clear();
+                        User_Password.getText().clear();
                 }
             }
         } );
 
         mBuilder.setView( popUp_View );
-
         android.app.AlertDialog dialog = mBuilder.create();
         dialog.show();
 

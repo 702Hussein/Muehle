@@ -17,17 +17,12 @@
             </intent-filter>
         </activity>
         <activity android:name=".SecondActivity" />
-
-
         <activity
             android:name=".SinglePlayerActivity"
             android:screenOrientation="portrait" />
-
         <activity android:name=".RegisterActivity" />
-
         <activity android:name=".MultiPlayerActivity" />
-        <activity android:name=".Popup"/>
-
+        <activity android:name=".Popup" />
     </application>
 
 </manifest>

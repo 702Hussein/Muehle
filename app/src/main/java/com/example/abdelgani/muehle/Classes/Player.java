@@ -2,7 +2,8 @@ package com.example.abdelgani.muehle.Classes;
 
 import android.widget.Toast;
 
-public class Player {
+public class Player
+{
 	private String name;
 
 	private boolean active;

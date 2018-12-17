@@ -9,6 +9,7 @@ import android.graphics.drawable.Drawable;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Html;
 import android.view.DragEvent;
 import android.widget.Button;
 import android.view.View;
@@ -323,7 +324,8 @@ public class SinglePlayerActivity extends AppCompatActivity {
 
     public void onBackPressed(){
 		AlertDialog.Builder dlgBuilder = new AlertDialog.Builder(SinglePlayerActivity.this);
-		dlgBuilder.setMessage("Sind sie sicher dass Sie das Spiel verlassen wollen?");
+		dlgBuilder.setTitle( Html.fromHtml("<font color='#04B404'>Mühle</font>"));
+		dlgBuilder.setMessage("<font color='#190707'>Sind sie sicher dass Sie das Spiel verlassen wollen?</font>");
 		dlgBuilder.setCancelable(true);
 		dlgBuilder.setPositiveButton("Ja", new DialogInterface.OnClickListener()
 		{
@@ -343,7 +345,7 @@ public class SinglePlayerActivity extends AppCompatActivity {
 			}
 		});
 		AlertDialog alert = dlgBuilder.create();
-		alert.getWindow().setBackgroundDrawable(new ColorDrawable(Color.GREEN));
+		alert.getWindow().setBackgroundDrawable(new ColorDrawable(Color.GRAY));
 		alert.show();
 	}
 /*

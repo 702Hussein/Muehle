@@ -66,7 +66,7 @@ public class RegisterActivity extends AppCompatActivity
         else
         {
             boolean check_Account = MyDatabase.checkAccount( name, password);
-            if(check_Account == true)
+            if(check_Account == false)
             {
                 if (!password.equals( password2 ))
                 {

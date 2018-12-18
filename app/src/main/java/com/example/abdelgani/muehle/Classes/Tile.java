@@ -2,8 +2,11 @@ package com.example.abdelgani.muehle.Classes;
 
 
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.util.AttributeSet;
 import android.widget.Button;
+
+import com.example.abdelgani.muehle.R;
 
 public class Tile extends Button {
 	private Node currentNode;
@@ -15,6 +18,13 @@ public class Tile extends Button {
 	}
 	public Tile(Context context, AttributeSet attrs) {
 		super(context, attrs);
+		playerWhite = attrs.getAttributeBooleanValue("com.example.abdelgani.muehle.Classes","playerWhite", false);
+		TypedArray typedArray = context.getTheme().obtainStyledAttributes(attrs, R.styleable.Tile, 0,0);
+		try{
+			playerWhite = typedArray.getBoolean(R.styleable.Tile_playerWhite, false);
+		}finally {
+			typedArray.recycle();
+		}
 	}
 	public Tile(Context context, AttributeSet attrs, int defStyleAttr) {
 		super(context, attrs, defStyleAttr);
@@ -35,4 +45,6 @@ public class Tile extends Button {
 
 	public void setInMill(boolean value){inMill = value;}
 	public boolean isInMill(){return inMill;}
+
+	public boolean isPlayerWhite() {return playerWhite;	}
 }

@@ -38,9 +38,9 @@ public class SecondActivity extends AppCompatActivity
         super.onCreate( savedInstanceState );
         setContentView( R.layout.activity_second );
 
-         mediaPlayer = MediaPlayer.create(getApplicationContext(), R.raw.music);
+         //mediaPlayer = MediaPlayer.create(getApplicationContext(), R.raw.music);
 
-        mediaPlayer.start();
+        //mediaPlayer.start();
 
 
         myDatabase = new Database( this );

@@ -324,8 +324,8 @@ public class SinglePlayerActivity extends AppCompatActivity {
 
     public void onBackPressed(){
 		AlertDialog.Builder dlgBuilder = new AlertDialog.Builder(SinglePlayerActivity.this);
-		dlgBuilder.setTitle( Html.fromHtml("<font color='#04B404'>Mühle</font>"));
-		dlgBuilder.setMessage("<font color='#190707'>Sind sie sicher dass Sie das Spiel verlassen wollen?</font>");
+        dlgBuilder.setTitle( Html.fromHtml("<font color='#190707'>Mühle</font>"));
+		dlgBuilder.setMessage(Html.fromHtml( "<font color='#190707'>Sind sie sicher dass Sie das Spiel verlassen wollen?</font>"));
 		dlgBuilder.setCancelable(true);
 		dlgBuilder.setPositiveButton("Ja", new DialogInterface.OnClickListener()
 		{

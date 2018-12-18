@@ -1,6 +1,7 @@
 package com.example.abdelgani.muehle;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -9,6 +10,8 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.abdelgani.muehle.Classes.Player;
+
+import java.security.PublicKey;
 
 public class SecondActivity extends AppCompatActivity
 {
@@ -26,7 +29,7 @@ public class SecondActivity extends AppCompatActivity
     String secondPlayerPassword;
     String secondPlayerRepeatPassword;
     //public Player player2;
-
+    public  MediaPlayer mediaPlayer;
 
 
     @Override
@@ -34,6 +37,11 @@ public class SecondActivity extends AppCompatActivity
     {
         super.onCreate( savedInstanceState );
         setContentView( R.layout.activity_second );
+
+         mediaPlayer = MediaPlayer.create(getApplicationContext(), R.raw.music);
+
+        mediaPlayer.start();
+
 
         myDatabase = new Database( this );
 
@@ -100,7 +108,7 @@ public class SecondActivity extends AppCompatActivity
                             {
                             Toast.makeText( getApplicationContext(), "Account already exists", Toast.LENGTH_SHORT ).show();
                             Player player2 = new Player( secondPlayerName );
-                            startActivity( OpenMultiPlayerActivity );
+                            startActivity( OpenMultiPlayerActivity);
                         }
                         User_Name.getText().clear();
                         User_Password.getText().clear();

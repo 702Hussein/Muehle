@@ -4,6 +4,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.media.MediaPlayer;
 import android.nfc.Tag;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -20,20 +21,17 @@ public class MultiPlayerActivity extends AppCompatActivity {
 
     Database seconddatabase ;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate( savedInstanceState );
         setContentView( R.layout.activity_multi_player );
 
-
        // Intent openLogIN = new Intent( MultiPlayerActivity.this, MainActivity.class );
        // startActivity( openLogIN );
 
-
-
-        Log.d(null,  " Hallo "  );
-
+        //Log.d(null,  " Hallo ");
     }
 
 
@@ -42,7 +40,7 @@ public class MultiPlayerActivity extends AppCompatActivity {
     public void onBackPressed()
     {
         AlertDialog.Builder dlgBuilder = new AlertDialog.Builder(MultiPlayerActivity.this);
-        dlgBuilder.setTitle( Html.fromHtml("<font color='#04B404'>Mühle</font>"));
+        dlgBuilder.setTitle( Html.fromHtml("<font color='#190707'>Mühle</font>"));
         dlgBuilder.setMessage(Html.fromHtml( "<font color='#190707'>Sind sie sicher dass Sie das Spiel verlassen wollen?</font>"));
         dlgBuilder.setCancelable(true);
         dlgBuilder.setPositiveButton("Ja", new DialogInterface.OnClickListener()
@@ -50,9 +48,12 @@ public class MultiPlayerActivity extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialog, int which)
             {
+
+                Intent openSecond = new Intent( MultiPlayerActivity.this, SecondActivity.class );
+                startActivity( openSecond );
                 Toast.makeText(MultiPlayerActivity.this, "Das Spiel wurde beendet", Toast.LENGTH_SHORT).show();
                 finish();
-                //Intent secondAct = new Intent( SinglePlayerActivity.this, SecondActivity.class );
+                //Intent secondAct = new Intent( MultiPlayerActivity.this, SecondActivity.class );
                 //startActivity( secondAct );
             }
         });

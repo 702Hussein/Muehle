@@ -22,7 +22,6 @@
             android:screenOrientation="portrait" />
         <activity android:name=".RegisterActivity" />
         <activity android:name=".MultiPlayerActivity" />
-        <activity android:name=".Popup" />
     </application>
 
 </manifest>

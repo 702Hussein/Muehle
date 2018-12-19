@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.abdelgani.muehle.Classes.Player;
@@ -31,6 +32,8 @@ public class SecondActivity extends AppCompatActivity
     //public Player player2;
     public  MediaPlayer mediaPlayer;
 
+    private String player1;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -38,9 +41,13 @@ public class SecondActivity extends AppCompatActivity
         super.onCreate( savedInstanceState );
         setContentView( R.layout.activity_second );
 
-         //mediaPlayer = MediaPlayer.create(getApplicationContext(), R.raw.music);
+        Intent intent = getIntent();
+        player1 = intent.getStringExtra("USER_NAME");
+        Toast.makeText(SecondActivity.this, "Welcome " + player1, Toast.LENGTH_LONG).show();
 
-        //mediaPlayer.start();
+
+        mediaPlayer = MediaPlayer.create(getApplicationContext(), R.raw.music);
+        mediaPlayer.start();
 
 
         myDatabase = new Database( this );
@@ -108,7 +115,12 @@ public class SecondActivity extends AppCompatActivity
                             {
                             Toast.makeText( getApplicationContext(), "Account already exists", Toast.LENGTH_SHORT ).show();
                             Player player2 = new Player( secondPlayerName );
+                            //b.putInt(secondPlayerName, 0);
+
+                            OpenMultiPlayerActivity.putExtra("USER_NAME" , secondPlayerName);
+                            OpenMultiPlayerActivity.putExtra("USER_NAME2", player1);
                             startActivity( OpenMultiPlayerActivity);
+                            finish();
                         }
                         User_Name.getText().clear();
                         User_Password.getText().clear();
@@ -177,6 +189,7 @@ public class SecondActivity extends AppCompatActivity
                                     else
                                     {
                                         Toast.makeText( getApplicationContext(), "Account already exists, please use login menu", Toast.LENGTH_SHORT ).show();
+
                                         //startActivity( OpenmainActivity );
                                         dialog2.cancel();
                                         dialog.show();

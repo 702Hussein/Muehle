@@ -20,6 +20,8 @@ import com.example.abdelgani.muehle.Classes.Player;
 public class MultiPlayerActivity extends AppCompatActivity {
 
     Database seconddatabase ;
+    private  String player2;
+    private  String player1;
 
 
     @Override
@@ -28,10 +30,13 @@ public class MultiPlayerActivity extends AppCompatActivity {
         super.onCreate( savedInstanceState );
         setContentView( R.layout.activity_multi_player );
 
-       // Intent openLogIN = new Intent( MultiPlayerActivity.this, MainActivity.class );
-       // startActivity( openLogIN );
+        Intent intent = getIntent();
+        player2 = intent.getStringExtra("USER_NAME");
+        Toast.makeText(MultiPlayerActivity.this, "Welcome " + player2, Toast.LENGTH_LONG).show();
 
-        //Log.d(null,  " Hallo ");
+        player1 = intent.getStringExtra("USER_NAME2");
+        Toast.makeText(MultiPlayerActivity.this,  player1 + " vs " + player2, Toast.LENGTH_LONG).show();
+
     }
 
 
@@ -50,6 +55,7 @@ public class MultiPlayerActivity extends AppCompatActivity {
             {
 
                 Intent openSecond = new Intent( MultiPlayerActivity.this, SecondActivity.class );
+                openSecond.putExtra( "USER_NAME", player1 );
                 startActivity( openSecond );
                 Toast.makeText(MultiPlayerActivity.this, "Das Spiel wurde beendet", Toast.LENGTH_SHORT).show();
                 finish();

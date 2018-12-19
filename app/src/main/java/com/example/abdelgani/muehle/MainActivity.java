@@ -93,6 +93,7 @@ public class MainActivity extends AppCompatActivity
                     {
                         Toast.makeText( getApplicationContext(), "Account already exists", Toast.LENGTH_SHORT ).show();
                         Player player = new Player(name);
+                        OpenSecondActivity.putExtra( "USER_NAME" , name );
                         startActivity( OpenSecondActivity );
                     }
                     User_Name.getText().clear();

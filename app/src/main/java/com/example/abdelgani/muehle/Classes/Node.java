@@ -10,9 +10,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Node extends View{
-	private int millHelper = 222;
+	private int[] millHelper = new int[3];
 	private ArrayList<Node> neighbourNodes = new ArrayList<Node>(4);
 	private boolean occupied = false;
+	private Tile currentTile;
 
 	public Node(Context context) {
 		super(context);
@@ -20,30 +21,21 @@ public class Node extends View{
 	public Node(Context context, @Nullable AttributeSet attrs) {
 		super(context, attrs);
 	}
-	public Node(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
-		super(context, attrs, defStyleAttr);
-	}
-	public Node(Context context, @Nullable AttributeSet attrs, int defStyleAttr, int defStyleRes) {
-		super(context, attrs, defStyleAttr, defStyleRes);
-	}
+	public Node(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {	super(context, attrs, defStyleAttr);}
+	public Node(Context context, @Nullable AttributeSet attrs, int defStyleAttr, int defStyleRes) {	super(context, attrs, defStyleAttr, defStyleRes);}
 
-
-	public int getMillHelper() {
+	public int[] getMillHelper() {
 		return millHelper;
 	}
-	public void setMillHelper(int millHelper) {
+	public void setMillHelper(int[] millHelper) {
 		this.millHelper = millHelper;
 	}
 
 	public ArrayList<Node> getNeighbourNodes() {
 		return neighbourNodes;
 	}
-	public void setNeighbourNodes(ArrayList<Node> neighbourNodes) {
-		this.neighbourNodes = neighbourNodes;
-	}
-	public void setNeighbourNodes(Node... neighbours) {
-		this.neighbourNodes.addAll(Arrays.asList(neighbours));
-	}
+	public void setNeighbourNodes(ArrayList<Node> neighbourNodes) {	this.neighbourNodes = neighbourNodes;}
+	public void setNeighbourNodes(Node... neighbours) {	this.neighbourNodes.addAll(Arrays.asList(neighbours));}
 
 	public boolean isOccupied() {
 		return occupied;
@@ -51,10 +43,32 @@ public class Node extends View{
 	public boolean isFree() {
 		return !occupied;
 	}
-	public void setOccupied(boolean occupied) {
-		Log.d("Node",this.toString());
-		this.occupied = occupied;
+	public void setOccupied(boolean occupied) {	Log.d("Node",this.toString());	this.occupied = occupied;}
+
+	public void setCurrentTile(Tile newTile){currentTile = newTile;}
+	public Tile getCurrentTile(){return currentTile;}
+
+	public static int[] getIndexByMillHelper(int millHelper){
+		int[] index = new int[3];
+		index[0] = millHelper / 100;
+		index[1] = (millHelper - index[0])/10;
+		index[2] = (millHelper - index[0] - index[1]);
+		return index;
 	}
 
-
+	public int[] get3rdNodeIndex(Node second){
+		int[] index = new int[this.getMillHelper().length];
+		for(int i = 0; i < this.getMillHelper().length; i++){
+			int tmp = this.getMillHelper()[i] - second.getMillHelper()[i];
+			if(tmp == 0)
+				index[i] = this.getMillHelper()[i];
+			else {
+				tmp += this.getMillHelper()[i];
+				if (tmp < 0)
+					tmp += 3;
+				index[i] = tmp % 3;
+			}
+		}
+		return  index;
+	}
 }

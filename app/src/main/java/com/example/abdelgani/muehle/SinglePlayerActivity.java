@@ -22,29 +22,48 @@ import com.example.abdelgani.muehle.Classes.Player;
 import com.example.abdelgani.muehle.Classes.Tile;
 
 import java.util.ArrayList;
+import java.util.EnumSet;
 
 public class SinglePlayerActivity extends AppCompatActivity {
 
 	private static final String TAG = "__________";
-	private enum Phase {EARLY_GAME, MID_GAME, LATE_GAME}
+
+	private enum Phase {PICK_TILE, EARLY_GAME, MID_GAME, LATE_GAME}
+	//TODO: möglichkeit eines Flag Sets wie in C# erkunden
+	//private EnumSet<Phase> EarlyGame = EnumSet.of(Phase.EARLY_GAME);
+
 
 	Node[][][] nodes = new Node[3][3][3];
-	Tile[] whiteTiles, blackTiles;
-	Tile tileW_1, tileW_2, tileW_3, tileW_4, tileW_5, tileW_6, tileW_7, tileW_8, tileW_9;
-	Tile tileB_1, tileB_2, tileB_3, tileB_4, tileB_5, tileB_6, tileB_7, tileB_8, tileB_9;
+	ArrayList<Tile> whiteTiles = new ArrayList<>(9), blackTiles = new ArrayList<>(9);
 	int offset;
 	boolean pickTile = false;
 	Phase currentPhase = Phase.EARLY_GAME;
 	Player playerW, playerB, currentPlayer;
+	IDragEventStartedBehavior dragEventStarted;
+	IDragEventDropBehavior dragEventDrop;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate( savedInstanceState );
-        setContentView( R.layout.activity_single_player );
-		Log.d(TAG,"Singleplayer startup");
-        try {
-        	//region misc
-			offset = (int)((getResources().getDimension(R.dimen.nodeSize) - getResources().getDimension(R.dimen.tileSize) + 0.5)/2);
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_single_player);
+		Log.d(TAG, "Singleplayer startup");
+		try {
+			//region misc
+			offset = (int) ((getResources().getDimension(R.dimen.nodeSize) - getResources().getDimension(R.dimen.tileSize) + 0.5) / 2);
+			//set up DragEvent.ACTION_DRAG_STARTED  for early game:
+			dragEventStarted = new IDragEventStartedBehavior() {
+				@Override
+				public boolean dragEventStarted(Node receivingNode, Tile currentTile) {
+					return earlyGameActionDragStarted(receivingNode, currentTile);
+				}
+			};
+			//set up DragEvent.ACTION_DROP for early game:
+			dragEventDrop = new IDragEventDropBehavior() {
+				@Override
+				public boolean dragEventDrop(Node receivingNode, Tile currentTile) {
+					return earlyGameActionDrop(receivingNode, currentTile);
+				}
+			};
 			//endregion
 			//region assign nodes
 			nodes[0][0][0] = findViewById(R.id.node_outer_topLeft);
@@ -125,92 +144,81 @@ public class SinglePlayerActivity extends AppCompatActivity {
 			nodes[2][2][2].setNeighbourNodes(nodes[2][1][2], nodes[2][2][1]);
 			//endregion
 			//region assign millHelpers
-			nodes[0][0][0].setMillHelper(new int[]{0,0,0});
-			nodes[0][0][1].setMillHelper(new int[]{0,0,1});
-			nodes[0][0][2].setMillHelper(new int[]{0,0,2});
-			nodes[0][1][0].setMillHelper(new int[]{0,1,0});
-			nodes[0][1][2].setMillHelper(new int[]{0,1,2});
-			nodes[0][2][0].setMillHelper(new int[]{0,2,0});
-			nodes[0][2][1].setMillHelper(new int[]{0,2,1});
-			nodes[0][2][2].setMillHelper(new int[]{0,2,2});
-			nodes[1][0][0].setMillHelper(new int[]{1,0,0});
-			nodes[1][0][1].setMillHelper(new int[]{1,0,1});
-			nodes[1][0][2].setMillHelper(new int[]{1,0,2});
-			nodes[1][1][0].setMillHelper(new int[]{1,1,0});
-			nodes[1][1][2].setMillHelper(new int[]{1,1,2});
-			nodes[1][2][0].setMillHelper(new int[]{1,2,0});
-			nodes[1][2][1].setMillHelper(new int[]{1,2,1});
-			nodes[1][2][2].setMillHelper(new int[]{1,2,2});
-			nodes[2][0][0].setMillHelper(new int[]{2,0,0});
-			nodes[2][0][1].setMillHelper(new int[]{2,0,1});
-			nodes[2][0][2].setMillHelper(new int[]{2,0,2});
-			nodes[2][1][0].setMillHelper(new int[]{2,1,0});
-			nodes[2][1][2].setMillHelper(new int[]{2,1,2});
-			nodes[2][2][0].setMillHelper(new int[]{2,2,0});
-			nodes[2][2][1].setMillHelper(new int[]{2,2,1});
-			nodes[2][2][2].setMillHelper(new int[]{2,2,2});
+			nodes[0][0][0].setMillHelper(new int[]{0, 0, 0});
+			nodes[0][0][1].setMillHelper(new int[]{0, 0, 1});
+			nodes[0][0][2].setMillHelper(new int[]{0, 0, 2});
+			nodes[0][1][0].setMillHelper(new int[]{0, 1, 0});
+			nodes[0][1][2].setMillHelper(new int[]{0, 1, 2});
+			nodes[0][2][0].setMillHelper(new int[]{0, 2, 0});
+			nodes[0][2][1].setMillHelper(new int[]{0, 2, 1});
+			nodes[0][2][2].setMillHelper(new int[]{0, 2, 2});
+			nodes[1][0][0].setMillHelper(new int[]{1, 0, 0});
+			nodes[1][0][1].setMillHelper(new int[]{1, 0, 1});
+			nodes[1][0][2].setMillHelper(new int[]{1, 0, 2});
+			nodes[1][1][0].setMillHelper(new int[]{1, 1, 0});
+			nodes[1][1][2].setMillHelper(new int[]{1, 1, 2});
+			nodes[1][2][0].setMillHelper(new int[]{1, 2, 0});
+			nodes[1][2][1].setMillHelper(new int[]{1, 2, 1});
+			nodes[1][2][2].setMillHelper(new int[]{1, 2, 2});
+			nodes[2][0][0].setMillHelper(new int[]{2, 0, 0});
+			nodes[2][0][1].setMillHelper(new int[]{2, 0, 1});
+			nodes[2][0][2].setMillHelper(new int[]{2, 0, 2});
+			nodes[2][1][0].setMillHelper(new int[]{2, 1, 0});
+			nodes[2][1][2].setMillHelper(new int[]{2, 1, 2});
+			nodes[2][2][0].setMillHelper(new int[]{2, 2, 0});
+			nodes[2][2][1].setMillHelper(new int[]{2, 2, 1});
+			nodes[2][2][2].setMillHelper(new int[]{2, 2, 2});
 			//endregion
 			// region assign tiles
-			tileW_1 = findViewById(R.id.tileW_1);
-			tileW_2 = findViewById(R.id.tileW_2);
-			tileW_3 = findViewById(R.id.tileW_3);
-			tileW_4 = findViewById(R.id.tileW_4);
-			tileW_5 = findViewById(R.id.tileW_5);
-			tileW_6 = findViewById(R.id.tileW_6);
-			tileW_7 = findViewById(R.id.tileW_7);
-			tileW_8 = findViewById(R.id.tileW_8);
-			tileW_9 = findViewById(R.id.tileW_9);
-			tileB_1 = findViewById(R.id.tileB_1);
-			tileB_2 = findViewById(R.id.tileB_2);
-			tileB_3 = findViewById(R.id.tileB_3);
-			tileB_4 = findViewById(R.id.tileB_4);
-			tileB_5 = findViewById(R.id.tileB_5);
-			tileB_6 = findViewById(R.id.tileB_6);
-			tileB_7 = findViewById(R.id.tileB_7);
-			tileB_8 = findViewById(R.id.tileB_8);
-			tileB_9 = findViewById(R.id.tileB_9);
+			whiteTiles.add((Tile) findViewById(R.id.tileW_1));
+			whiteTiles.add((Tile) findViewById(R.id.tileW_2));
+			whiteTiles.add((Tile) findViewById(R.id.tileW_3));
+			whiteTiles.add((Tile) findViewById(R.id.tileW_4));
+			whiteTiles.add((Tile) findViewById(R.id.tileW_5));
+			whiteTiles.add((Tile) findViewById(R.id.tileW_6));
+			whiteTiles.add((Tile) findViewById(R.id.tileW_7));
+			whiteTiles.add((Tile) findViewById(R.id.tileW_8));
+			whiteTiles.add((Tile) findViewById(R.id.tileW_9));
+			blackTiles.add((Tile) findViewById(R.id.tileB_1));
+			blackTiles.add((Tile) findViewById(R.id.tileB_2));
+			blackTiles.add((Tile) findViewById(R.id.tileB_3));
+			blackTiles.add((Tile) findViewById(R.id.tileB_4));
+			blackTiles.add((Tile) findViewById(R.id.tileB_5));
+			blackTiles.add((Tile) findViewById(R.id.tileB_6));
+			blackTiles.add((Tile) findViewById(R.id.tileB_7));
+			blackTiles.add((Tile) findViewById(R.id.tileB_8));
+			blackTiles.add((Tile) findViewById(R.id.tileB_9));
 			//endregion
 			//region set LongClickListeners to tiles
-			tileW_1.setOnLongClickListener(longClickListener);
-			tileW_2.setOnLongClickListener(longClickListener);
-			tileW_3.setOnLongClickListener(longClickListener);
-			tileW_4.setOnLongClickListener(longClickListener);
-			tileW_5.setOnLongClickListener(longClickListener);
-			tileW_6.setOnLongClickListener(longClickListener);
-			tileW_7.setOnLongClickListener(longClickListener);
-			tileW_8.setOnLongClickListener(longClickListener);
-			tileW_9.setOnLongClickListener(longClickListener);
-			tileB_1.setOnLongClickListener(longClickListener);
-			tileB_2.setOnLongClickListener(longClickListener);
-			tileB_3.setOnLongClickListener(longClickListener);
-			tileB_4.setOnLongClickListener(longClickListener);
-			tileB_5.setOnLongClickListener(longClickListener);
-			tileB_6.setOnLongClickListener(longClickListener);
-			tileB_7.setOnLongClickListener(longClickListener);
-			tileB_8.setOnLongClickListener(longClickListener);
-			tileB_9.setOnLongClickListener(longClickListener);
+			for (Tile tile : whiteTiles)
+				tile.setOnLongClickListener(longClickListener);
+			for (Tile tile : blackTiles)
+				tile.setOnLongClickListener(longClickListener);
 			//endregion
-			whiteTiles = new Tile[]{tileW_1, tileW_2, tileW_3, tileW_4, tileW_5, tileW_6, tileW_7, tileW_8, tileW_9};
-			blackTiles = new Tile[]{tileB_1, tileB_2, tileB_3, tileB_4, tileB_5, tileB_6, tileB_7, tileB_8, tileB_9};
+			//region prepare players
 			String nameB = "black", nameW = "white";
 			playerB = new Player(nameB);
-			playerB.setPlayerWhite(false);
+			playerB.setPlayerWhite(false).setTiles(blackTiles).setStartingArea((Node) findViewById(R.id.startAreaP2));
+			playerB.getStartingArea().setOccupied(true).setOnDragListener(dragListener);
 			playerW = new Player(nameW);
-			playerB.setTiles(blackTiles);
-			playerW.setTiles(whiteTiles);
-			Game gamePlayerW = new Game(nodes, whiteTiles);
-			Game gamePlayerB = new Game(nodes, blackTiles);
+			playerW.setTiles(whiteTiles).setStartingArea((Node) findViewById(R.id.startAreaP1));
+			playerW.getStartingArea().setOccupied(true).setOnDragListener(dragListener);
 			changePlayerState(playerB, false);
 			currentPlayer = playerW;
-		}catch (Exception exc){
-        	exc.getMessage();
+			//endregion
+		} catch (Exception exc) {
+			exc.getMessage();
 		}
-    }
+	}
 
-    View.OnLongClickListener longClickListener = new View.OnLongClickListener() {
+	View.OnLongClickListener longClickListener = new View.OnLongClickListener() {
 		@Override
 		public boolean onLongClick(View v) {
-			Log.d(TAG,"enter onLongClick" + v.getId());
+			if (pickTile && (checkForMill((Tile) v) || ((Tile) v).getCurrentNode() == null))
+				return false;
+			if (currentPhase == Phase.EARLY_GAME && !(((Tile) v).getCurrentNode() == null || pickTile))
+				return false;
+			Log.d(TAG, "enter onLongClick" + v.getId());
 			ClipData.Item item = new ClipData.Item((CharSequence) v.getTag());
 			String[] mimeTypes = {ClipDescription.MIMETYPE_TEXT_PLAIN};
 			ClipData clipData = new ClipData((CharSequence) v.getTag(), mimeTypes, item);
@@ -220,172 +228,196 @@ public class SinglePlayerActivity extends AppCompatActivity {
 		}
 	};
 
-    Node.OnDragListener dragListener = new Node.OnDragListener() {
-			@Override
-			public boolean onDrag(View v, DragEvent event) {
-				Log.d("DRAGLISTENER ONDRAG", "enter onDrag " + v.getId());
-				boolean returnValue = false;
-				if (pickTile){
-					Log.d("DRAGLISTENER ONDRAG","pickTile true, enter");
-					returnValue = pickTile(v, event);
-					pickTile = false;
-					switchPlayers(playerB, playerW);
-				}
-				else {
-					switch (currentPhase) {
-						case EARLY_GAME:
-							Log.d("DRAGLISTENER","Early_Game enter");
-							returnValue = earlyGame(v, event);
-							break;
-						case MID_GAME:
-							Log.d("DRAGLISTENER","Mid_Game enter");
-							returnValue = midGame(v, event);
-							break;
-						case LATE_GAME:
-							Log.d("DRAGLISTENER","Late_Game enter");
-							returnValue = lateGame(v, event);
-							break;
-						default:
-							break;
-					}
-				}
-				return returnValue;
+	Node.OnDragListener dragListener = new Node.OnDragListener() {
+		@Override
+		public boolean onDrag(View v, DragEvent event) {
+			Log.d("DRAGLISTENER ONDRAG", "enter onDrag " + v.getId());
+			boolean returnValue = false;
+			Node node = (Node) v;
+			Tile tile = (Tile) event.getLocalState();
+			if (pickTile) {
+				Log.d("DRAGLISTENER ONDRAG", "pickTile true, enter");
+				/*/TODO: test with 2nd listener:
+				for(Node[][] node2 : nodes)
+					for(Node[] node3 : node2)
+						for(Node node4: node3){
+							if (node4 != null)
+								node4.setOnDragListener(earlyGameDragListener);
+						}*/
+				returnValue = pickTile(v, event);
 			}
-    };
-
-    private boolean earlyGame(View v, DragEvent event){
-		Node node = (Node) v;
-		Tile tile = (Tile)event.getLocalState();
-		switch (event.getAction())
-		{
-			case DragEvent.ACTION_DRAG_STARTED:        //start to drag an item
-				return node.isFree() && tile.getCurrentNode() == null;
-			case DragEvent.ACTION_DRAG_LOCATION:    //enter the listening area (with ACTION_DRAG_ENTERED
-				break;
-			case DragEvent.ACTION_DROP:                //drop item within the listening area bounds
-				Log.d("EG_DROP"," before move");
-				move(node, tile);
-				Log.d("EG_DROP"," after move");
-				currentPlayer.decreaseTilesInHand();
-				if( checkForMill(tile))
-					pickTile = true;
-				else
-					switchPlayers(playerB, playerW);
-				Log.d("EG_DROP"," before leave");
-				break;
-			case DragEvent.ACTION_DRAG_ENDED:        //right after ACTION_DROP
-				v.setBackground(null);
-				break;
-			case DragEvent.ACTION_DRAG_ENTERED:        //entered the listening area ( with ACTION_DRAG_ENTERED
-				try {
-					Drawable background = tile.getBackground().getConstantState().newDrawable();
-					v.setBackground(background);
-				}catch(Exception ignored){}
-				break;
-			case DragEvent.ACTION_DRAG_EXITED:        //item left the listening area
-				v.setBackground(null);
-				break;
-			default:
-				return false;
+			else {
+				switch (event.getAction()) {
+					case DragEvent.ACTION_DRAG_STARTED:        //start to drag an item
+						returnValue = dragEventStarted.dragEventStarted(node, tile);
+						break;
+					case DragEvent.ACTION_DROP:                //drop item within the listening area bounds
+						Log.d("EG_DROP", " before move");
+						returnValue = dragEventDrop.dragEventDrop(node, tile);
+						Log.d("EG_DROP", " before leave");
+						break;
+					case DragEvent.ACTION_DRAG_ENDED:        //right after ACTION_DROP
+						v.setBackground(null);
+						break;
+					case DragEvent.ACTION_DRAG_ENTERED:        //entered the listening area ( with ACTION_DRAG_ENTERED
+						try {
+							Drawable background = tile.getBackground().getConstantState().newDrawable();
+							v.setBackground(background);
+						} catch (Exception ignored) {						}
+						break;
+					case DragEvent.ACTION_DRAG_EXITED:        //item left the listening area
+						v.setBackground(null);
+						break;
+				}
+			}
+			return returnValue;
 		}
-    	return true;
+	};
+	//TODO: code weiter verfeinern: verschiedene DragListener für die Spielphasen
+	/*
+	View.OnDragListener earlyGameDragListener = new View.OnDragListener() {
+		@Override
+		public boolean onDrag(View v, DragEvent event) {
+			return false;
+		}
+	};
+	View.OnDragListener midGameDragListener = new View.OnDragListener() {
+		@Override
+		public boolean onDrag(View v, DragEvent event) {
+			return false;
+		}
+	};
+*/
+	private boolean earlyGameActionDragStarted(Node receivingNode, Tile currentTile){
+		return receivingNode.isFree() && currentTile.getCurrentNode() == null;
 	}
-    private boolean midGame(View v, DragEvent event){
-		Node node = (Node) v;
-		Tile tile = (Tile)event.getLocalState();
-		switch (event.getAction()) {
-			case DragEvent.ACTION_DRAG_STARTED:        //start to drag an item
-				return node.isFree() && tile.nodeIsNeighbour(node);
-			case DragEvent.ACTION_DRAG_LOCATION:    //enter the listening area (with ACTION_DRAG_ENTERED
-				break;
-			case DragEvent.ACTION_DROP:                //drop item within the listening area bounds
-				move(node, tile);
-				break;
-			case DragEvent.ACTION_DRAG_ENDED:        //right after ACTION_DROP
-				v.setBackground(null);
-				return event.getResult();
-			case DragEvent.ACTION_DRAG_ENTERED:        //entered the listening area ( with ACTION_DRAG_ENTERED
-				Drawable background = tile.getBackground().getConstantState().newDrawable();
-				if (background != null)
-					v.setBackground(background);
-				break;
-			case DragEvent.ACTION_DRAG_EXITED:        //item left the listening area
-				v.setBackground(null);
-				break;
-			default:
-				break;
+	private boolean earlyGameActionDrop(Node receivingNode, Tile currentTile){
+		move(receivingNode, currentTile);
+		Log.d("EG_DROP", " after move");
+		currentPlayer.decreaseTilesInHand();
+		if (currentPlayer.getTilesInHand() == 0 && !currentPlayer.isPlayerWhite()){
+			initializeMidGame();
 		}
+		if (checkForMill(currentTile)) {
+			pickTile = preparePickTile();
+		} else
+			switchPlayers(playerB, playerW);
 		return true;
 	}
-
-	private boolean lateGame(View v, DragEvent event){
-
-    	return true;
+	private boolean midGameActionDragStarted(Node receivingNode, Tile currentTile){
+		return receivingNode.isFree() && currentTile.nodeIsNeighbour(receivingNode);
+	}
+	private boolean midGameActionDrop(Node receivingNode, Tile currentTile){
+		move(receivingNode, currentTile);
+		if (checkForMill(currentTile)) {
+			pickTile = preparePickTile();
+		} else
+			switchPlayers(playerB, playerW);
+		return true;
+	}
+	private void initializeMidGame(){
+		//change  DragEvent.ACTION_DRAG_STARTED for mid game:
+		dragEventStarted = new IDragEventStartedBehavior() {
+			@Override
+			public boolean dragEventStarted(Node receivingNode, Tile currentTile) {
+				return midGameActionDragStarted(receivingNode, currentTile);
+			}
+		};
+		//change DragEvent.ACTION_DROP for mid game:
+		dragEventDrop = new IDragEventDropBehavior() {
+			@Override
+			public boolean dragEventDrop(Node receivingNode, Tile currentTile) {
+				return midGameActionDrop(receivingNode,currentTile);
+			}
+		};
 	}
 
-	private boolean pickTile(View v, DragEvent event){
+	private boolean pickTile(View v, DragEvent event) {
 		Log.d("PICKTILE", "empty body");
-    	return true;
+		switch (event.getAction()) {
+			case DragEvent.ACTION_DRAG_STARTED:
+				//TODO: compare IDS
+				int bla = v.getId();
+				int foo = currentPlayer.getStartingArea().getId();
+				if (bla == foo)
+					return true;
+				break;
+			case DragEvent.ACTION_DROP:
+				if (v.getId() == currentPlayer.getStartingArea().getId()) {
+					Tile tile = (Tile) event.getLocalState();
+					move(currentPlayer.getStartingArea(), tile);
+					tile.setVisibility(View.INVISIBLE);
+					currentPlayer.getTiles().remove(tile);
+					pickTile = false;
+					currentPlayer = playerB.isActive() ? playerB : playerW;
+					if (currentPlayer.getTiles().size() < 4)
+						currentPhase = Phase.LATE_GAME;
+					return true;
+				}
+		}
+		return false;
 	}
 
-
-    private void move(Node node, Tile tile){
+	private void move(Node node, Tile tile) {
 		tile.animate().x(node.getX() + offset).y(node.getY() + offset).setDuration(0).start();
 		node.setOccupied(true);
-		if ( tile.getCurrentNode() != null) {
+		if (tile.getCurrentNode() != null) {
 			tile.getCurrentNode().setOccupied(false);
 			tile.getCurrentNode().setCurrentTile(null);
 		}
 		tile.setCurrentNode(node);
 		node.setCurrentTile(tile);
-    }
+	}
 
 	private boolean checkForMill(Tile tile) {
-		ArrayList<Node> neighbours = tile.getCurrentNode().getNeighbourNodes();
-		for (Node neighbour : neighbours) {
-			if ( neighbour.getCurrentTile() != null && tile.isPlayerWhite() == neighbour.getCurrentTile().isPlayerWhite()){
-				int[] index = tile.getCurrentNode().get3rdNodeIndex(neighbour);
-				Node thirdNode = nodes[index[0]][index[1]][index[2]];
-				//TODO: next if just to make sure that the 3rd node is a neighbour, for additional safety
-				if( tile.getCurrentNode().getNeighbourNodes().contains(thirdNode) || neighbour.getNeighbourNodes().contains(thirdNode))
-					if ( thirdNode.getCurrentTile() != null && tile.isPlayerWhite() == thirdNode.getCurrentTile().isPlayerWhite()){
-						Toast.makeText(getApplicationContext(),"Mühle!", Toast.LENGTH_LONG).show();
-						return true;
-					}
+		if (tile.getCurrentNode() != null) {
+			ArrayList<Node> neighbours = tile.getCurrentNode().getNeighbourNodes();
+			for (Node neighbour : neighbours) {
+				if (neighbour.getCurrentTile() != null && tile.isPlayerWhite() == neighbour.getCurrentTile().isPlayerWhite()) {
+					int[] index = tile.getCurrentNode().get3rdNodeIndex(neighbour);
+					Node thirdNode = nodes[index[0]][index[1]][index[2]];
+					//TODO: next if just to make sure that the 3rd node is a neighbour, for additional safety
+					if (tile.getCurrentNode().getNeighbourNodes().contains(thirdNode) || neighbour.getNeighbourNodes().contains(thirdNode))
+						if (thirdNode.getCurrentTile() != null && tile.isPlayerWhite() == thirdNode.getCurrentTile().isPlayerWhite())
+							return true;
+				}
 			}
 		}
-		Toast.makeText(getApplicationContext(),"keine Mühle", Toast.LENGTH_SHORT).show();
 		return false;
 	}
 
-	private void changePlayerState(Player toChange, boolean enable){
-    	Log.d("CHANGE PLAYER", toChange.getName() + " will be " + enable);
-    	for(Tile tile : toChange.getTiles()){
-    		tile.setEnabled(enable);
-    		Log.d("CHANGE PLAYER", tile.isEnabled() + " *** " + tile.getId());
+	private boolean preparePickTile(){
+		Toast.makeText(getApplicationContext(), "Mühle!", Toast.LENGTH_SHORT).show();
+		changePlayerState(playerB, !playerB.isActive());
+		changePlayerState(playerW, !playerW.isActive());
+		return true;
+	}
+
+	private void changePlayerState(Player toChange, boolean enable) {
+		Log.d("CHANGE PLAYER", toChange.getName() + " will be " + enable);
+		for (Tile tile : toChange.getTiles()) {
+			tile.setEnabled(enable);
+			Log.d("CHANGE PLAYER", tile.isEnabled() + " *** " + tile.getId());
 		}
 		toChange.setActive(enable);
 	}
 
-	private void switchPlayers(Player player1, Player player2){
-    	Log.d(TAG,"switch player");
+	private void switchPlayers(Player player1, Player player2) {
+		Log.d(TAG, "switch player");
 		changePlayerState(player1, !player1.isActive());
 		changePlayerState(player2, !player2.isActive());
 		currentPlayer = player1.isActive() ? player1 : player2;
-		Toast.makeText(getApplicationContext(),(String.format(getResources().getString(R.string.Toast_currentPlayer), getResources().getString(currentPlayer.isPlayerWhite()?R.string.PlayerColourWhite:R.string.PlayerColourBlack), currentPlayer.getName())), Toast.LENGTH_LONG).show();
+		Toast.makeText(getApplicationContext(), (String.format(getResources().getString(R.string.Toast_currentPlayer), getResources().getString(currentPlayer.isPlayerWhite() ? R.string.PlayerColourWhite : R.string.PlayerColourBlack), currentPlayer.getName())), Toast.LENGTH_SHORT).show();
 	}
 
-    public void onBackPressed()
-	{
+	public void onBackPressed() {
 		AlertDialog.Builder dlgBuilder = new AlertDialog.Builder(SinglePlayerActivity.this);
-        dlgBuilder.setTitle( Html.fromHtml("<font color='#190707'>Mühle</font>"));
-		dlgBuilder.setMessage(Html.fromHtml( "<font color='#190707'>Sind sie sicher dass Sie das Spiel verlassen wollen?</font>"));
+		dlgBuilder.setTitle(Html.fromHtml("<font color='#190707'>Mühle</font>"));
+		dlgBuilder.setMessage(Html.fromHtml("<font color='#190707'>Sind sie sicher dass Sie das Spiel verlassen wollen?</font>"));
 		dlgBuilder.setCancelable(true);
-		dlgBuilder.setPositiveButton("Ja", new DialogInterface.OnClickListener()
-		{
+		dlgBuilder.setPositiveButton("Ja", new DialogInterface.OnClickListener() {
 			@Override
-			public void onClick(DialogInterface dialog, int which)
-			{
+			public void onClick(DialogInterface dialog, int which) {
 				Toast.makeText(SinglePlayerActivity.this, "Das Spiel wurde beendet", Toast.LENGTH_SHORT).show();
 				finish();
 				//Intent secondAct = new Intent( SinglePlayerActivity.this, SecondActivity.class );
@@ -402,130 +434,12 @@ public class SinglePlayerActivity extends AppCompatActivity {
 		alert.getWindow().setBackgroundDrawable(new ColorDrawable(Color.GRAY));
 		alert.show();
 	}
+
+	private interface IDragEventStartedBehavior {
+		boolean dragEventStarted(Node receivingNode, Tile currentTile);
+	}
+	
+	private interface IDragEventDropBehavior {
+		boolean dragEventDrop(Node receivingNode, Tile currentTile);
+	}
 }
-/*
-			node_outer_topLeft = findViewById(R.id.node_outer_topLeft);
-			node_outer_topMid = findViewById(R.id.node_outer_topMid);
-			node_outer_topRight = findViewById(R.id.node_outer_topRight);
-			node_outer_midLeft = findViewById(R.id.node_outer_midLeft);
-			node_outer_midRight = findViewById(R.id.node_outer_midRight);
-			node_outer_botLeft = findViewById(R.id.node_outer_botLeft);
-			node_outer_botMid = findViewById(R.id.node_outer_botMid);
-			node_outer_botRight = findViewById(R.id.node_outer_botRight);
-			node_middle_topLeft = findViewById(R.id.node_middle_topLeft);
-			node_middle_topMid = findViewById(R.id.node_middle_topMid);
-			node_middle_topRight = findViewById(R.id.node_middle_topRight);
-			node_middle_midLeft = findViewById(R.id.node_middle_midLeft);
-			node_middle_midRight = findViewById(R.id.node_middle_midRight);
-			node_middle_botLeft = findViewById(R.id.node_middle_botLeft);
-			node_middle_botMid = findViewById(R.id.node_middle_botMid);
-			node_middle_botRight = findViewById(R.id.node_middle_botRight);
-			node_inner_topLeft = findViewById(R.id.node_inner_topLeft);
-			node_inner_topMid = findViewById(R.id.node_inner_topMid);
-			node_inner_topRight = findViewById(R.id.node_inner_topRight);
-			node_inner_midLeft = findViewById(R.id.node_inner_midLeft);
-			node_inner_midRight = findViewById(R.id.node_inner_midRight);
-			node_inner_botLeft = findViewById(R.id.node_inner_botLeft);
-			node_inner_botMid = findViewById(R.id.node_inner_botMid);
-			node_inner_botRight = findViewById(R.id.node_inner_botRight);
-
-			node_outer_topLeft.setOnDragListener(dragListener);
-			node_outer_topMid.setOnDragListener(dragListener);
-			node_outer_topRight.setOnDragListener(dragListener);
-			node_outer_midLeft.setOnDragListener(dragListener);
-			node_outer_midRight.setOnDragListener(dragListener);
-			node_outer_botLeft.setOnDragListener(dragListener);
-			node_outer_botMid.setOnDragListener(dragListener);
-			node_outer_botRight.setOnDragListener(dragListener);
-			node_middle_topLeft.setOnDragListener(dragListener);
-			node_middle_topMid.setOnDragListener(dragListener);
-			node_middle_topRight.setOnDragListener(dragListener);
-			node_middle_midLeft.setOnDragListener(dragListener);
-			node_middle_midRight.setOnDragListener(dragListener);
-			node_middle_botLeft.setOnDragListener(dragListener);
-			node_middle_botMid.setOnDragListener(dragListener);
-			node_middle_botRight.setOnDragListener(dragListener);
-			node_inner_topLeft.setOnDragListener(dragListener);
-			node_inner_topMid.setOnDragListener(dragListener);
-			node_inner_topRight.setOnDragListener(dragListener);
-			node_inner_midLeft.setOnDragListener(dragListener);
-			node_inner_midRight.setOnDragListener(dragListener);
-			node_inner_botLeft.setOnDragListener(dragListener);
-			node_inner_botMid.setOnDragListener(dragListener);
-			node_inner_botRight.setOnDragListener(dragListener);
-
-			node_outer_topLeft.setNeighbourNodes(node_outer_topMid, node_outer_midLeft);
-			node_outer_topMid.setNeighbourNodes(node_outer_topLeft, node_outer_topRight, node_middle_topMid);
-			node_outer_topRight.setNeighbourNodes(node_outer_topMid, node_outer_midRight);
-			node_outer_midLeft.setNeighbourNodes(node_outer_topLeft, node_outer_botLeft, node_middle_midLeft);
-			node_outer_midRight.setNeighbourNodes(node_outer_topRight, node_outer_botRight, node_middle_midRight);
-			node_outer_botLeft.setNeighbourNodes(node_outer_midLeft, node_outer_botMid);
-			node_outer_botMid.setNeighbourNodes(node_outer_botLeft, node_outer_botRight, node_middle_botMid);
-			node_outer_botRight.setNeighbourNodes(node_outer_botMid, node_outer_midRight);
-			node_middle_topLeft.setNeighbourNodes(node_middle_topMid, node_middle_midLeft);
-			node_middle_topMid.setNeighbourNodes(node_outer_topMid, node_middle_topLeft, node_middle_topRight, node_inner_topMid);
-			node_middle_topRight.setNeighbourNodes(node_middle_topMid, node_middle_midRight);
-			node_middle_midLeft.setNeighbourNodes(node_outer_midLeft, node_middle_topLeft, node_middle_botLeft, node_inner_midLeft);
-			node_middle_midRight.setNeighbourNodes(node_outer_midRight, node_middle_topRight, node_middle_botRight, node_inner_midRight);
-			node_middle_botLeft.setNeighbourNodes(node_middle_midLeft, node_middle_botMid);
-			node_middle_botMid.setNeighbourNodes(node_outer_botMid, node_middle_botLeft, node_middle_botRight, node_inner_botMid);
-			node_middle_botRight.setNeighbourNodes(node_middle_midRight, node_middle_botMid);
-			node_inner_topLeft.setNeighbourNodes(node_inner_topMid, node_inner_midLeft);
-			node_inner_topMid.setNeighbourNodes(node_middle_topMid, node_inner_topLeft, node_inner_topRight);
-			node_inner_topRight.setNeighbourNodes(node_inner_topMid, node_inner_midRight);
-			node_inner_midLeft.setNeighbourNodes(node_middle_midLeft, node_inner_topLeft, node_inner_botLeft);
-			node_inner_midRight.setNeighbourNodes(node_middle_midRight, node_inner_topRight, node_inner_botRight);
-			node_inner_botLeft.setNeighbourNodes(node_inner_midLeft, node_inner_botMid);
-			node_inner_botMid.setNeighbourNodes(node_middle_botMid, node_inner_botLeft,node_inner_botRight);
-			node_inner_botRight.setNeighbourNodes(node_inner_midRight, node_inner_botMid);
-
-			node_outer_topLeft.setMillHelper(111);
-			node_outer_topMid.setMillHelper(112);
-			node_outer_topRight.setMillHelper(113);
-			node_outer_midLeft.setMillHelper(121);
-			node_outer_midRight.setMillHelper(123);
-			node_outer_botLeft.setMillHelper(131);
-			node_outer_botMid.setMillHelper(132);
-			node_outer_botRight.setMillHelper(133);
-			node_middle_topLeft.setMillHelper(211);
-			node_middle_topMid.setMillHelper(212);
-			node_middle_topRight.setMillHelper(213);
-			node_middle_midLeft.setMillHelper(221);
-			node_middle_midRight.setMillHelper(223);
-			node_middle_botLeft.setMillHelper(231);
-			node_middle_botMid.setMillHelper(232);
-			node_middle_botRight.setMillHelper(233);
-			node_inner_topLeft.setMillHelper(311);
-			node_inner_topMid.setMillHelper(312);
-			node_inner_topRight.setMillHelper(313);
-			node_inner_midLeft.setMillHelper(321);
-			node_inner_midRight.setMillHelper(323);
-			node_inner_botLeft.setMillHelper(331);
-			node_inner_botMid.setMillHelper(332);
-			node_inner_botRight.setMillHelper(333);
-
-			nodes[0][0][0].setMillHelper(000);
-			nodes[0][0][1].setMillHelper(001);
-			nodes[0][0][2].setMillHelper(002);
-			nodes[0][1][0].setMillHelper(010);
-			nodes[0][1][2].setMillHelper(012);
-			nodes[0][2][0].setMillHelper(020);
-			nodes[0][2][1].setMillHelper(021);
-			nodes[0][2][2].setMillHelper(022);
-			nodes[1][0][0].setMillHelper(100);
-			nodes[1][0][1].setMillHelper(101);
-			nodes[1][0][2].setMillHelper(102);
-			nodes[1][1][0].setMillHelper(110);
-			nodes[1][1][2].setMillHelper(112);
-			nodes[1][2][0].setMillHelper(120);
-			nodes[1][2][1].setMillHelper(121);
-			nodes[1][2][2].setMillHelper(122);
-			nodes[2][0][0].setMillHelper(200);
-			nodes[2][0][1].setMillHelper(201);
-			nodes[2][0][2].setMillHelper(202);
-			nodes[2][1][0].setMillHelper(210);
-			nodes[2][1][2].setMillHelper(212);
-			nodes[2][2][0].setMillHelper(220);
-			nodes[2][2][1].setMillHelper(221);
-			nodes[2][2][2].setMillHelper(222);
-*/

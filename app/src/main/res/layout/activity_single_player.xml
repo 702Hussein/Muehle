@@ -471,7 +471,7 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:layout_height="@dimen/tileSize"
         tools:layout_width="@dimen/tileSize"
-        app:playerWhite = "false" />
+        app:playerWhite="false" />
 
     <com.example.abdelgani.muehle.Classes.Tile
         android:id="@+id/tileB_5"

@@ -10,7 +10,7 @@ import com.example.abdelgani.muehle.R;
 
 public class Tile extends Button {
 	private Node currentNode;
-	private boolean inMill = false;
+	//private boolean inMill = false;
 	private boolean playerWhite;
 
 	public Tile(Context context) {
@@ -42,8 +42,8 @@ public class Tile extends Button {
 			return true;
 	}
 
-	public void setInMill(boolean value){inMill = value;}
-	public boolean isInMill(){return inMill;}
+	//public void setInMill(boolean value){inMill = value;}
+	//public boolean isInMill(){return inMill;}
 
 	public boolean isPlayerWhite() {return playerWhite;	}
 }

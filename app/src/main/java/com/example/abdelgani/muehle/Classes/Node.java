@@ -11,7 +11,7 @@ import java.util.Arrays;
 
 public class Node extends View{
 	private int[] millHelper = new int[3];
-	private ArrayList<Node> neighbourNodes = new ArrayList<Node>(4);
+	private ArrayList<Node> neighbourNodes = new ArrayList<>(4);
 	private boolean occupied = false;
 	private Tile currentTile;
 
@@ -34,7 +34,6 @@ public class Node extends View{
 	public ArrayList<Node> getNeighbourNodes() {
 		return neighbourNodes;
 	}
-	public void setNeighbourNodes(ArrayList<Node> neighbourNodes) {	this.neighbourNodes = neighbourNodes;}
 	public void setNeighbourNodes(Node... neighbours) {	this.neighbourNodes.addAll(Arrays.asList(neighbours));}
 
 	public boolean isOccupied() {
@@ -43,18 +42,10 @@ public class Node extends View{
 	public boolean isFree() {
 		return !occupied;
 	}
-	public void setOccupied(boolean occupied) {	Log.d("Node",this.toString());	this.occupied = occupied;}
+	public Node setOccupied(boolean occupied) {	Log.d("Node",this.toString());	this.occupied = occupied; return this; }
 
 	public void setCurrentTile(Tile newTile){currentTile = newTile;}
 	public Tile getCurrentTile(){return currentTile;}
-
-	public static int[] getIndexByMillHelper(int millHelper){
-		int[] index = new int[3];
-		index[0] = millHelper / 100;
-		index[1] = (millHelper - index[0])/10;
-		index[2] = (millHelper - index[0] - index[1]);
-		return index;
-	}
 
 	public int[] get3rdNodeIndex(Node second){
 		int[] index = new int[this.getMillHelper().length];

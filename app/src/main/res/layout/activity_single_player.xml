@@ -543,7 +543,7 @@
         tools:layout_width="@dimen/tileSize"
         app:playerWhite = "false" />
 
-    <View
+    <com.example.abdelgani.muehle.Classes.Node
         android:id="@+id/startAreaP2"
         android:layout_width="match_parent"
         android:layout_height="@dimen/tileSize"
@@ -552,7 +552,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 
-    <View
+    <com.example.abdelgani.muehle.Classes.Node
         android:id="@+id/startAreaP1"
         android:layout_width="match_parent"
         android:layout_height="@dimen/tileSize"

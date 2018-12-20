@@ -1,78 +1,105 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/login_background"
+    android:background="@color/colorAccent"
+    android:theme="@android:style/Theme.Dialog"
     tools:context=".RegisterActivity">
 
-    <EditText
-        android:id="@+id/UsernameID"
+    <TableLayout
+        android:id="@+id/tableLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginTop="25dp"
-        android:layout_marginEnd="0dp"
-        android:backgroundTint="@android:color/holo_blue_dark"
-        android:ems="10"
-        android:fontFamily="serif"
-        android:hint="Username"
-        android:inputType="textPersonName"
+        android:layout_height="match_parent"
+        android:paddingTop="90dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="@android:color/transparent"
+        tools:layout_editor_absoluteX="57dp">
 
-        android:textColorHint="@android:color/holo_blue_dark"
-        android:textSize="25sp"
-        android:textStyle="bold" />
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal">
 
-    <EditText
-        android:id="@+id/PasswordID"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_below="@+id/UsernameID"
-        android:layout_alignParentStart="true"
-        android:layout_marginStart="0dp"
-        android:layout_marginTop="13dp"
-        android:backgroundTint="@android:color/holo_blue_dark"
-        android:ems="10"
-        android:fontFamily="serif"
-        android:hint="Password"
-        android:inputType="textPersonName"
-        android:textColorHint="@android:color/holo_blue_dark"
-        android:textSize="25sp"
-        android:textStyle="bold" />
+            <TextView
+                android:gravity="end"
+                android:text="User Name : " />
 
-    <EditText
-        android:id="@+id/PasswordID2"
-        android:layout_width="match_parent"
-        android:layout_height="54dp"
-        android:layout_below="@+id/PasswordID"
-        android:layout_alignParentStart="true"
-        android:layout_marginStart="0dp"
-        android:layout_marginTop="22dp"
-        android:backgroundTint="@android:color/holo_blue_dark"
-        android:ems="10"
-        android:fontFamily="serif"
-        android:hint="Repeat password"
-        android:inputType="textPersonName"
-        android:textColorHint="@android:color/holo_blue_dark"
-        android:textSize="25sp"
-        android:textStyle="bold" />
+            <EditText
+                android:id="@+id/UsernameID"
+                android:hint="Input user name"
+                android:inputType="text" />
 
-    <Button
-        android:id="@+id/SignInID"
-        android:layout_width="400dp"
-        android:layout_height="60dp"
-        android:layout_below="@+id/PasswordID2"
-        android:layout_alignEnd="@+id/PasswordID2"
-        android:layout_alignParentStart="true"
-        android:layout_marginStart="0dp"
-        android:layout_marginTop="51dp"
-        android:layout_marginEnd="0dp"
-        android:background="@android:color/holo_blue_dark"
-        android:text="Sign in"
-        android:textColor="@color/colorPrimaryDark"
-        android:textSize="20sp"
-        android:textStyle="bold" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal">
+
+            <TextView
+                android:gravity="end"
+                android:text="Password : " />
+
+            <EditText
+                android:id="@+id/PasswordID"
+                android:hint="Input password"
+                android:inputType="textPassword" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal">
+
+            <TextView
+                android:gravity="end"
+                android:text="Repeat password: " />
+
+            <EditText
+                android:id="@+id/PasswordID2"
+                android:hint="Input password"
+                android:inputType="textPassword" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal">
+
+        </TableRow>
+
+
+        <TableRow android:gravity="center_horizontal">
+
+            <Button
+                android:id="@+id/SignInID"
+                android:layout_width="123dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:gravity="center_horizontal"
+                android:text="Register"
+                android:textAllCaps="false"
+                android:textSize="19sp"
+                app:layout_constraintBottom_toBottomOf="@+id/tableLayout"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.501"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/tableLayout"
+                app:layout_constraintVertical_bias="0.356" />
+
+
+        </TableRow>
+
+    </TableLayout>
 
     <!-- android:background="@android:color/holo_blue_bright" -->
 

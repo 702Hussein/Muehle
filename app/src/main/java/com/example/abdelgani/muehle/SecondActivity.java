@@ -117,8 +117,8 @@ public class SecondActivity extends AppCompatActivity
                             Player player2 = new Player( secondPlayerName );
                             //b.putInt(secondPlayerName, 0);
 
-                            OpenMultiPlayerActivity.putExtra("USER_NAME" , secondPlayerName);
-                            OpenMultiPlayerActivity.putExtra("USER_NAME2", player1);
+                            OpenMultiPlayerActivity.putExtra("USER_NAME" , player1);
+                            OpenMultiPlayerActivity.putExtra("USER_NAME2", secondPlayerName);
                             startActivity( OpenMultiPlayerActivity);
                             finish();
                         }
@@ -177,9 +177,12 @@ public class SecondActivity extends AppCompatActivity
                                         boolean insert = myDatabase.insert( secondPlayerName, secondPlayerPassword );
                                         if (insert == true)
                                         {
-                                            Toast.makeText( getApplicationContext(), "Register successfully", Toast.LENGTH_SHORT ).show();
+                                            Toast.makeText( getApplicationContext(), "Register successfully, Log-in now", Toast.LENGTH_SHORT ).show();
                                             Player player2 = new Player(secondPlayerName);
                                             //startActivity( OpenSecondActivity );
+                                            dialog.show();
+                                            User_Name.setText( secondPlayerName );
+                                            User_Password.setText( secondPlayerPassword );
                                         }
                                         else
                                         {
@@ -193,6 +196,8 @@ public class SecondActivity extends AppCompatActivity
                                         //startActivity( OpenmainActivity );
                                         dialog2.cancel();
                                         dialog.show();
+                                        User_Name.setText( secondPlayerName );
+                                        User_Password.setText( secondPlayerPassword );
                                     }
                                 }
                         }

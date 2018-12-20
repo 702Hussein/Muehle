@@ -18,7 +18,6 @@ public class Tile extends Button {
 	}
 	public Tile(Context context, AttributeSet attrs) {
 		super(context, attrs);
-		playerWhite = attrs.getAttributeBooleanValue("com.example.abdelgani.muehle.Classes","playerWhite", false);
 		TypedArray typedArray = context.getTheme().obtainStyledAttributes(attrs, R.styleable.Tile, 0,0);
 		try{
 			playerWhite = typedArray.getBoolean(R.styleable.Tile_playerWhite, false);

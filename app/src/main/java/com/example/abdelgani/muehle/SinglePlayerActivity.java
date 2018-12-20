@@ -28,12 +28,8 @@ public class SinglePlayerActivity extends AppCompatActivity {
 	private static final String TAG = "__________";
 	private enum Phase {EARLY_GAME, MID_GAME, LATE_GAME}
 
-	//Node node_outer_topLeft, node_outer_topMid, node_outer_topRight, node_outer_midLeft, node_outer_midRight, node_outer_botLeft, node_outer_botMid, node_outer_botRight;
-	//Node node_middle_topLeft, node_middle_topMid, node_middle_topRight, node_middle_midLeft, node_middle_midRight, node_middle_botLeft, node_middle_botMid, node_middle_botRight;
-	//Node node_inner_topLeft, node_inner_topMid, node_inner_topRight, node_inner_midLeft, node_inner_midRight, node_inner_botLeft, node_inner_botMid, node_inner_botRight;
 	Node[][][] nodes = new Node[3][3][3];
 	Tile[] whiteTiles, blackTiles;
-
 	Tile tileW_1, tileW_2, tileW_3, tileW_4, tileW_5, tileW_6, tileW_7, tileW_8, tileW_9;
 	Tile tileB_1, tileB_2, tileB_3, tileB_4, tileB_5, tileB_6, tileB_7, tileB_8, tileB_9;
 	int offset;
@@ -379,7 +375,8 @@ public class SinglePlayerActivity extends AppCompatActivity {
 		Toast.makeText(getApplicationContext(),(String.format(getResources().getString(R.string.Toast_currentPlayer), getResources().getString(currentPlayer.isPlayerWhite()?R.string.PlayerColourWhite:R.string.PlayerColourBlack), currentPlayer.getName())), Toast.LENGTH_LONG).show();
 	}
 
-    public void onBackPressed(){
+    public void onBackPressed()
+	{
 		AlertDialog.Builder dlgBuilder = new AlertDialog.Builder(SinglePlayerActivity.this);
         dlgBuilder.setTitle( Html.fromHtml("<font color='#190707'>Mühle</font>"));
 		dlgBuilder.setMessage(Html.fromHtml( "<font color='#190707'>Sind sie sicher dass Sie das Spiel verlassen wollen?</font>"));

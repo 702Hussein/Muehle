@@ -79,6 +79,8 @@ public class RegisterActivity extends AppCompatActivity
                     {
                         Toast.makeText( getApplicationContext(), "Register Successfuly", Toast.LENGTH_SHORT ).show();
                         Player player = new Player(name);
+
+                        OpenSecondActivity.putExtra( "USER_NAME", name );
                         startActivity( OpenSecondActivity );
                     }
                     else

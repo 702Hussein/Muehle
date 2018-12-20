@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/color_gameboard_bg"
-    tools:context=".MultiPlayerActivity">
+    tools:context=".SinglePlayerActivity">
 
     <ImageView
         android:id="@+id/imgV_Gameboard"
@@ -301,247 +301,247 @@
         tools:background="#000000" />
 
     <com.example.abdelgani.muehle.Classes.Tile
-        android:id="@+id/tileP1_1"
+        android:id="@+id/tileW_1"
         android:layout_width="@dimen/tileSize"
         android:layout_height="@dimen/tileSize"
         android:background="@drawable/startPlayer"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/tileP1_2"
+        app:layout_constraintEnd_toStartOf="@+id/tileW_2"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/dividerBottom"
         tools:layout_height="@dimen/tileSize"
         tools:layout_width="@dimen/tileSize"
-        playerWhite = "true" />
+        app:playerWhite = "true" />
 
     <com.example.abdelgani.muehle.Classes.Tile
-        android:id="@+id/tileP1_2"
+        android:id="@+id/tileW_2"
         android:layout_width="@dimen/tileSize"
         android:layout_height="@dimen/tileSize"
         android:background="@drawable/startPlayer"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/tileP1_3"
-        app:layout_constraintStart_toEndOf="@+id/tileP1_1"
+        app:layout_constraintEnd_toStartOf="@+id/tileW_3"
+        app:layout_constraintStart_toEndOf="@+id/tileW_1"
         app:layout_constraintTop_toBottomOf="@+id/dividerBottom"
         tools:layout_height="@dimen/tileSize"
         tools:layout_width="@dimen/tileSize"
-        playerWhite = "true" />
+        app:playerWhite = "true" />
 
     <com.example.abdelgani.muehle.Classes.Tile
-        android:id="@+id/tileP1_3"
+        android:id="@+id/tileW_3"
         android:layout_width="@dimen/tileSize"
         android:layout_height="@dimen/tileSize"
         android:background="@drawable/startPlayer"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/tileP1_4"
-        app:layout_constraintStart_toEndOf="@+id/tileP1_2"
+        app:layout_constraintEnd_toStartOf="@+id/tileW_4"
+        app:layout_constraintStart_toEndOf="@+id/tileW_2"
         app:layout_constraintTop_toBottomOf="@+id/dividerBottom"
         tools:layout_height="@dimen/tileSize"
         tools:layout_width="@dimen/tileSize"
-        playerWhite = "true" />
+        app:playerWhite = "true" />
 
     <com.example.abdelgani.muehle.Classes.Tile
-        android:id="@+id/tileP1_4"
+        android:id="@+id/tileW_4"
         android:layout_width="@dimen/tileSize"
         android:layout_height="@dimen/tileSize"
         android:background="@drawable/startPlayer"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/tileP1_5"
-        app:layout_constraintStart_toEndOf="@+id/tileP1_3"
+        app:layout_constraintEnd_toStartOf="@+id/tileW_5"
+        app:layout_constraintStart_toEndOf="@+id/tileW_3"
         app:layout_constraintTop_toBottomOf="@+id/dividerBottom"
         tools:layout_height="@dimen/tileSize"
         tools:layout_width="@dimen/tileSize"
-        playerWhite = "true" />
+        app:playerWhite = "true" />
 
     <com.example.abdelgani.muehle.Classes.Tile
-        android:id="@+id/tileP1_5"
+        android:id="@+id/tileW_5"
         android:layout_width="@dimen/tileSize"
         android:layout_height="@dimen/tileSize"
         android:background="@drawable/startPlayer"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/tileP1_6"
-        app:layout_constraintStart_toEndOf="@+id/tileP1_4"
+        app:layout_constraintEnd_toStartOf="@+id/tileW_6"
+        app:layout_constraintStart_toEndOf="@+id/tileW_4"
         app:layout_constraintTop_toBottomOf="@+id/dividerBottom"
         tools:layout_height="@dimen/tileSize"
         tools:layout_width="@dimen/tileSize"
-        playerWhite = "true"  />
+        app:playerWhite = "true"  />
 
     <com.example.abdelgani.muehle.Classes.Tile
-        android:id="@+id/tileP1_6"
+        android:id="@+id/tileW_6"
         android:layout_width="@dimen/tileSize"
         android:layout_height="@dimen/tileSize"
         android:background="@drawable/startPlayer"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/tileP1_7"
-        app:layout_constraintStart_toEndOf="@+id/tileP1_5"
+        app:layout_constraintEnd_toStartOf="@+id/tileW_7"
+        app:layout_constraintStart_toEndOf="@+id/tileW_5"
         app:layout_constraintTop_toBottomOf="@+id/dividerBottom"
         tools:layout_height="@dimen/tileSize"
         tools:layout_width="@dimen/tileSize"
-        playerWhite = "true"  />
+        app:playerWhite = "true"  />
 
     <com.example.abdelgani.muehle.Classes.Tile
-        android:id="@+id/tileP1_7"
+        android:id="@+id/tileW_7"
         android:layout_width="@dimen/tileSize"
         android:layout_height="@dimen/tileSize"
         android:background="@drawable/startPlayer"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/tileP1_8"
-        app:layout_constraintStart_toEndOf="@+id/tileP1_6"
+        app:layout_constraintEnd_toStartOf="@+id/tileW_8"
+        app:layout_constraintStart_toEndOf="@+id/tileW_6"
         app:layout_constraintTop_toBottomOf="@+id/dividerBottom"
         tools:layout_height="@dimen/tileSize"
         tools:layout_width="@dimen/tileSize"
-        playerWhite = "true"  />
+        app:playerWhite = "true"  />
 
     <com.example.abdelgani.muehle.Classes.Tile
-        android:id="@+id/tileP1_8"
+        android:id="@+id/tileW_8"
         android:layout_width="@dimen/tileSize"
         android:layout_height="@dimen/tileSize"
         android:background="@drawable/startPlayer"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/tileP1_9"
-        app:layout_constraintStart_toEndOf="@+id/tileP1_7"
+        app:layout_constraintEnd_toStartOf="@+id/tileW_9"
+        app:layout_constraintStart_toEndOf="@+id/tileW_7"
         app:layout_constraintTop_toBottomOf="@+id/dividerBottom"
         tools:layout_height="@dimen/tileSize"
         tools:layout_width="@dimen/tileSize"
-        playerWhite = "true"  />
+        app:playerWhite = "true"  />
 
     <com.example.abdelgani.muehle.Classes.Tile
-        android:id="@+id/tileP1_9"
+        android:id="@+id/tileW_9"
         android:layout_width="@dimen/tileSize"
         android:layout_height="@dimen/tileSize"
         android:background="@drawable/startPlayer"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/tileP1_8"
+        app:layout_constraintStart_toEndOf="@+id/tileW_8"
         app:layout_constraintTop_toBottomOf="@+id/dividerBottom"
         tools:layout_height="@dimen/tileSize"
         tools:layout_width="@dimen/tileSize"
-        playerWhite = "true"  />
+        app:playerWhite = "true"  />
 
     <com.example.abdelgani.muehle.Classes.Tile
-        android:id="@+id/tileP2_1"
+        android:id="@+id/tileB_1"
         android:layout_width="@dimen/tileSize"
         android:layout_height="@dimen/tileSize"
         android:background="@drawable/secondPlayer"
         app:layout_constraintBottom_toTopOf="@+id/dividerTop"
-        app:layout_constraintEnd_toStartOf="@+id/tileP2_2"
+        app:layout_constraintEnd_toStartOf="@+id/tileB_2"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:layout_height="@dimen/tileSize"
         tools:layout_width="@dimen/tileSize"
-        playerWhite = "false"  />
+        app:playerWhite = "false"  />
 
     <com.example.abdelgani.muehle.Classes.Tile
-        android:id="@+id/tileP2_2"
+        android:id="@+id/tileB_2"
         android:layout_width="@dimen/tileSize"
         android:layout_height="@dimen/tileSize"
         android:background="@drawable/secondPlayer"
         app:layout_constraintBottom_toTopOf="@+id/dividerTop"
-        app:layout_constraintEnd_toStartOf="@+id/tileP2_3"
+        app:layout_constraintEnd_toStartOf="@+id/tileB_3"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/tileP2_1"
+        app:layout_constraintStart_toEndOf="@+id/tileB_1"
         app:layout_constraintTop_toTopOf="parent"
         tools:layout_height="@dimen/tileSize"
         tools:layout_width="@dimen/tileSize"
-        playerWhite = "false"  />
+        app:playerWhite = "false"  />
 
     <com.example.abdelgani.muehle.Classes.Tile
-        android:id="@+id/tileP2_3"
+        android:id="@+id/tileB_3"
         android:layout_width="@dimen/tileSize"
         android:layout_height="@dimen/tileSize"
         android:background="@drawable/secondPlayer"
         app:layout_constraintBottom_toTopOf="@+id/dividerTop"
-        app:layout_constraintEnd_toStartOf="@+id/tileP2_4"
+        app:layout_constraintEnd_toStartOf="@+id/tileB_4"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/tileP2_2"
+        app:layout_constraintStart_toEndOf="@+id/tileB_2"
         app:layout_constraintTop_toTopOf="parent"
         tools:layout_height="@dimen/tileSize"
         tools:layout_width="@dimen/tileSize"
-        playerWhite = "false"  />
+        app:playerWhite = "false"  />
 
     <com.example.abdelgani.muehle.Classes.Tile
-        android:id="@+id/tileP2_4"
+        android:id="@+id/tileB_4"
         android:layout_width="@dimen/tileSize"
         android:layout_height="@dimen/tileSize"
         android:background="@drawable/secondPlayer"
         app:layout_constraintBottom_toTopOf="@+id/dividerTop"
-        app:layout_constraintEnd_toStartOf="@+id/tileP2_5"
+        app:layout_constraintEnd_toStartOf="@+id/tileB_5"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/tileP2_3"
+        app:layout_constraintStart_toEndOf="@+id/tileB_3"
         app:layout_constraintTop_toTopOf="parent"
         tools:layout_height="@dimen/tileSize"
         tools:layout_width="@dimen/tileSize"
-        playerWhite = "false" />
+        app:playerWhite = "false" />
 
     <com.example.abdelgani.muehle.Classes.Tile
-        android:id="@+id/tileP2_5"
+        android:id="@+id/tileB_5"
         android:layout_width="@dimen/tileSize"
         android:layout_height="@dimen/tileSize"
         android:background="@drawable/secondPlayer"
         app:layout_constraintBottom_toTopOf="@+id/dividerTop"
-        app:layout_constraintEnd_toStartOf="@+id/tileP2_6"
+        app:layout_constraintEnd_toStartOf="@+id/tileB_6"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/tileP2_4"
+        app:layout_constraintStart_toEndOf="@+id/tileB_4"
         app:layout_constraintTop_toTopOf="parent"
         tools:layout_height="@dimen/tileSize"
         tools:layout_width="@dimen/tileSize"
-        playerWhite = "false" />
+        app:playerWhite = "false" />
 
     <com.example.abdelgani.muehle.Classes.Tile
-        android:id="@+id/tileP2_6"
+        android:id="@+id/tileB_6"
         android:layout_width="@dimen/tileSize"
         android:layout_height="@dimen/tileSize"
         android:background="@drawable/secondPlayer"
         app:layout_constraintBottom_toTopOf="@+id/dividerTop"
-        app:layout_constraintEnd_toStartOf="@+id/tileP2_7"
+        app:layout_constraintEnd_toStartOf="@+id/tileB_7"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/tileP2_5"
+        app:layout_constraintStart_toEndOf="@+id/tileB_5"
         app:layout_constraintTop_toTopOf="parent"
         tools:layout_height="@dimen/tileSize"
         tools:layout_width="@dimen/tileSize"
-        playerWhite = "false" />
+        app:playerWhite = "false" />
 
     <com.example.abdelgani.muehle.Classes.Tile
-        android:id="@+id/tileP2_7"
+        android:id="@+id/tileB_7"
         android:layout_width="@dimen/tileSize"
         android:layout_height="@dimen/tileSize"
         android:background="@drawable/secondPlayer"
         app:layout_constraintBottom_toTopOf="@+id/dividerTop"
-        app:layout_constraintEnd_toStartOf="@+id/tileP2_8"
+        app:layout_constraintEnd_toStartOf="@+id/tileB_8"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/tileP2_6"
+        app:layout_constraintStart_toEndOf="@+id/tileB_6"
         app:layout_constraintTop_toTopOf="parent"
         tools:layout_height="@dimen/tileSize"
         tools:layout_width="@dimen/tileSize"
-        playerWhite = "false" />
+        app:playerWhite = "false" />
 
     <com.example.abdelgani.muehle.Classes.Tile
-        android:id="@+id/tileP2_8"
+        android:id="@+id/tileB_8"
         android:layout_width="@dimen/tileSize"
         android:layout_height="@dimen/tileSize"
         android:background="@drawable/secondPlayer"
         app:layout_constraintBottom_toTopOf="@+id/dividerTop"
-        app:layout_constraintEnd_toStartOf="@+id/tileP2_9"
+        app:layout_constraintEnd_toStartOf="@+id/tileB_9"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/tileP2_7"
+        app:layout_constraintStart_toEndOf="@+id/tileB_7"
         app:layout_constraintTop_toTopOf="parent"
         tools:layout_height="@dimen/tileSize"
         tools:layout_width="@dimen/tileSize"
-        playerWhite = "false" />
+        app:playerWhite = "false" />
 
     <com.example.abdelgani.muehle.Classes.Tile
-        android:id="@+id/tileP2_9"
+        android:id="@+id/tileB_9"
         android:layout_width="@dimen/tileSize"
         android:layout_height="@dimen/tileSize"
         android:background="@drawable/secondPlayer"
         app:layout_constraintBottom_toTopOf="@+id/dividerTop"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/tileP2_8"
+        app:layout_constraintStart_toEndOf="@+id/tileB_8"
         app:layout_constraintTop_toTopOf="parent"
         tools:layout_height="@dimen/tileSize"
         tools:layout_width="@dimen/tileSize"
-        playerWhite = "false" />
+        app:playerWhite = "false" />
 
     <View
         android:id="@+id/startAreaP2"
@@ -560,7 +560,5 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
-
-
 
 </android.support.constraint.ConstraintLayout>

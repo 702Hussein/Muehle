@@ -42,6 +42,7 @@ public class SecondActivity extends AppCompatActivity
         player1 = intent.getStringExtra("USER_NAME");
         Toast.makeText(SecondActivity.this, "Welcome " + player1, Toast.LENGTH_LONG).show();
 
+
         myDatabase = new Database( this );
 
         SinglePlayer = (Button) findViewById( R.id.btnSinglePlayerID );
@@ -51,7 +52,6 @@ public class SecondActivity extends AppCompatActivity
                 OpenSinglePlyerActivity();
             }
         } );
-        SinglePlayer.setVisibility(View.INVISIBLE);
 
         MultiPlayer = (Button)findViewById( R.id.btnMultiPlayerActivity );
         MultiPlayer.setOnClickListener( new View.OnClickListener() {

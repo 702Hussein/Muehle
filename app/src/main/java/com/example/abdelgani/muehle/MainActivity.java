@@ -24,8 +24,6 @@ public class MainActivity extends AppCompatActivity
     Database MyDatabase;
 
 
-
-
     public  String UserName;
 
     //Button mButton = (Button) findViewById(R.id.btnLoginID);
@@ -50,7 +48,6 @@ public class MainActivity extends AppCompatActivity
             }
         } );
 
-
         Register =(Button) findViewById( R.id.btnRegisterID );
         Register.setOnClickListener( new View.OnClickListener() {
             @Override
@@ -70,35 +67,31 @@ public class MainActivity extends AppCompatActivity
 
     public void OpensecondActivity()
     {
-         Intent OpenSecondActivity = new Intent( MainActivity.this, SecondActivity.class);
+         Intent Second_activity = new Intent( MainActivity.this, SecondActivity.class);
 
                 name = User_Name.getText().toString();
                 password = User_Password.getText().toString();
 
 
 
-
-                if(name.equals( "" )|| password.equals( "" ))
-                {
-                    Toast.makeText( getApplicationContext(), "Fields are empty", Toast.LENGTH_SHORT ).show();
-                }
-                else
-                {
-                    boolean check_Account = MyDatabase.checkAccount( name, password);
-                    if(check_Account == false)
-                    {
+                    if (name.equals( "" ) || password.equals( "" )) {
+                        Toast.makeText( getApplicationContext(), "Fields are empty", Toast.LENGTH_SHORT ).show();
+                    } else {
+                        boolean check_Account = MyDatabase.checkAccount( name, password );
+                        if (check_Account == false) {
                             Toast.makeText( getApplicationContext(), "Please register first", Toast.LENGTH_SHORT ).show();
+                        } else {
+                            Toast.makeText( getApplicationContext(), "Account already exists", Toast.LENGTH_SHORT ).show();
+                            Player player = new Player( name );
+                            Second_activity.putExtra( "USER_NAME" , name );
+                            startActivity( Second_activity );
+
+                        }
+                        User_Name.getText().clear();
+                        User_Password.getText().clear();
                     }
-                    else
-                    {
-                        Toast.makeText( getApplicationContext(), "Account already exists", Toast.LENGTH_SHORT ).show();
-                        Player player = new Player(name);
-                        OpenSecondActivity.putExtra( "USER_NAME" , name );
-                        startActivity( OpenSecondActivity );
-                    }
-                    User_Name.getText().clear();
-                    User_Password.getText().clear();
-                }
+
+
     }
 
 

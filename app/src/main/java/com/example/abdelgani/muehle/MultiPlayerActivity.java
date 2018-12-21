@@ -32,7 +32,8 @@ public class MultiPlayerActivity extends AppCompatActivity {
     Database seconddatabase ;
 
     private static final String TAG = "__________";
-    private enum Phase {EARLY_GAME, MID_GAME, LATE_GAME}
+    private enum Phase { EARLY_GAME , MID_GAME , LATE_GAME }
+
 
     Node[][][] nodes = new Node[3][3][3];
     ArrayList<Tile> whiteTiles = new ArrayList<>( 9 ), blackTiles = new ArrayList<>( 9 );

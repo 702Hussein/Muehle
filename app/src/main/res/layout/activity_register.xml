@@ -26,7 +26,8 @@
 
             <TextView
                 android:gravity="end"
-                android:text="User Name : " />
+                android:text="User Name : "
+                android:textStyle="bold" />
 
             <EditText
                 android:id="@+id/UsernameID"
@@ -43,7 +44,8 @@
 
             <TextView
                 android:gravity="end"
-                android:text="Password : " />
+                android:text="Password : "
+                android:textStyle="bold" />
 
             <EditText
                 android:id="@+id/PasswordID"
@@ -60,7 +62,8 @@
 
             <TextView
                 android:gravity="end"
-                android:text="Repeat password: " />
+                android:text="Repeat password: "
+                android:textStyle="bold" />
 
             <EditText
                 android:id="@+id/PasswordID2"

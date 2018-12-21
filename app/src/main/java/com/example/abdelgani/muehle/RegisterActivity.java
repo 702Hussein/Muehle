@@ -65,41 +65,41 @@ public class RegisterActivity extends AppCompatActivity
         }
         else
         {
-            boolean check_Account = MyDatabase.checkAccount( name, password);
-            if(check_Account == false)
+            if (!password.equals( password2 ))
             {
-                if (!password.equals( password2 ))
+                Toast.makeText( getApplicationContext(), "Passwords do not match", Toast.LENGTH_SHORT ).show();
+            }
+            else
                 {
-                    Toast.makeText( getApplicationContext(), "Password does not match", Toast.LENGTH_SHORT ).show();
+                boolean check_Account = MyDatabase.checkAccount( name, password );
+                if (check_Account == false)
+                {
+                        boolean insert = MyDatabase.insert( name, password );
+                        if (insert == true)
+                        {
+                            Toast.makeText( getApplicationContext(), "Register Successfuly", Toast.LENGTH_SHORT ).show();
+                            Player player = new Player( name );
+
+                            OpenSecondActivity.putExtra( "USER_NAME", name );
+                            startActivity( OpenSecondActivity );
+                        }
+                        else
+                        {
+                            Toast.makeText( getApplicationContext(), "Something is wrong", Toast.LENGTH_SHORT ).show();
+                        }
                 }
                 else
                 {
-                    boolean insert = MyDatabase.insert( name, password );
-                    if (insert == true)
-                    {
-                        Toast.makeText( getApplicationContext(), "Register Successfuly", Toast.LENGTH_SHORT ).show();
-                        Player player = new Player(name);
-
-                        OpenSecondActivity.putExtra( "USER_NAME", name );
-                        startActivity( OpenSecondActivity );
-                    }
-                    else
-                    {
-                        Toast.makeText( getApplicationContext(), "Something is wrong", Toast.LENGTH_SHORT ).show();
-                    }
+                    Toast.makeText( getApplicationContext(), "Account already exists, please use login menu", Toast.LENGTH_SHORT ).show();
+                    startActivity( OpenmainActivity );
+                }
                 }
             }
-            else
-            {
-                Toast.makeText( getApplicationContext(), "Account already exists, please use login menu", Toast.LENGTH_SHORT ).show();
-                startActivity( OpenmainActivity );
-            }
-
             UserName.getText().clear();
             Password.getText().clear();
             Password2.getText().clear();
         }
 
 
-    }
+
 }

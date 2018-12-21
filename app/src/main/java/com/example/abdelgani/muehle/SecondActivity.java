@@ -29,8 +29,6 @@ public class SecondActivity extends AppCompatActivity
     String secondPlayerName;
     String secondPlayerPassword;
     String secondPlayerRepeatPassword;
-    //public Player player2;
-
     private String player1;
 
 

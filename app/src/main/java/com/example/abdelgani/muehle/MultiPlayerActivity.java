@@ -481,9 +481,10 @@ public class MultiPlayerActivity extends AppCompatActivity {
 			@Override
 			public void onClick(DialogInterface dialog, int which) {
 				Toast.makeText(MultiPlayerActivity.this, "Das Spiel wurde beendet", Toast.LENGTH_SHORT).show();
+				Intent secondAct = new Intent( MultiPlayerActivity.this, SecondActivity.class );
+				secondAct.putExtra( "USER_NAME",  players[0].getName());
+				startActivity( secondAct );
 				finish();
-				//Intent secondAct = new Intent( MultiPlayerActivity.this, SecondActivity.class );
-				//startActivity( secondAct );
 			}
 		});
 		dlgBuilder.setNegativeButton("Nein", new DialogInterface.OnClickListener() {

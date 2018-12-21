@@ -26,9 +26,7 @@ public class Database extends SQLiteOpenHelper
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase)
     {
-
         sqLiteDatabase.execSQL( "Create table " + TableName +"(Email text primary key, password text)");
-
     }
 
     @Override

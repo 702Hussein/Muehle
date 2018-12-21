@@ -24,7 +24,6 @@ import java.util.ArrayList;
 
 public class MultiPlayerActivity extends AppCompatActivity {
 
-    Database seconddatabase ;
 
 	private static final String TAG = "__________";
 	Node[][][] nodes = new Node[3][3][3];
@@ -32,17 +31,17 @@ public class MultiPlayerActivity extends AppCompatActivity {
 	int offset;
 	boolean pickTile = false;
 	Player[] players = new Player[2];
-
+	Database sqLiteDB ;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
+    protected void onCreate(Bundle savedInstanceState){
         super.onCreate( savedInstanceState );
         setContentView( R.layout.game_board );
         Intent intent = getIntent();
 		try {
 			//region misc
 			offset = (int) ((getResources().getDimension(R.dimen.nodeSize) - getResources().getDimension(R.dimen.tileSize) + 0.5) / 2);
+			sqLiteDB = new Database(this);
 			//endregion
 			//region prepare nodes
 			nodes[0][0][0] = findViewById(R.id.node_outer_topLeft);
@@ -251,8 +250,10 @@ public class MultiPlayerActivity extends AppCompatActivity {
 					getActivePlayer().decreaseTilesInHand();
 					if (getActivePlayer().getTilesInHand() == 0 )
 						getActivePlayer().setCurrentPhase(Player.Phase.MID_GAME);
-					if (checkForMill(currentTile))
+					if (checkForMill(currentTile)) {
+						v.setBackground(null);
 						preparePickTile();
+					}
 					else
 						switchPlayers();
 					Log.d("EG_DROP", " before leave");
@@ -286,7 +287,8 @@ public class MultiPlayerActivity extends AppCompatActivity {
 					Log.d("EG_DROP", " before move");
 					move(currentTile, receivingNode);
 					if (checkForMill(currentTile)) {
-						pickTile = preparePickTile();
+						v.setBackground(null);
+						preparePickTile();
 					} else
 						switchPlayers();
 					Log.d("EG_DROP", " before leave");
@@ -316,6 +318,12 @@ public class MultiPlayerActivity extends AppCompatActivity {
 				case DragEvent.ACTION_DRAG_STARTED:        //start to drag an item
 					return receivingNode.isFree();
 				case DragEvent.ACTION_DROP:                //drop item within the listening area bounds
+					move(currentTile, receivingNode);
+					if (checkForMill(currentTile)) {
+						v.setBackground(null);
+						preparePickTile();
+					} else
+						switchPlayers();
 					break;
 				case DragEvent.ACTION_DRAG_ENDED:        //right after ACTION_DROP
 					v.setBackground(null);
@@ -354,6 +362,8 @@ public class MultiPlayerActivity extends AppCompatActivity {
 						switchNodeListeners();
 						if (getInactivePlayer().getTiles().size() == 3)
 							getInactivePlayer().setCurrentPhase(Player.Phase.LATE_GAME);
+						if (getInactivePlayer().getTiles().size() == 2)
+							gameOver();
 						switchPlayers();
 						return true;
 					}
@@ -393,12 +403,11 @@ public class MultiPlayerActivity extends AppCompatActivity {
 		return false;
 	}
 
-	private boolean preparePickTile() {
+	private void preparePickTile() {
 		Toast.makeText(getApplicationContext(), "Mühle!", Toast.LENGTH_SHORT).show();
 		for(Tile tile : getInactivePlayer().getTiles())
 			tile.setOnLongClickListener(longClickListenerPickTile);
 		switchNodeListeners();
-		return true;
 	}
 
 	private void removeTile(Tile tile){
@@ -462,7 +471,9 @@ public class MultiPlayerActivity extends AppCompatActivity {
 	}
 
 	private void gameOver(){
-
+		Toast.makeText(getApplicationContext(),"Spieler "+getActivePlayer().getName()+" hat gewonnen", Toast.LENGTH_LONG).show();
+		sqLiteDB.t_score_insert(getActivePlayer().getName(),getInactivePlayer().getName(),getActivePlayer().getName());
+		onBackPressed();
 	}
 
 	private Player getActivePlayer() {

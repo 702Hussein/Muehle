@@ -3,6 +3,7 @@ package com.example.abdelgani.muehle;
 import android.content.ClipData;
 import android.content.ClipDescription;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
@@ -10,10 +11,10 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Html;
+import android.util.Log;
 import android.view.DragEvent;
 import android.view.View;
 import android.widget.Toast;
-import android.util.Log;
 
 import com.example.abdelgani.muehle.Classes.Node;
 import com.example.abdelgani.muehle.Classes.Player;
@@ -29,6 +30,7 @@ public class SinglePlayerActivity extends AppCompatActivity {
 	int offset;
 	boolean pickTile = false;
 	Player[] players = new Player[2];
+	Database sqLiteDB ;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +40,7 @@ public class SinglePlayerActivity extends AppCompatActivity {
 		try {
 			//region misc
 			offset = (int) ((getResources().getDimension(R.dimen.nodeSize) - getResources().getDimension(R.dimen.tileSize) + 0.5) / 2);
+			sqLiteDB = new Database(this);
 			//endregion
 			//region prepare nodes
 			nodes[0][0][0] = findViewById(R.id.node_outer_topLeft);
@@ -245,8 +248,10 @@ public class SinglePlayerActivity extends AppCompatActivity {
 					getActivePlayer().decreaseTilesInHand();
 					if (getActivePlayer().getTilesInHand() == 0 )
 						getActivePlayer().setCurrentPhase(Player.Phase.MID_GAME);
-					if (checkForMill(currentTile))
+					if (checkForMill(currentTile)) {
+						v.setBackground(null);
 						preparePickTile();
+					}
 					else
 						switchPlayers();
 					Log.d("EG_DROP", " before leave");
@@ -280,7 +285,8 @@ public class SinglePlayerActivity extends AppCompatActivity {
 					Log.d("EG_DROP", " before move");
 					move(currentTile, receivingNode);
 					if (checkForMill(currentTile)) {
-						pickTile = preparePickTile();
+						v.setBackground(null);
+						preparePickTile();
 					} else
 						switchPlayers();
 					Log.d("EG_DROP", " before leave");
@@ -310,6 +316,12 @@ public class SinglePlayerActivity extends AppCompatActivity {
 				case DragEvent.ACTION_DRAG_STARTED:        //start to drag an item
 					return receivingNode.isFree();
 				case DragEvent.ACTION_DROP:                //drop item within the listening area bounds
+					move(currentTile, receivingNode);
+					if (checkForMill(currentTile)) {
+						v.setBackground(null);
+						preparePickTile();
+					} else
+						switchPlayers();
 					break;
 				case DragEvent.ACTION_DRAG_ENDED:        //right after ACTION_DROP
 					v.setBackground(null);
@@ -348,6 +360,8 @@ public class SinglePlayerActivity extends AppCompatActivity {
 						switchNodeListeners();
 						if (getInactivePlayer().getTiles().size() == 3)
 							getInactivePlayer().setCurrentPhase(Player.Phase.LATE_GAME);
+						if (getInactivePlayer().getTiles().size() == 2)
+							gameOver();
 						switchPlayers();
 						return true;
 					}
@@ -387,12 +401,11 @@ public class SinglePlayerActivity extends AppCompatActivity {
 		return false;
 	}
 
-	private boolean preparePickTile() {
+	private void preparePickTile() {
 		Toast.makeText(getApplicationContext(), "Mühle!", Toast.LENGTH_SHORT).show();
 		for(Tile tile : getInactivePlayer().getTiles())
 			tile.setOnLongClickListener(longClickListenerPickTile);
 		switchNodeListeners();
-		return true;
 	}
 
 	private void removeTile(Tile tile){
@@ -456,7 +469,9 @@ public class SinglePlayerActivity extends AppCompatActivity {
 	}
 
 	private void gameOver(){
-
+		Toast.makeText(getApplicationContext(),"Spieler "+getActivePlayer().getName()+" hat gewonnen", Toast.LENGTH_LONG).show();
+		sqLiteDB.t_score_insert(getActivePlayer().getName(),getInactivePlayer().getName(),getActivePlayer().getName());
+		onBackPressed();
 	}
 
 	private Player getActivePlayer() {

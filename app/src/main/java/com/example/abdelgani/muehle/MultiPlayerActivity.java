@@ -35,9 +35,7 @@ public class MultiPlayerActivity extends AppCompatActivity {
     private enum Phase {EARLY_GAME, MID_GAME, LATE_GAME}
 
     Node[][][] nodes = new Node[3][3][3];
-    Tile[] whiteTiles, blackTiles;
-    Tile tileW_1, tileW_2, tileW_3, tileW_4, tileW_5, tileW_6, tileW_7, tileW_8, tileW_9;
-    Tile tileB_1, tileB_2, tileB_3, tileB_4, tileB_5, tileB_6, tileB_7, tileB_8, tileB_9;
+    ArrayList<Tile> whiteTiles = new ArrayList<>( 9 ), blackTiles = new ArrayList<>( 9 );
     int offset;
     boolean pickTile = false;
     Phase currentPhase = Phase.EARLY_GAME;
@@ -159,58 +157,43 @@ public class MultiPlayerActivity extends AppCompatActivity {
             nodes[2][2][2].setMillHelper(new int[]{2,2,2});
             //endregion
             // region assign tiles
-            tileW_1 = findViewById(R.id.tileW_1);
-            tileW_2 = findViewById(R.id.tileW_2);
-            tileW_3 = findViewById(R.id.tileW_3);
-            tileW_4 = findViewById(R.id.tileW_4);
-            tileW_5 = findViewById(R.id.tileW_5);
-            tileW_6 = findViewById(R.id.tileW_6);
-            tileW_7 = findViewById(R.id.tileW_7);
-            tileW_8 = findViewById(R.id.tileW_8);
-            tileW_9 = findViewById(R.id.tileW_9);
-            tileB_1 = findViewById(R.id.tileB_1);
-            tileB_2 = findViewById(R.id.tileB_2);
-            tileB_3 = findViewById(R.id.tileB_3);
-            tileB_4 = findViewById(R.id.tileB_4);
-            tileB_5 = findViewById(R.id.tileB_5);
-            tileB_6 = findViewById(R.id.tileB_6);
-            tileB_7 = findViewById(R.id.tileB_7);
-            tileB_8 = findViewById(R.id.tileB_8);
-            tileB_9 = findViewById(R.id.tileB_9);
+            whiteTiles.add((Tile) findViewById(R.id.tileW_1));
+            whiteTiles.add((Tile) findViewById(R.id.tileW_2));
+            whiteTiles.add((Tile) findViewById(R.id.tileW_3));
+            whiteTiles.add((Tile) findViewById(R.id.tileW_4));
+            whiteTiles.add((Tile) findViewById(R.id.tileW_5));
+            whiteTiles.add((Tile) findViewById(R.id.tileW_6));
+            whiteTiles.add((Tile) findViewById(R.id.tileW_7));
+            whiteTiles.add((Tile) findViewById(R.id.tileW_8));
+            whiteTiles.add((Tile) findViewById(R.id.tileW_9));
+            blackTiles.add((Tile) findViewById(R.id.tileB_1));
+            blackTiles.add((Tile) findViewById(R.id.tileB_2));
+            blackTiles.add((Tile) findViewById(R.id.tileB_3));
+            blackTiles.add((Tile) findViewById(R.id.tileB_4));
+            blackTiles.add((Tile) findViewById(R.id.tileB_5));
+            blackTiles.add((Tile) findViewById(R.id.tileB_6));
+            blackTiles.add((Tile) findViewById(R.id.tileB_7));
+            blackTiles.add((Tile) findViewById(R.id.tileB_8));
+            blackTiles.add((Tile) findViewById(R.id.tileB_9));
             //endregion
             //region set LongClickListeners to tiles
-            tileW_1.setOnLongClickListener(longClickListener);
-            tileW_2.setOnLongClickListener(longClickListener);
-            tileW_3.setOnLongClickListener(longClickListener);
-            tileW_4.setOnLongClickListener(longClickListener);
-            tileW_5.setOnLongClickListener(longClickListener);
-            tileW_6.setOnLongClickListener(longClickListener);
-            tileW_7.setOnLongClickListener(longClickListener);
-            tileW_8.setOnLongClickListener(longClickListener);
-            tileW_9.setOnLongClickListener(longClickListener);
-            tileB_1.setOnLongClickListener(longClickListener);
-            tileB_2.setOnLongClickListener(longClickListener);
-            tileB_3.setOnLongClickListener(longClickListener);
-            tileB_4.setOnLongClickListener(longClickListener);
-            tileB_5.setOnLongClickListener(longClickListener);
-            tileB_6.setOnLongClickListener(longClickListener);
-            tileB_7.setOnLongClickListener(longClickListener);
-            tileB_8.setOnLongClickListener(longClickListener);
-            tileB_9.setOnLongClickListener(longClickListener);
+            for (Tile tile : whiteTiles)
+                tile.setOnLongClickListener(longClickListener);
+            for (Tile tile : blackTiles)
+                tile.setOnLongClickListener(longClickListener);
             //endregion
-            whiteTiles = new Tile[]{tileW_1, tileW_2, tileW_3, tileW_4, tileW_5, tileW_6, tileW_7, tileW_8, tileW_9};
-            blackTiles = new Tile[]{tileB_1, tileB_2, tileB_3, tileB_4, tileB_5, tileB_6, tileB_7, tileB_8, tileB_9};
+            //region prepare players
             playerW = new Player(intent.getStringExtra("USER_NAME"));
+            playerW.setTiles(whiteTiles).setStartingArea((Node) findViewById(R.id.startAreaP1));
+            playerW.getStartingArea().setOccupied(true).setOnDragListener(dragListener);
             playerB = new Player(intent.getStringExtra("USER_NAME2"));
-            playerB.setPlayerWhite(false);
-            playerB.setTiles(blackTiles);
-            playerW.setTiles(whiteTiles);
-            Toast.makeText(MultiPlayerActivity.this, "Welcome " + playerB.getName(), Toast.LENGTH_SHORT).show();
-            Toast.makeText(MultiPlayerActivity.this,  playerW.getName() + " vs " + playerB.getName(), Toast.LENGTH_LONG).show();
-            Game gamePlayerW = new Game(nodes, whiteTiles);
-            Game gamePlayerB = new Game(nodes, blackTiles);
+            playerB.setPlayerWhite(false).setTiles(blackTiles).setStartingArea((Node) findViewById(R.id.startAreaP2));
+            playerB.getStartingArea().setOccupied(true).setOnDragListener(dragListener);
             changePlayerState(playerB, false);
             currentPlayer = playerW;
+            //endregion
+            Toast.makeText(MultiPlayerActivity.this, "Welcome " + playerB.getName(), Toast.LENGTH_SHORT).show();
+            Toast.makeText(MultiPlayerActivity.this,  playerW.getName() + " vs " + playerB.getName(), Toast.LENGTH_LONG).show();
         }catch (Exception exc){
             exc.getMessage();
         }

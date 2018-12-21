@@ -3,4 +3,5 @@
     <string name="Toast_currentPlayer"> %s player\'s turn: %s </string>
     <string name="PlayerColourWhite">White</string>
     <string name="PlayerColourBlack">Black</string>
+    <string name="GameSetUpError">Fatal error while setting up the game board!!!</string>
 </resources>

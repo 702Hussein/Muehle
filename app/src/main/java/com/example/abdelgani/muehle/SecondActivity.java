@@ -46,8 +46,8 @@ public class SecondActivity extends AppCompatActivity
         Toast.makeText(SecondActivity.this, "Welcome " + player1, Toast.LENGTH_LONG).show();
 
 
-        mediaPlayer = MediaPlayer.create(getApplicationContext(), R.raw.music);
-        mediaPlayer.start();
+        //mediaPlayer = MediaPlayer.create(getApplicationContext(), R.raw.music);
+        //mediaPlayer.start();
 
 
         myDatabase = new Database( this );

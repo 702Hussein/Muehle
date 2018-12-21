@@ -3,4 +3,5 @@
     <string name="Toast_currentPlayer">%s Spieler: %s</string>
     <string name="PlayerColourWhite">Weißer</string>
     <string name="PlayerColourBlack">Schwarzer</string>
+    <string name="GameSetUpError">Schwerwiegender Fehler beim Spielaufbau!!!</string>
 </resources>

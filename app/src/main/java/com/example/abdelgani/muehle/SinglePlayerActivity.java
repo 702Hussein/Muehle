@@ -470,7 +470,7 @@ public class SinglePlayerActivity extends AppCompatActivity {
 
 	private void gameOver(){
 		Toast.makeText(getApplicationContext(),"Spieler "+getActivePlayer().getName()+" hat gewonnen", Toast.LENGTH_LONG).show();
-		sqLiteDB.t_score_insert(getActivePlayer().getName(),getInactivePlayer().getName(),getActivePlayer().getName());
+		sqLiteDB.t_score_insert(players[0].getName(),players[1].getName(),getActivePlayer().getName());
 		onBackPressed();
 	}
 

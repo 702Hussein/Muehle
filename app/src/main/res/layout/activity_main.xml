@@ -1,88 +1,104 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/LoginID"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:background="@drawable/login_background"
+    android:theme="@android:style/Theme.Dialog"
+
     tools:context=".MainActivity">
 
 
-    <!-- repository github:  AS https://www.youtube.com/watch?v=_d4fFFAJKVA
-         gitHub Tut:    https://www.youtube.com/watch?v=SWYqp7iY_Tc
-    -->
-
-    <EditText
-        android:id="@+id/btnNameID"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-
-        android:layout_alignParentEnd="true"
-        android:layout_marginStart="87dp"
-        android:layout_marginTop="116dp"
-        android:layout_marginEnd="57dp"
-        android:backgroundTint="@android:color/white"
-        android:hint="Name"
-        android:inputType="textPersonName"
-        android:textColor="@color/colorPrimaryDark"
-        android:textColorHint="@android:color/background_light"
-        android:textSize="20sp"
-        android:textStyle="bold" />
-
-    <EditText
-        android:id="@+id/btnPasswordID"
-        android:layout_width="wrap_content"
-        android:layout_height="40dp"
-        android:layout_below="@+id/btnNameID"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginStart="87dp"
-        android:layout_marginTop="35dp"
-        android:layout_marginEnd="57dp"
-        android:layout_marginBottom="20dp"
-        android:backgroundTint="@android:color/white"
-        android:hint="Password"
-        android:inputType="textPassword"
-        android:textColorHint="@android:color/background_light"
-        android:textSize="20sp"
-        android:textStyle="bold" />
-
-    <Button
-        android:id="@+id/btnLoginID"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/btnPasswordID"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginStart="147dp"
-        android:layout_marginTop="67dp"
-        android:layout_marginEnd="149dp"
+    <TableLayout
+        android:id="@+id/tableLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingTop="150dp"
+        android:paddingLeft="-50dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         android:background="@android:color/transparent"
-        android:text="Login"
-        android:textColor="@android:color/background_light"
-        android:textSize="20sp"
-        android:textStyle="bold" />
+        android:gravity="center_horizontal"
+        tools:layout_editor_absoluteX="57dp">
 
-    <Button
-        android:id="@+id/btnRegisterID"
-        android:layout_width="123dp"
-        android:layout_height="41dp"
-        android:layout_below="@+id/btnLoginID"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="129dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="132dp"
-        android:layout_marginBottom="128dp"
-        android:background="@android:color/transparent"
-        android:text="Register"
-        android:textColor="@color/colorAccent"
-        android:textSize="20sp"
-        android:textStyle="bold" />
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal">
 
 
-</RelativeLayout>
+
+            <EditText
+                android:id="@+id/btnNameID"
+                android:hint="Input user name"
+                android:inputType="text" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal"
+            android:paddingTop="10dp"
+            android:orientation="horizontal">
+
+
+            <EditText
+                android:id="@+id/btnPasswordID"
+                android:hint="Input password"
+                android:inputType="textPassword" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal">
+
+        </TableRow>
+
+        <TableRow android:gravity="center_horizontal">
+
+            <Button
+                android:id="@+id/btnLoginID"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="5dp"
+                android:gravity="center_horizontal"
+                android:text="Login"
+                android:textAllCaps="false"
+                android:textSize="19sp" />
+
+
+        </TableRow>
+
+        <TableRow android:gravity="center_horizontal">
+
+            <Button
+                android:id="@+id/btnRegisterID"
+                android:layout_width="123dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:gravity="center_horizontal"
+                android:text="Register"
+                android:textAllCaps="false"
+                android:textSize="19sp"
+                app:layout_constraintBottom_toBottomOf="@+id/tableLayout"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.501"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/tableLayout"
+                app:layout_constraintVertical_bias="0.356" />
+
+
+        </TableRow>
+
+    </TableLayout>
+
+
+
+</android.support.constraint.ConstraintLayout>

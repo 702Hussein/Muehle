@@ -5,4 +5,8 @@
     <color name="colorAccent">#fcf9fa</color>
     <color name="color_gameboard_bg">#ffffcc</color>
     <color name="gray">#8A4B08</color>
+    <color name="helllau">#A9D0F5</color>
+    <color name="hellblack">#A4A4A4</color>
+
+    <color name="green">#01DF01</color>
 </resources>

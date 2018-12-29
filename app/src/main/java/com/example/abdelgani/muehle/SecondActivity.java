@@ -52,6 +52,7 @@ public class SecondActivity extends AppCompatActivity
                 OpenSinglePlyerActivity();
             }
         } );
+        SinglePlayer.setVisibility(View.INVISIBLE);
 
         MultiPlayer = (Button)findViewById( R.id.btnMultiPlayerActivity );
         MultiPlayer.setOnClickListener( new View.OnClickListener() {

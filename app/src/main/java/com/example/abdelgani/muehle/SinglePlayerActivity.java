@@ -473,7 +473,6 @@ public class SinglePlayerActivity extends AppCompatActivity {
 		sqLiteDB.t_score_insert(players[0].getName(),players[1].getName(),getActivePlayer().getName());
 		onBackPressed();
 	}
-
 	private Player getActivePlayer() {
 		return players[0].isActive() ? players[0] : players[1];
 	}

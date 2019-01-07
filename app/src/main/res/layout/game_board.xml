@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/color_gameboard_bg"
+    android:background="@color/color_gameboard_bg_2"
     tools:context=".SinglePlayerActivity">
 
     <ImageView
@@ -17,7 +17,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/dividerTop"
-        app:srcCompat="@drawable/nine_mens_morris_board_700px"
+        app:srcCompat="@drawable/nine_mens_morris_board_729px_bg_transparent"
         tools:ignore="ContentDescription"
         tools:layout_height="384dp"
         tools:layout_width="384dp" />

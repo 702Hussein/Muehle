@@ -4,6 +4,7 @@
     <color name="colorPrimaryDark">#0a0a0a</color>
     <color name="colorAccent">#fcf9fa</color>
     <color name="color_gameboard_bg">#ffffcc</color>
+    <color name="color_gameboard_bg_2">#ffff8e</color>
     <color name="gray">#8A4B08</color>
     <color name="helllau">#A9D0F5</color>
     <color name="hellblack">#A4A4A4</color>

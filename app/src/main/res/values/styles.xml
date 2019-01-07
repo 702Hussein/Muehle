@@ -11,6 +11,6 @@
     <dimen name="nodeSize">48dp</dimen>
     <dimen name="nodeMargin">8dp</dimen>
     <dimen name="tileSize">42dp</dimen>
-    <drawable name="startPlayer">@drawable/white_tile</drawable>
+    <drawable name="startPlayer">@drawable/white_tile_3</drawable>
     <drawable name="secondPlayer">@drawable/black_tile</drawable>
 </resources>
